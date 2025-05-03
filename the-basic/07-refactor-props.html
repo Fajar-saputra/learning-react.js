@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>refactoring props</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <!-- react by cdn -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- cdn babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Your custom script here -->
+    <script type="text/babel">
+
+        const container = document.getElementById("root")
+        const root = ReactDOM.createRoot(container)
+
+        function Button() {
+            return <button>Click Me!!</button>
+        }
+
+
+        function Students() {
+            const students = ["dimas", "refalldo", "iqbal", "kevil", "otong"];
+
+            return (
+
+                <ul>
+                    {students.map(student => {
+                        return <li key={student}>{student}</li>
+                    })}
+                </ul>
+
+            )
+        }
+
+        function Hello({ name }) {
+            return (
+                <p>Hello <b>{name}</b> apa kabarnya??</p>
+            )
+        }
+
+        function Counter() {
+            const [likes, setLikes] = React.useState(0);
+
+            function handleClick() {
+                setLikes(likes + 1)
+            }
+
+            return (
+                <button onClick={handleClick}>Likes {likes}</button>
+            )
+        }
+
+        function Header() {
+
+            return (
+                <>
+                    <h1>Contoh heading 1</h1>
+                    <Button />
+                    <Students />
+                    <Hello name="asep" />
+                    <Counter />
+                </>
+            )
+
+
+        }
+
+        root.render(<Header />)
+
+    </script>
+</body>
+
+</html>

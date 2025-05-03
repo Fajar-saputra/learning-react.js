@@ -1,18 +1,19 @@
 {
   "name": "the-essentials",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "babel src --out-dir public"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
+  "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.27.1",
     "@babel/core": "^7.27.1",
-    "@babel/preset-env": "^7.27.1"
+    "@babel/preset-env": "^7.27.1",
+    "@babel/preset-react": "^7.27.1"
+  },
+  "scripts": {
+    "build": "babel src --out-dir public",
+    "start": "lite-server --baseDir public"
+  },
+  "dependencies": {
+    "lite-server": "^2.6.1"
   }
 }

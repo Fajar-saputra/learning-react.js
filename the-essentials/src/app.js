@@ -1,17 +1,11 @@
 const root = document.getElementById("root")
+const container = ReactDOM.createRoot(root)
 
-// pada contoh ini yang di render secara uptude pada <p>{new Date().toLocaleString()}</p> element lain seperti
-function tick() {
-    const element = (
-        <>
-            <h1>jam sekarang</h1>
-            <p>{new Date().toLocaleString()}</p>
-            <p>pada contoh ini yang di render hanya pada <p>new Date().toLocaleString()</p> element lain seperti tidak dirender</p>
-        </>
+const Header = () => {
+    return (
+        <h1>Cara buat komponent</h1>
     )
-    // render
-    ReactDOM.render(element, root)
 }
 
-setInterval(tick, 1000)
 
+container.render(<Header/>)
