@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Element by js</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script>
+        const root = document.getElementById("root")
+        
+        const paragraf = document.createElement("p");
+        paragraf.textContent= "Membuat paragraf dari javascript"
+        paragraf.className = "paragraf-1"
+
+        const heading1 = document.createElement("h1");
+        heading1.textContent = "Membuat heading 1 dari javascript"
+        heading1.className = "heading-1"
+
+        root.appendChild(heading1)
+        root.appendChild(paragraf)
+    </script>
+</body>
+</html>

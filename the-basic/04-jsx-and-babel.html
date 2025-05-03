@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jsx and babel basic</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <!-- react by cdn -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- cdn babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Your custom script here -->
+    <script type="text/babel">
+
+        const root = document.getElementById("root")
+
+        // example jsx
+        const elementList = (
+            <ul>
+                <li>martabat</li>
+                <li>bakso</li>
+                <li>mie ayam</li>
+                <li>cendol</li>
+                <li>gorengan</li>
+                <li>sirup abc</li>
+            </ul>
+        );
+
+        // render
+        ReactDOM.render(elementList, root)
+
+    </script>
+</body>
+
+</html>

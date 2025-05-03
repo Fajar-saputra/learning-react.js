@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>consep rendering</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <!-- react by cdn -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- cdn babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Your custom script here -->
+    <script type="text/babel">
+
+        const root = document.getElementById("root")
+
+        // pada contoh ini yang di render secara uptude pada <p>{new Date().toLocaleString()}</p> element lain seperti
+        function tick() {
+            const element = (
+                <>
+                    <h1>jam sekarang</h1>
+                    <p>{new Date().toLocaleString()}</p>
+                    <p>pada contoh ini yang di render hanya pada <p>new Date().toLocaleString()</p> element lain seperti tidak dirender</p>
+                </>
+            )
+            // render
+            ReactDOM.render(element, root)
+        }
+
+        setInterval(tick, 1000)
+
+
+    </script>
+</body>
+
+</html>
