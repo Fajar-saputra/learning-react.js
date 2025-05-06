@@ -9,8 +9,8 @@ Fajar Saputra – Minggu 1 s/d 6
 - [x] Jalankan `npm run dev` di lokal
 - [x] Ngerti struktur folder React basic
 - [x] Gunakan `useState` untuk counter
-- [ ] Pisahkan jadi beberapa komponen (Button, Header, dsb)
-- [ ] Push project ke GitHub
+- [x] Pisahkan jadi beberapa komponen (Button, Header, dsb)
+- [x] Push project ke GitHub
 
 **🧪 Project:** `Counter App`  
 **🔗 Link GitHub:** _<tulis link di sini>_
