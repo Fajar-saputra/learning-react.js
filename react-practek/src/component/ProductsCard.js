@@ -1,18 +1,22 @@
 import React from "react";
-// import '../data/App.css';
+import Products from "../data/ProductsData";
 
-const ProductsCard = (props) => {
+function ProductsCard() {
     return (
-        <div className="container">
-            <div className="cards">
-                <div className="card">
-                    <img src={props.urlImage} alt="test"/>
-                    <h3>{props.nama }</h3>
-                    <p>{props.deskripsi}</p>
+        <div>
+            <div className="container">
+                <div className="cards">
+                    {Products.map((product, index) => (
+                        <div key={index} className="card">
+                            <img src={product.imageURL} alt={ product.nama}/>
+                            <h4>{product.nama}</h4>
+                            <p>{product.deskripsi}</p>
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>
     );
-};
+}
 
 export default ProductsCard;
