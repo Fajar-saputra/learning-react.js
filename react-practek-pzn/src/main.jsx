@@ -3,13 +3,14 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import "./cubaStyling.css";
 
-import HelloWord from "./compenent/HelloWord.jsx";
-import Button from "./compenent/Button.jsx";
-import HelloNgab from "./compenent/HelloNgab.jsx";
-import Container from "./compenent/Container.jsx";
-import Cards from "./compenent/Cards.jsx";
+import HelloWord from "./compenents/HelloWord.jsx";
+import Button from "./compenents/Button.jsx";
+import HelloNgab from "./compenents/HelloNgab.jsx";
+import Container from "./compenents/Container.jsx";
+import Cards from "./compenents/Cards.jsx";
 import TodoList from "./todo/TodoList.jsx";
-import DataMahasiswa from "./compenent/DataMahasiswa.jsx";
+import DataMahasiswa from "./compenents/DataMahasiswa.jsx";
+import AlertButton from "./compenents/AlertButton.jsx";
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>
@@ -18,8 +19,9 @@ createRoot(document.getElementById("root")).render(
             <Button />
             <HelloNgab text="test aja" />
             <Cards />
-      <TodoList />
-      <DataMahasiswa />
+            <TodoList />
+            <DataMahasiswa />
+            <AlertButton />
         </Container>
     </StrictMode>
 );
