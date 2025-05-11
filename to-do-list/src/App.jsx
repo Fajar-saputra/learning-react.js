@@ -1,15 +1,14 @@
-import './App.css'
+import "./App.css";
+import TambahBuah from "./components/TambahBuah";
 import Tasks from "./components/Tasks";
 
-
 function App() {
-
-
-  return (
-    <>
-    <Tasks task={"testing"} />
-    </>
-  )
+    return (
+        <>
+        <TambahBuah />
+        <Tasks/>
+        </>
+    );
 }
 
-export default App
+export default App;
