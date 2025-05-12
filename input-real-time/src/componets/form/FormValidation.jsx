@@ -45,11 +45,13 @@ export default function FormValidation() {
 
             {error && <p style={{ color: "red" }}>{error}</p>}
 
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter your Name..." />
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your Email..." />
-            <input type="number" value={umur} onChange={(e) => setUmur(e.target.value)} placeholder="Enter your Age..." />
-            <input type="text" value={prodi} onChange={(e) => setProdi(e.target.value)} placeholder="Enter your Prodi..." />
-            <input type="number" value={semester} onChange={(e) => setSemester(e.target.value)} placeholder="Enter your Semester..." />
+            <div className="container-input">
+                <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter your Name..." />
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your Email..." />
+                <input type="number" value={umur} onChange={(e) => setUmur(e.target.value)} placeholder="Enter your Age..." />
+                <input type="text" value={prodi} onChange={(e) => setProdi(e.target.value)} placeholder="Enter your Prodi..." />
+                <input type="number" value={semester} onChange={(e) => setSemester(e.target.value)} placeholder="Enter your Semester..." />
+            </div>
 
             <button type="submit">Submit</button>
         </form>
