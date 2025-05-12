@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+body {
+    padding: 2rem;
+}
+
+input, button {
+    padding: .4rem 1rem;
+    background-color: #fff;
+    border: none;
+    outline: none;
+    box-shadow: 0 0 7px rgba(0, 0, 0, .4);
+    border-radius: .3rem;
+}
+
+input {
+    margin-right: .4rem;
+    margin-bottom: .7rem;
+}
+
+h2 {
+    margin-bottom: .7rem;
+}
