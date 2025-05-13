@@ -1,91 +1,63 @@
 import { useState } from "react";
 
 export default function LoginApp() {
+  // State untuk menyimpan nilai input username
   const [username, setUsername] = useState("");
+  // State untuk menyimpan nilai input password
   const [password, setPassword] = useState("");
+  // State untuk menandakan apakah pengguna sudah berhasil login
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [error, setError] = useState("");
+  // State untuk menyimpan pesan error jika login gagal
+  const [err, setErr] = useState("");
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if (username === "admin" && password === "123") {
-      setIsLoggedIn(true);
-      setError("");
+  // Fungsi yang dipanggil saat tombol submit pada form ditekan
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Mencegah perilaku default form submit (refresh halaman)
+    // Kondisi untuk memeriksa apakah username dan password sesuai
+    if (username === "ibrahim" && password === "1234") {
+      setIsLoggedIn(true); // Set status login menjadi true jika berhasil
+      setErr(""); // Reset pesan error
     } else {
-      setError("Username atau password salah!");
+      setErr("Username atau password salah!"); // Set pesan error jika login gagal
     }
-  };
-
-  const containerStyle = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100vh",
-    backgroundColor: "#f0f0f0",
-    fontFamily: "Arial, sans-serif",
-  };
-
-  const cardStyle = {
-    padding: "2rem",
-    borderRadius: "8px",
-    boxShadow: "0 0 10px rgba(0,0,0,0.2)",
-    backgroundColor: "white",
-    minWidth: "300px",
-  };
-
-  const inputStyle = {
-    width: "100%",
-    padding: "0.5rem",
-    margin: "0.5rem 0",
-    borderRadius: "4px",
-    border: "1px solid #ccc",
-  };
-
-  const buttonStyle = {
-    width: "100%",
-    padding: "0.5rem",
-    backgroundColor: "#4CAF50",
-    color: "white",
-    border: "none",
-    borderRadius: "4px",
-    cursor: "pointer",
-    marginTop: "0.5rem",
-  };
-
-  const errorStyle = {
-    color: "red",
-    marginTop: "0.5rem",
-    fontSize: "0.9rem",
-  };
+    };
+    
+    const handleLogout = () => {
+        setIsLoggedIn(false);
+        setPassword("")
+        setUsername("")
+    }
 
   return (
-    <div style={containerStyle}>
-      <div style={cardStyle}>
-        {!isLoggedIn ? (
-          <form onSubmit={handleLogin}>
-            <h2 style={{ textAlign: "center", marginBottom: "1rem" }}>Login</h2>
-            <input
-              type="text"
-              placeholder="Username"
-              onChange={(e) => setUsername(e.target.value)}
-              style={inputStyle}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
-              style={inputStyle}
-            />
-            <button type="submit" style={buttonStyle}>Login</button>
-            {error && <p style={errorStyle}>{error}</p>}
-          </form>
-        ) : (
-          <div>
-            <h2>Selamat Datang, {username}!</h2>
-            <p>Ini adalah tampilan dashboard sederhana.</p>
-          </div>
-        )}
-      </div>
+    <div>
+      {/* Kondisi untuk menampilkan form login atau tampilan dashboard */}
+      {!isLoggedIn ? (
+        // Jika isLoggedIn false, tampilkan form login
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Username"
+            // Mengupdate state username setiap kali nilai input berubah
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            // Mengupdate state password setiap kali nilai input berubah
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button type="submit">Login</button>
+          {/* Menampilkan pesan error jika ada */}
+          {err && <p style={{ color: "red" }}>{err}</p>}
+        </form>
+      ) : (
+        // Jika isLoggedIn true, tampilkan tampilan dashboard
+        <div>
+          <h1>Welcome {username}</h1>
+                      <p>Ini tampilan dashboard sederhana</p>
+            <button type="submit" onClick={handleLogout}>Logout</button>
+        </div>
+      )}
     </div>
   );
 }
