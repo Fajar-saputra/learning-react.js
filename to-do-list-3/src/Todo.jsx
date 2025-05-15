@@ -17,6 +17,7 @@ export default function Todo() {
         <div>
             <h2>List</h2>
             <ul>
+                <ul>
                     {todos.map((todo) => {
                         return (
                             <li key={todo.id}>
@@ -25,6 +26,7 @@ export default function Todo() {
                             </li>
                         );
                     })}
+                </ul>
             </ul>
         </div>
     );
