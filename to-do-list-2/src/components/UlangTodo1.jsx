@@ -12,22 +12,24 @@ export default function UlangTodo() {
 
     const [editId, setEditId] = useState(null);
     const [editText, setEditText] = useState("");
-    
+
     const handleStartEdit = (id, text) => {
         setEditId(id);
-        setEditText(text)
-    }
+        setEditText(text);
+    };
 
     const handleEditSubmit = () => {
         if (editText.trim().length < 4) {
-            alert("Karakter harus lebih dari 4")
+            alert("Karakter harus lebih dari 4");
             return;
         }
 
-        const updated = list.map(item => {
-            item.id === editId ? { ...item, title: editText.trim() } : item;
-        })
-    }
+      const updated = list.map((item) => (item.id === editId ? { ...item, title: editText.trim() } : item));
+
+        setList(updated);
+        setEditId(null);        
+        setEditText("");
+    };
 
     const handleHapus = (id) => {
         setList(list.filter((item) => item.id !== id));
@@ -72,18 +74,21 @@ export default function UlangTodo() {
             <ul>
                 {list.map((item) => (
                     <li key={item.id}>
-                        {editId === item.id ? 
-                            (<input type="text"
-                                value={editId}
+                        {editId === item.id ? (
+                            <input
+                                type="text"
+                                value={editText}
                                 onChange={(e) => setEditText(e.target.value)}
                                 onBlur={handleEditSubmit}
-                                onKeyDown={(e) =>{
+                                onKeyDown={(e) => {
                                     if (e.key === "Enter") handleEditSubmit();
                                 }}
-                                />) : <span></span>     
-                    }
+                                autoFocus
+                            />
+                        ) : (
+                            <span onDoubleClick={() => handleStartEdit(item.id, item.title)}>{item.title}</span>
+                        )}
 
-                        {item.title}
                         <button onClick={() => handleHapus(item.id)}>Hapus</button>
                     </li>
                 ))}

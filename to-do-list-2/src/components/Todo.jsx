@@ -1,54 +1,49 @@
 import { useState } from "react";
 
 export default function Todo() {
-  const [todos, setTodos] = useState([
-    { id: 1, title: "Belajar React" },
-    { id: 2, title: "Ngoding modular JS" }
-  ]);
+    const [todos, setTodos] = useState([
+        { id: 123, title: "Belajar ngoding" },
+        { id: 124, title: "Belajar ReactJS" },
+        { id: 127, title: "Belajar JS" },
+    ]);
 
-  const [inputValue, setInputValue] = useState(""); // 🔹 controlled input
+    const [input, setInput] = useState("");
 
-  const handleHapus = (id) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  };
+    const handleAdd = (e) => {
+        e.preventDefault();
 
-  const handleAdd = (e) => {
-    e.preventDefault(); // 🔹 mencegah reload
-    if (inputValue.trim() === "") return;
+        if (input.trim() === "") {
+            alert("Tidak boleh kosong!!");
+            return;
+        }
 
-    const newTodo = {
-      id: Date.now(),
-      title: inputValue
-    };
+        if (input.trim().length < 4) {
+            alert("Karakter harus lebih dari 4");
+            return;
+        }
 
-    setTodos([...todos, newTodo]); // 🔹 tambahkan ke array
-    setInputValue(""); // 🔹 reset input
-  };
+        const newItem = {
+            id: Date.now(),
+            title: input.trim()
+        }
 
-  return (
-    <div>
-      <h2>Todo List</h2>
+        setTodos([...todos, newItem])
+        setInput("")
 
-      {/* 🔹 Form Input */}
-      <form onSubmit={handleAdd}>
-        <input
-          type="text"
-          placeholder="Tambahkan todo baru"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-        />
-        <button type="submit">Tambah</button>
-      </form>
+    }
 
-      {/* 🔹 Daftar Todo */}
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>
-            {todo.title}
-            <button onClick={() => handleHapus(todo.id)}>Hapus</button>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+    return (
+        <div>
+            <h2>Todo</h2>
+            <form action="" onSubmit={handleAdd}>
+                <input type="text" placeholder="Enter todo" value={input} onChange={(e) => setInput(e.target.value)}/>
+                <button>Add</button>
+            </form>
+            <ul>
+                {todos.map((item) => {
+                    return <li key={item.id}>{item.title}</li>;
+                })}
+            </ul>
+        </div>
+    );
 }

@@ -72,8 +72,10 @@ export default function Keranjang() {
             </form>
             <ul>
                 <ul>
+                    {/* mapping element */}
                     {list.map((item) => (
                         <li key={item.id}>
+                            {/* ketika editId sama dengan item.id berjalan sesudah item diklik 2x oleh user */}
                             {editId === item.id ? (
                                 <input
                                     type="text"
