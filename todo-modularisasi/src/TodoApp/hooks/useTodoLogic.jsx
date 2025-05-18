@@ -11,7 +11,8 @@ export default function useTodoLogic() {
     const [editID, setEditID] = useState(null);
     const [editText, setEditText] = useState("");
 
-    const handleAdd = () => {
+    // add todo
+    const handleAdd = (e) => {
         e.preventDefault();
 
         if (input.trim() === "") return;
@@ -20,7 +21,7 @@ export default function useTodoLogic() {
             return;
         }
 
-        const duplicated = todos.some(todo => todo.title === input.trim())
+        const duplicated = todos.some(todo => todo.title.toLowerCase() === input.trim().toLowerCase())
         if (duplicated) {
             alert("Todo sudah ada!")
             return;
@@ -28,8 +29,36 @@ export default function useTodoLogic() {
 
         const newTodo = { id: Date.now(), title: input.trim() }
         
-        setTodos({ ...todos, newTodo });
+        setTodos([ ...todos, newTodo ]);
         setInput("");
+    }
+
+    // hapus todo
+    const handleHapus = (id) => {
+        const updated = todos.filter(todo => todo.id !== id)
+        setTodos(updated)
+    }
+
+    // tangkat id dan text untuk di hapus
+    const handleStartEdit = (todo) => {
+        setEditID(todo.id);
+        setEditText(todo.title)
+    }
+
+    // edit todo
+    const handleEditSubmit = () => {
+
+        if (editText.trim().length < 4) {
+            alert("Minimal 4 karakter!!")
+            return;
+        }
+
+        
+         const updated = todos.map((todo) => todo.id === editID ? { ...todo, title: editText.trim() } : todo);
+
+        setTodos(updated)
+        setEditID(null)
+        setEditText("")
     }
 
    return {
@@ -39,9 +68,10 @@ export default function useTodoLogic() {
         editID,
         editText,
         setEditText,
+        setEditID,
         handleAdd,
-        // handleHapus,
-        // handleEdit,
-        // handleStartEdit,
+        handleHapus,
+        handleEditSubmit,
+        handleStartEdit,
     };
 }

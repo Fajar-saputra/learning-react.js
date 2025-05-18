@@ -1,7 +1,7 @@
 export default function TodoForm({handleAdd, setInput, input}) {
     
     return (
-        <form onClick={handleAdd}>
+        <form onClick={handleAdd} style={{display: 'flex', alignItems:'center'}}>
             <input
                 type="text"
                 placeholder="Enter your todo..."
