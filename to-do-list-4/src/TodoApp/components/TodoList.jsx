@@ -1,4 +1,4 @@
-export default function TodoList({ todos, toggleSubtask }) {
+export default function TodoList({ todos, handleAddSubtask }) {
     return (
         <ul>
             {todos.map((todo) => (
@@ -10,7 +10,7 @@ export default function TodoList({ todos, toggleSubtask }) {
                                 <input
                                     type="checkbox"
                                     checked={sub.done}
-                                    onChange={() => toggleSubtask(todo.id, sub.id)}
+                                    onChange={() => handleAddSubtask(todo.id, sub.id)}
                                 />
                                 {sub.text}
                             </li>
