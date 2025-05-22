@@ -1,28 +1,26 @@
-export default function TodoItem({ todos, setSubtaskInput, handleAddSubtask, subtaskInput }) {
+import SubtasksForm from "./SubtasksForm";
+
+export default function TodoItem({ todos, handleAddSubtask, subtaskInput,setSubtaskInput }) {
     return (
         <ul>
+            {/* mapping for todo */}
             {todos.map((todo) => {
-                <li key={todo.id}>
-                    <strong>{todo.title}</strong>
-
-                    {/* subtask list */}
-                    <ul>
-                        {todo.subtasks.map((subtask) => (
-                            <li key={subtask.id}>{subtask.text}</li>
-                        ))}
-                    </ul>
-
-                    {/* form tambah subtask */}
-                    <input type="text" placeholder="Subtask..." value={subtaskInput[todo.id] || ""} onChange={(e) => setSubtaskInput({ ...subtaskInput, [todo.id]: e.target.value })} />
-                    <button
-                        onClick={() => {
-                            handleAddSubtask(todo.id, subtaskInput[todo.id]);
-                            setSubtaskInput({ ...subtaskInput, [todo.id]: "" });
-                        }}
-                    >
-                        + Subtask
-                    </button>
-                </li>;
+                return (
+                    <>
+                        <li key={todo.id}>
+                            <span>{todo.title}</span>
+                            <SubtasksForm handleAddSubtask={() => handleAddSubtask(todo.id)} subtaskInput={subtaskInput} setSubtaskInput={setSubtaskInput}/>
+                        </li>
+                        <ul>
+                            {/* mapping for subtasks */}
+                            {todo.subtasks.map(task => {
+                                return (
+                                    <li key={task.id}>{task.text}</li>
+                                )
+                            })}
+                        </ul>
+                    </>
+                );
             })}
         </ul>
     );
