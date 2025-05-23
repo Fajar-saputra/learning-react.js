@@ -71,8 +71,8 @@ export function UseLogic() {
     const handleAddSubtask = (todoId) => {
         const subtaskText = subtaskInput[todoId] || "";
 
-        if (subtaskText.trim().length < 3) {
-            alert("Subtask minimal 3 karakter!");
+        if (subtaskText.trim().length < 4) {
+            alert("Subtask minimal 5 karakter!");
             return;
         }
 
