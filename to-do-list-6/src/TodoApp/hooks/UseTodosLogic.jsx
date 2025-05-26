@@ -21,18 +21,21 @@ export default function UseTodosLogic() {
         { id: 3, title: "Persiapan Minggu 2", subtasks: [] },
     ]);
 
-    const [inputTodos, setInputTodos] = useState("")
+    const [inputTodos, setInputTodos] = useState("");
+    const [editId, setEditId] = useState(null);
+    const [editTodos, setEditTodos] = useState("");
 
     const handleAddTodos = (e) => {
         e.preventDefault();
-        
+
         if (inputTodos.trim() === "") return;
 
         if (inputTodos.trim().length <= 5) {
-            alert("Minimal 5 karakter!!")
+            alert("Minimal 5 karakter!!");
+            return;
         }
 
-        const duplicated = todos.some(todo => todo.title.toLowerCase() === inputTodos.trim().toLowerCase());
+        const duplicated = todos.some((todo) => todo.title.toLowerCase() === inputTodos.trim().toLowerCase());
 
         if (duplicated) {
             alert("Todo sudah ada!!");
@@ -42,18 +45,44 @@ export default function UseTodosLogic() {
         const newTodo = {
             id: Date.now(),
             title: inputTodos.trim(),
-            subtasks: []
-        }
+            subtasks: [],
+        };
 
         setTodos([...todos, newTodo]);
         setInputTodos("");
-    }
+    };
+
+    const handleStartEdit = (id, title) => {
+        setEditId(id);
+        setEditTodos(title);
+    };
+
+    const handleFinalEdit = () => {
+        if (inputTodos.trim() === "") return;
+
+        if (inputTodos.trim().length <= 5) {
+            alert("Minimal 5 karakter!!");
+            return;
+        }
+
+        const updated = todos.map(todo => todo.id === editId ? { ...todo, title: editTodos } : todo);
+        
+        setTodos([...todos, updated]);
+        setEditId(null);
+        setEditTodos("");
+    };
 
     return {
         todos,
         setTodos,
         inputTodos,
         setInputTodos,
-        handleAddTodos
+        handleAddTodos,
+        editId,
+        setEditId,
+        editTodos,
+        setEditTodos,
+        handleStartEdit,
+        handleFinalEdit
     };
 }
