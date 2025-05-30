@@ -5,7 +5,7 @@ function App() {
 
   return (
     <>
-      <h1>Contoh Todo</h1>
+      <h1>Implementasi useState Todo</h1>
       <Todo />
     </>
   )
