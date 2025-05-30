@@ -13,7 +13,10 @@ export default function Todo() {
         editId,
         editTodo,
         messageErr,
-        setEditTodo
+        setEditTodo,
+        handelAddSubtasks,
+        tasks,
+        setAddtasks
     } = UseTodosLogic();
 
     return (
@@ -28,6 +31,9 @@ export default function Todo() {
                 editTodo={editTodo}
                 setEditTodo={setEditTodo}
                 messageErr={messageErr}
+                handelAddSubtasks={handelAddSubtasks}
+                tasks={tasks}
+                setAddtasks={setAddtasks}
             />
         </>
     );

@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export default function UseTodosLogic() {
-    const [todos, setTodos] = useState([{ id: 123, title: "Testing aja", subtasks: [] }]);
+    const [todos, setTodos] = useState([{ id: 123, title: "Testing aja", subtasks: [{ id: 111, task: "abcde" }] }]);
     // input todo
     const [inputTodos, setInputTodos] = useState("");
     // edit todo
@@ -35,13 +36,15 @@ export default function UseTodosLogic() {
             return;
         }
 
-        const newTodo = {
-            id: Date.now(),
-            title: trimmedInput,
-            subtasks: [],
-        };
+        setTodos((prevTodos) => [
+            ...prevTodos,
+            {
+                id: uuidv4(),
+                title: trimmedInput,
+                subtasks: [],
+            },
+        ]);
 
-        setTodos([...todos, newTodo]);
         setInputTodos("");
     };
 
@@ -65,9 +68,17 @@ export default function UseTodosLogic() {
             return;
         }
 
-        const updatedTodos = todos.map((todo) => (todo.id === editId ? { ...todo, title: text } : todo));
+        // const updatedTodos = todos.map((todo) => (todo.id === editId ? { ...todo, title: text } : todo));
+        // setTodos(updatedTodos);
 
-        setTodos(updatedTodos);
+        setTodos((prevTodos) =>
+            prevTodos.map((todo) => {
+                if (todo.id === editId) {
+                    return { ...todo, title: text };
+                }
+                return todo;
+            })
+        );
 
         setEditId(null);
         setEditTodo("");
@@ -75,35 +86,38 @@ export default function UseTodosLogic() {
     };
 
     const handelAddSubtasks = (id) => {
-        // 1. Konsistensi nama variabel untuk input teks
-        const newSubtaskText = tasks.trim(); // Asumsi 'tasks' adalah state untuk input teks
+        const newSubtaskText = tasks.trim();
 
-        // 2. Validasi input
         if (newSubtaskText.length <= 4) {
-            setMessageErr("Minimal 5 karakter!");
+            setMessageErr("Minimal 5 karakter untuk subtask!");
+            return;
+        }
+        if (newSubtaskText === "") {
+            setMessageErr("Subtask tidak boleh kosong!");
+            return;
+        }
+        const currentTodo = todos.find((todo) => todo.id === id);
+        if (currentTodo && currentTodo.subtasks.some((sub) => sub.task.toLowerCase() === newSubtaskText.toLowerCase())) {
+            setMessageErr("Subtask ini sudah ada!");
             return;
         }
 
-        // 3. Objek subtask baru (perbaiki typo 'taks')
-        const newSubtask = { id: Date.now(), task: newSubtaskText }; // Perbaikan: 'task' bukan 'taks'
+        const newSubtask = { id: uuidv4(), task: newSubtaskText };
 
-        // 4. Perbarui array 'todos'
-        const updatedTodos = todos.map((todo) => {
-            if (todo.id === id) {
-                // Jika ID cocok, tambahkan newSubtask ke array subtasks yang sudah ada
-                // Pastikan subtasks adalah array, jika belum ada, inisialisasi sebagai array kosong
-                return {
-                    ...todo,
-                    subtasks: [...(todo.subtasks || []), newSubtask], // Gunakan spread operator untuk array
-                };
-            }
-            return todo; // Kembalikan todo tanpa perubahan jika ID tidak cocok
+        setTodos((prevTodos) => {
+            return prevTodos.map((todo) => {
+                if (todo.id === id) {
+                    return {
+                        ...todo,
+                        subtasks: [...(todo.subtasks || []), newSubtask],
+                    };
+                }
+                return todo;
+            });
         });
 
-        setTodos(updatedTodos);
-
-    
         setAddtasks("");
+        setMessageErr("");
     };
 
     return {
@@ -118,5 +132,8 @@ export default function UseTodosLogic() {
         handleSaveEdit,
         messageErr,
         setMessageErr,
+        handelAddSubtasks,
+        tasks,
+        setAddtasks,
     };
 }
