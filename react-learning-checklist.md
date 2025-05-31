@@ -19,11 +19,11 @@ Fajar Saputra – Minggu 1 s/d 6
 
 ## 📅 Minggu 2 – Event Handling & Styling
 **🎯 Goals:**
-- [ ] Pahami `onClick`, `onChange`, dan event dasar
-- [ ] Buat Form Input dengan `useState`
-- [ ] Tambahkan styling sederhana (CSS / Tailwind)
-- [ ] Bikin project: `Todo List App`
-- [ ] Responsive di mobile (CSS dasar oke)
+- [x] Pahami `onClick`, `onChange`, dan event dasar
+- [x] Buat Form Input dengan `useState`
+- [x] Tambahkan styling sederhana (CSS / Tailwind)
+- [x] Bikin project: `Todo List App`
+- [] Responsive di mobile (CSS dasar oke)
 
 **🧪 Project:** `Todo App Sederhana`
 

@@ -13,6 +13,25 @@ export default function UseTodosLogic() {
     // add subtasks
     const [tasks, setAddtasks] = useState("");
 
+    // handle error
+    const handleError = (input, currentItems, isEdit = false, currentItemId = null) => {
+        const trimmedInput = input.trim();
+        if (trimmedInput.length <= 4) {
+            return "Minimal 5 karakter!!";
+        }
+
+        if (trimmedInput === "") {
+            return "Input tidak boleh kosong!!";
+        }
+
+        const isDuplicate = currentItems.some((item) => (isEdit ? item.id !== currentItemId : true) && item.title.toLowerCase() === trimmed.toLowerCase());
+        if (isDuplicate) {
+            return "Input sudah ada";
+        }
+
+        return null;
+    };
+
     // add todo
     const handleAddTodo = (e) => {
         e.preventDefault();
@@ -67,9 +86,6 @@ export default function UseTodosLogic() {
             setMessageErr("Judul ini sudah digunakan oleh todo lain!");
             return;
         }
-
-        // const updatedTodos = todos.map((todo) => (todo.id === editId ? { ...todo, title: text } : todo));
-        // setTodos(updatedTodos);
 
         setTodos((prevTodos) =>
             prevTodos.map((todo) => {
