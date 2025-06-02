@@ -8,9 +8,12 @@ import Button from "./compenents/Button.jsx";
 import HelloNgab from "./compenents/HelloNgab.jsx";
 import Container from "./compenents/Container.jsx";
 import Cards from "./compenents/Cards.jsx";
-import TodoList from "./todo/TodoList.jsx";
+import TodoList from "./props/TodoList.jsx";
 import DataMahasiswa from "./compenents/DataMahasiswa.jsx";
 import AlertButton from "./compenents/AlertButton.jsx";
+import TestProps from "./props/TestProps.jsx";
+import TodoApp from "./TodoApp/TodoApp.jsx";
+
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>
@@ -22,6 +25,8 @@ createRoot(document.getElementById("root")).render(
             <TodoList />
             <DataMahasiswa />
             <AlertButton />
+            <TestProps />
+            <TodoApp />
         </Container>
     </StrictMode>
 );

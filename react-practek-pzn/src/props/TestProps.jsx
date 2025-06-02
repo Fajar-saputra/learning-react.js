@@ -1,4 +1,4 @@
-export default function Todo({ text, isCompleted, isDeleted = false }) {
+export default function TestProps({ text, isCompleted, isDeleted = false }) {
     // if (isCompleted) {
     //     return (
     //         <li>
