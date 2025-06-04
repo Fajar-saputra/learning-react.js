@@ -6,26 +6,31 @@ export default function LogicTodo() {
     const [inputTodo, setInputTodo] = useState("");
     // edit todo
     const [editId, setEditId] = useState(null);
+    const [editTodo, setEditTodo] = useState("");
+    // message error
+    const [messageErr, setMessageErr] = useState("");
 
     const handleError = (inputTrimmed) => {
-        // const inputTrimmed = input.trim();
+        const input = inputTrimmed.trim();
 
-        if (inputTrimmed === " ") {
+        // 1. Cek apakah kosong
+        if (input === "") {
             return "Input tidak boleh kosong";
         }
 
-        if (inputTrimmed.length <= 4) {
+        // 2. Cek apakah terlalu pendek
+        if (input.length < 5) {
             return "Minimal 5 karakter!";
         }
 
-        const duplicated = todos.some(todo => todo.id === editId ? todo.title.toLowerCase() : inputTrimmed.toLowerCase());
+        // 3. Cek apakah duplikat (kecuali kalau sedang edit item itu sendiri)
+        const duplicated = todos.some((todo) => todo.id !== editId && todo.title.toLowerCase() === input.toLowerCase());
 
         if (duplicated) {
             return "Input sudah ada!";
         }
 
-
-        return null;
+        return null; // Tidak ada error
     };
 
     // add todo
@@ -33,27 +38,47 @@ export default function LogicTodo() {
         e.preventDefault();
 
         const trimmed = inputTodo.trim();
+        
+        const inputErr = handleError(trimmed);
+        if (inputErr) {
+            setMessageErr(inputErr);
+        }
 
         setTodos((prevTodos) => [...prevTodos, { id: Date.now(), title: trimmed, subtask: [] }]);
         setInputTodo("");
+        setMessageErr("")
     };
 
     // hapus todo
     const handleDeleteTodos = (id) => {
-        setTodos(prevTodos => [
-            ...prevTodos, prevTodos.filter(todo => 
-                if (todo.id === id) {
-                
-                }
-            )
-        ])
+        setTodos((prevTodos) => {
+            return prevTodos.filter((todo) => todo.id !== id);
+        });
+    };
+
+    // edit todo
+    const handleClickEdit = (id, title) => {
+        setEditId(id)
+        setEditTodo(title);
     }
+
+    const handleSaveEdit = () => {
+        setTodos(prevTodos => 
+             prevTodos.map(todo => todo.id === editId? {...todo, title: editTodo} : todo)
+        )
+    }
+
 
     return {
         todos,
         inputTodo,
         setInputTodo,
         handleAddTodos,
-        handleError
+        handleDeleteTodos,
+        messageErr,
+        setEditTodo,
+        editTodo,
+        handleClickEdit,
+        handleSaveEdit
     };
 }
