@@ -10,8 +10,7 @@ export default function LogicTodo() {
     // message error
     const [messageErr, setMessageErr] = useState("");
 
-    const handleError = (inputTrimmed) => {
-        const input = inputTrimmed.trim();
+    const handleError = (input) => {
 
         // 1. Cek apakah kosong
         if (input === "") {
@@ -19,7 +18,7 @@ export default function LogicTodo() {
         }
 
         // 2. Cek apakah terlalu pendek
-        if (input.length < 5) {
+        if (input.length < 4) {
             return "Minimal 5 karakter!";
         }
 
@@ -42,11 +41,12 @@ export default function LogicTodo() {
         const inputErr = handleError(trimmed);
         if (inputErr) {
             setMessageErr(inputErr);
+            return;
         }
 
         setTodos((prevTodos) => [...prevTodos, { id: Date.now(), title: trimmed, subtask: [] }]);
         setInputTodo("");
-        setMessageErr("")
+        setMessageErr(null)
     };
 
     // hapus todo
@@ -60,12 +60,16 @@ export default function LogicTodo() {
     const handleClickEdit = (id, title) => {
         setEditId(id)
         setEditTodo(title);
+        setMessageErr(null)
     }
 
     const handleSaveEdit = () => {
         setTodos(prevTodos => 
              prevTodos.map(todo => todo.id === editId? {...todo, title: editTodo} : todo)
         )
+
+        setEditId(null );
+        setEditTodo("")
     }
 
 
@@ -76,6 +80,7 @@ export default function LogicTodo() {
         handleAddTodos,
         handleDeleteTodos,
         messageErr,
+        editId,
         setEditTodo,
         editTodo,
         handleClickEdit,
