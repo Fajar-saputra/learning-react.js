@@ -1,17 +1,31 @@
 import React, { useState } from "react";
 
 export default function LogicTodo() {
-    const [todos, setTodos] = useState([{ id: 1, title: "Belajar React Basic", subtask: [] }]);
+    const [todos, setTodos] = useState([
+        {
+            id: 1,
+            title: "Belajar React Basic",
+            subtask: [
+                { id: 101, task: "Belajar java" },
+                { id: 102, task: "Belajar js" },
+                { id: 103, task: "Belajar php" },
+                { id: 104, task: "Belajar c#" },
+            ],
+        },
+    ]);
     // add todo
     const [inputTodo, setInputTodo] = useState("");
     // edit todo
     const [editId, setEditId] = useState(null);
     const [editTodo, setEditTodo] = useState("");
+    const [isEditing, setIsEditing] = useState(false);
     // message error
     const [messageErr, setMessageErr] = useState("");
+    // add subtasks
+    const [inputTask, setInputTask] = useState("");
+    const [showInput, setShowInput] = useState(false);
 
     const handleError = (input) => {
-
         // 1. Cek apakah kosong
         if (input === "") {
             return "Input tidak boleh kosong";
@@ -37,7 +51,7 @@ export default function LogicTodo() {
         e.preventDefault();
 
         const trimmed = inputTodo.trim();
-        
+
         const inputErr = handleError(trimmed);
         if (inputErr) {
             setMessageErr(inputErr);
@@ -46,7 +60,7 @@ export default function LogicTodo() {
 
         setTodos((prevTodos) => [...prevTodos, { id: Date.now(), title: trimmed, subtask: [] }]);
         setInputTodo("");
-        setMessageErr(null)
+        setMessageErr(null);
     };
 
     // hapus todo
@@ -58,20 +72,49 @@ export default function LogicTodo() {
 
     // edit todo
     const handleClickEdit = (id, title) => {
-        setEditId(id)
+        setEditId(id);
         setEditTodo(title);
-        setMessageErr(null)
-    }
+        setMessageErr(null);
+    };
 
     const handleSaveEdit = () => {
-        setTodos(prevTodos => 
-             prevTodos.map(todo => todo.id === editId? {...todo, title: editTodo} : todo)
-        )
+        const trimmed = editTodo.trim();
 
-        setEditId(null );
-        setEditTodo("")
+        const messError = handleError(trimmed);
+        if (messError) {
+            setMessageErr(messError);
+            return;
+        }
+
+        setTodos((prevTodos) => prevTodos.map((todo) => (todo.id === editId ? { ...todo, title: editTodo } : todo)));
+
+        setEditId(null);
+        setEditTodo("");
+        setMessageErr(null);
+    };
+
+    // is editting?
+    const handleIsEdit = () => {
+        setIsEditing(!false);
+    };
+    // add task
+    const handleAddTasks = (todoId) => {
+        setTodos((prevTodos) =>
+            prevTodos.map((todo) => {
+                if (todo.id === todoId) {
+                    return {
+                        ...prevTodos,
+                        subtask: [...task, { id: Date.now(), task: inputTask }],
+                    };
+                }
+                return todo;
+            })
+        );
+    };
+
+    const handleIsShow = () => {
+        setShowInput(!false);
     }
-
 
     return {
         todos,
@@ -84,6 +127,14 @@ export default function LogicTodo() {
         setEditTodo,
         editTodo,
         handleClickEdit,
-        handleSaveEdit
+        handleSaveEdit,
+        isEditing,
+        handleIsEdit,
+        handleAddTasks,
+        setInputTask,
+        inputTask,
+        showInput,
+        setShowInput,
+        handleIsShow
     };
 }
