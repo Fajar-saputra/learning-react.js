@@ -20,19 +20,16 @@ export default function LogicTodo() {
     const [editTodo, setEditTodo] = useState("");
     const [isEditing, setIsEditing] = useState(false);
     // message error
-    const [messageErr, setMessageErr] = useState("");
-    // add subtasks
-    const [inputTask, setInputTask] = useState("");
-    const [showInput, setShowInput] = useState(false);
+    const [todoErr, setTodoErr] = useState("");
 
-    const handleError = (input) => {
+    const handleErrorTodo = (input) => {
         // 1. Cek apakah kosong
         if (input === "") {
             return "Input tidak boleh kosong";
         }
 
         // 2. Cek apakah terlalu pendek
-        if (input.length < 4) {
+        if (input.length < 5) {
             return "Minimal 5 karakter!";
         }
 
@@ -52,15 +49,15 @@ export default function LogicTodo() {
 
         const trimmed = inputTodo.trim();
 
-        const inputErr = handleError(trimmed);
+        const inputErr = handleErrorTodo(trimmed);
         if (inputErr) {
-            setMessageErr(inputErr);
+            setTodoErr(inputErr);
             return;
         }
 
         setTodos((prevTodos) => [...prevTodos, { id: Date.now(), title: trimmed, subtask: [] }]);
         setInputTodo("");
-        setMessageErr(null);
+        setTodoErr(null);
     };
 
     // hapus todo
@@ -74,15 +71,15 @@ export default function LogicTodo() {
     const handleClickEdit = (id, title) => {
         setEditId(id);
         setEditTodo(title);
-        setMessageErr(null);
+        setTodoErr("")
     };
 
     const handleSaveEdit = () => {
         const trimmed = editTodo.trim();
 
-        const messError = handleError(trimmed);
+        const messError = handleErrorTodo(trimmed);
         if (messError) {
-            setMessageErr(messError);
+            setTodoErr(messError);
             return;
         }
 
@@ -90,31 +87,13 @@ export default function LogicTodo() {
 
         setEditId(null);
         setEditTodo("");
-        setMessageErr(null);
+        setTodoErr(null);
     };
 
     // is editting?
     const handleIsEdit = () => {
         setIsEditing(!false);
     };
-    // add task
-    const handleAddTasks = (todoId) => {
-        setTodos((prevTodos) =>
-            prevTodos.map((todo) => {
-                if (todo.id === todoId) {
-                    return {
-                        ...prevTodos,
-                        subtask: [...task, { id: Date.now(), task: inputTask }],
-                    };
-                }
-                return todo;
-            })
-        );
-    };
-
-    const handleIsShow = () => {
-        setShowInput(!false);
-    }
 
     return {
         todos,
@@ -122,7 +101,7 @@ export default function LogicTodo() {
         setInputTodo,
         handleAddTodos,
         handleDeleteTodos,
-        messageErr,
+        todoErr,
         editId,
         setEditTodo,
         editTodo,
@@ -130,11 +109,5 @@ export default function LogicTodo() {
         handleSaveEdit,
         isEditing,
         handleIsEdit,
-        handleAddTasks,
-        setInputTask,
-        inputTask,
-        showInput,
-        setShowInput,
-        handleIsShow
     };
 }

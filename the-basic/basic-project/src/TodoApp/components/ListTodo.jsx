@@ -4,7 +4,8 @@ import ListTasks from "./ListTasks";
 export default function ListTodo({
     todos,
     handleDeleteTodos,
-    messageErr,
+    todoErr,
+    setTodoErr,
     setEditTodo,
     editId,
     editTodo,
@@ -13,15 +14,15 @@ export default function ListTodo({
     isEditing,
     handleIsEdit,
     handleAddTasks,
-    setInputTask,
-    inputTask,
+    setInputTasks,
+    inputTasks,
     showInput,
     handleIsShow,
 }) {
     return (
         <ul>
             {todos.map((todo) => (
-                <li key={todo.id} style={{ display: "flex", alignItems: "center" }}>
+                <li key={todo.id} style={{ display: "flex", gap: ".4rem" }}>
                     {todo.id === editId ? (
                         <div>
                             <input
@@ -34,7 +35,7 @@ export default function ListTodo({
                                 }}
                             />
 
-                            {messageErr ? <p style={{ color: "hotpink" }}>{messageErr}</p> : null}
+                            {todoErr ? <p style={{ color: "hotpink" }}>{todoErr}</p> : null}
                         </div>
                     ) : (
                         <div onDoubleClick={() => handleClickEdit(todo.id, todo.title)} style={{ cursor: "pointer" }}>
@@ -49,7 +50,7 @@ export default function ListTodo({
                             X
                         </button>
                         {showInput ? (
-                            <FormTasks setInputTasks={setEditTodo} inputTask={inputTask} handleAddTasks={handleAddTasks}/>
+                            <FormTasks setInputTasks={setInputTasks} inputTasks={inputTasks} handleAddTasks={handleAddTasks} handleIsShow={handleIsShow} />
                         ) : (
                             <button type="button" onClick={handleIsShow}>
                                 + Task
