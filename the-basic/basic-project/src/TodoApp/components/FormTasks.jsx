@@ -3,14 +3,19 @@ export default function FormTasks({ setInputTasks, inputTasks, handleAddTasks, h
         <>
             <input
                 type="text"
-                onChange={setInputTasks}
+                onChange={(e) => setInputTasks(e.target.value)}
                 value={inputTasks}
                 onBlur={handleAddTasks}
+                placeholder="Enter task..."
+                autoFocus
                 onKeyDown={(e) => {
                     if (e.key === "Enter") handleAddTasks();
                 }}
             />
-            <button type="button" onClick={handleIsShow}>Cancel</button>
+            <button type="button">Add</button>
+            <button type="button" onClick={handleIsShow}>
+                Cancel
+            </button>
         </>
     );
 }

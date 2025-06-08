@@ -9,6 +9,7 @@ export default function ListTodo({
     setEditTodo,
     editId,
     editTodo,
+    setTodos,
     handleClickEdit,
     handleSaveEdit,
     isEditing,
@@ -50,7 +51,7 @@ export default function ListTodo({
                             X
                         </button>
                         {showInput ? (
-                            <FormTasks setInputTasks={setInputTasks} inputTasks={inputTasks} handleAddTasks={handleAddTasks} handleIsShow={handleIsShow} />
+                            <FormTasks setInputTasks={setInputTasks} inputTasks={inputTasks} handleAddTasks={() => handleAddTasks(todo.id)} handleIsShow={handleIsShow} />
                         ) : (
                             <button type="button" onClick={handleIsShow}>
                                 + Task

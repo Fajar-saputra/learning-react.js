@@ -35,7 +35,7 @@ export default function LogicTasks() {
                 if (todo.id === todoId) {
                     return {
                         ...prevTodos,
-                        subtask: [...task, { id: Date.now(), task: inputTask }],
+                        subtask: [...task, { id: Date.now(), task: inputTasks }],
                     };
                 }
                 return todo;

@@ -71,7 +71,7 @@ export default function LogicTodo() {
     const handleClickEdit = (id, title) => {
         setEditId(id);
         setEditTodo(title);
-        setTodoErr("")
+        setTodoErr("");
     };
 
     const handleSaveEdit = () => {
@@ -95,6 +95,58 @@ export default function LogicTodo() {
         setIsEditing(!false);
     };
 
+    // add subtasks
+    const [inputTasks, setInputTasks] = useState("");
+    const [showInput, setShowInput] = useState(false);
+    const [errTask, setErrTask] = useState("");
+
+    // error input
+    const handleErrorTaks = (input) => {
+        // 1. Cek apakah kosong
+        if (input === "") {
+            return "Input tidak boleh kosong";
+        }
+
+        // 2. Cek apakah terlalu pendek
+        if (input.length < 5) {
+            return "Minimal 5 karakter!";
+        }
+
+        // 3. Cek apakah duplikat (kecuali kalau sedang edit item itu sendiri)
+        const duplicated = todos.some((todo) => todo.id !== editId && todo.title.toLowerCase() === input.toLowerCase());
+
+        if (duplicated) {
+            return "Input sudah ada!";
+        }
+
+        return null; // Tidak ada error
+    };
+
+    // add task
+    // prevTodos.map((todo) => (todo.id === todoId ? { ...todo, subtask: [...task, { id: Date.now(), text: inputTasks }] } : todo))
+    const handleAddTasks = (todoId) => {
+        const text = inputTasks.trim();
+        setTodos((prevTodos) =>
+            prevTodos.map((todo) => {
+                if (todo.id === todoId) {
+                    return {
+                        ...todo,
+                        subtask: [...todo.subtask, { id: Date.now(), task: text }],
+                    };
+                }
+                return todo;
+            })
+        );
+        console.log("berhasil ditambah ", text);
+        console.log("berhasil id ", todoId);
+        
+        // setInputTasks("");
+    };
+
+    const handleIsShow = () => {
+        setShowInput(!showInput);
+    };
+
     return {
         todos,
         inputTodo,
@@ -109,5 +161,13 @@ export default function LogicTodo() {
         handleSaveEdit,
         isEditing,
         handleIsEdit,
+        // task
+        handleAddTasks,
+        setInputTasks,
+        inputTasks,
+        showInput,
+        setShowInput,
+        handleIsShow,
+        handleErrorTaks,
     };
 }
