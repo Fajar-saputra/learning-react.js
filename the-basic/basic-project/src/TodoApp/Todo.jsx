@@ -1,32 +1,59 @@
-import FormTodo from "./components/FormTodo";
-import ListTodo from "./components/ListTodo";
-import LogicTodo from "./hooks/LogicTodos";
+import React from 'react';
+import LogicTodo from './hooks/LogicTodo';
+import TodoItem from './components/TodoItem';
 
-export default function Todo() {
-    const { todos, inputTodo, setInputTodo, handleAddTodos, handleDeleteTodos, todoErr, setTodoErr, editId, setEditTodo, editTodo, handleClickEdit, handleSaveEdit,  handleAddTasks, setInputTask, inputTask, showInput, setShowInput, handleIsShow } = LogicTodo();
+function App() {
+  const {
+    todos,
+    inputTodo,
+    setInputTodo,
+    handleAddTodos,
+    handleDeleteTodos,
+    todoErr,
+    editId,
+    setEditTodo,
+    editTodo,
+    handleClickEdit,
+    handleSaveEdit,
+    addSubtask, // Teruskan fungsi ini
+    deleteSubtask, // Teruskan fungsi ini
+    editSubtask, // Teruskan fungsi ini
+  } = LogicTodo(); // Panggil hook kustom Anda
 
-    return (
-        <div>
-            <h1>Testing hello word</h1>
-            <FormTodo inputTodo={inputTodo} setInputTodo={setInputTodo} handleAddTodos={handleAddTodos} setTodoErr={setTodoErr} todoErr={todoErr} />
-            <ListTodo
-                // todos
-                todos={todos}
-                handleDeleteTodos={handleDeleteTodos}
-                editId={editId}
-                setEditTodo={setEditTodo}
-                editTodo={editTodo}
-                handleClickEdit={handleClickEdit}
-                handleSaveEdit={handleSaveEdit}
-                setTodoErr={setTodoErr}
-                todoErr={todoErr}
-                // tasks
-                handleIsShow={handleIsShow}
-                handleAddTasks={handleAddTasks}
-                setInputTask={setInputTask}
-                inputTask={inputTask}
-                showInput={showInput}
-            />
-        </div>
-    );
+  return (
+    <div>
+      <h1>My Todo List</h1>
+      <form onSubmit={handleAddTodos}>
+        <input
+          type="text"
+          value={inputTodo}
+          onChange={(e) => setInputTodo(e.target.value)}
+          placeholder="Add new main todo..."
+        />
+        <button type="submit">Add Todo</button>
+        {todoErr && <p style={{ color: "red" }}>{todoErr}</p>}
+      </form>
+
+      <div>
+        {todos.map((todo) => (
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            onDelete={handleDeleteTodos}
+            onEdit={handleClickEdit}
+            onSaveEdit={handleSaveEdit}
+            currentEditId={editId} // Teruskan state edit dari LogicTodo
+            currentEditTodo={editTodo}
+            setEditTodo={setEditTodo}
+            todoError={todoErr} // Teruskan error dari todo utama
+            addSubtask={addSubtask} // Teruskan fungsi addSubtask
+            deleteSubtask={deleteSubtask} // Teruskan fungsi deleteSubtask
+            editSubtask={editSubtask} // Teruskan fungsi editSubtask
+          />
+        ))}
+      </div>
+    </div>
+  );
 }
+
+export default App;
