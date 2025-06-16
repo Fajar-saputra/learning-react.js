@@ -1,17 +1,14 @@
 import { useState } from "react";
 
 export default function UlangTodo() {
-    const [list, setList] = useState([
-        { id: 123, title: "Jambu" },
-        { id: 124, title: "Rambutan" },
-        { id: 127, title: "Duku" },
-        { id: 128, title: "Bulu" },
-    ]);
+    const [list, setList] = useState([]);
 
     const [input, setInput] = useState("");
 
     const [editId, setEditId] = useState(null);
     const [editText, setEditText] = useState("");
+
+
 
     const handleStartEdit = (id, text) => {
         setEditId(id);

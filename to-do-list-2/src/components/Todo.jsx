@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Todo() {
-    const [todos, setTodos] = useState([
-        { id: 123, title: "Belajar ngoding" },
-        { id: 124, title: "Belajar ReactJS" },
-        { id: 127, title: "Belajar JS" },
-    ]);
+    const [todos, setTodos] = useState(() => {
+        const stored = localStorage.getItem("saveTodo");
+        return stored ? JSON.parse(stored) : [];
+    });
 
     const [input, setInput] = useState("");
+
+    useEffect(() => {
+        localStorage.setItem("saveTodo", JSON.stringify(todos));
+    }, [todos])
 
     const handleAdd = (e) => {
         e.preventDefault();
@@ -27,7 +30,7 @@ export default function Todo() {
             title: input.trim()
         }
 
-        setTodos([...todos, newItem])
+        setTodos(prevTodos => [...prevTodos, newItem])
         setInput("")
 
     }
