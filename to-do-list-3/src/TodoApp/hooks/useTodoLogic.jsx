@@ -1,14 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function useTodoLogic() {
-    const [todos, setTodos] = useState([
-        { id: 1, title: "Belajar React" },
-        { id: 2, title: "Ngoding modular JS" },
-        { id: 3, title: "Refactor lokalStorage" },
-    ]);
+    const [todos, setTodos] = useState(() => {
+        const stored = localStorage.getItem("saveTodos");
+        return stored ? JSON.parse(stored) : [];
+    });
     const [input, setInput] = useState("");
     const [editID, setEditID] = useState(null);
     const [editText, setEditText] = useState("");
+
+    useEffect(() => {
+        localStorage.setItem("saveTodos", JSON.stringify(todos));
+    }, [todos]);
 
     const handleAdd = (e) => {
         e.preventDefault();
@@ -17,21 +20,21 @@ export default function useTodoLogic() {
             alert("Karakter harus lebih dari 4!");
             return;
         }
-        const duplicated = todos.some(
-            (item) => item.title.toLowerCase() === input.toLowerCase()
-        );
+        const duplicated = todos.some((item) => item.title.toLowerCase() === input.toLowerCase());
         if (duplicated) {
             alert("Todo sudah ada!");
             return;
         }
         const newTodo = { id: Date.now(), title: input.trim() };
-        setTodos([...todos, newTodo]);
+        setTodos((prevTodo) => [...prevTodo, newTodo]);
         setInput("");
     };
 
     const handleHapus = (id) => {
-        const update = todos.filter((todo) => todo.id !== id);
-        setTodos(update);
+        // const update = todos.filter((todo) => todo.id !== id);
+        // setTodos(update);
+
+        setTodos(prevTodo => prevTodo.filter(todo => todo.id !== id))
     };
 
     const handleEdit = () => {
@@ -39,9 +42,7 @@ export default function useTodoLogic() {
             alert("Minimal 3 karakter!");
             return;
         }
-        const updated = todos.map((todo) =>
-            todo.id === editID ? { ...todo, title: editText.trim() } : todo
-        );
+        const updated = todos.map((todo) => (todo.id === editID ? { ...todo, title: editText.trim() } : todo));
         setTodos(updated);
         setEditID(null);
         setEditText("");
