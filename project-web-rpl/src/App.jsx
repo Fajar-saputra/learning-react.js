@@ -4,7 +4,7 @@ import ToursPage from "./pages/ToursPage"
 import UmkmPage from "./pages/umkmPage";
 import KafePage from "./pages/KafePage";
 import Footer from "./pages/Footer";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./pages/Navbar";
 
 function App() {
@@ -14,10 +14,11 @@ function App() {
 
             <div className="app container">
                 <Routes>
-                    <Route path="/home" element={<HomePage />} />
+                    <Route path="/" element={<HomePage />} />
                     <Route path="/tour" element={<ToursPage />} />
                     <Route path="/umkm" element={<UmkmPage />} />
                     <Route path="/kafe" element={<KafePage />} />
+                    <Route path="/Footer" element={<Footer />} />
                 </Routes>
             </div>
         </Router>

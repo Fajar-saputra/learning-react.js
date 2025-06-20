@@ -14,7 +14,7 @@
   /* Posisikan di tengah horizontal */
   transform: translateX(-50%);
   /* Geser ke kiri 50% dari lebar sendiri untuk centering sempurna */
-  width: 90%;
+  width: 87%;
   /* Contoh: Lebar navbar 90% dari viewport */
   max-width: 980px;
   /* Batasi lebar maksimum agar tidak terlalu lebar di layar besar */
@@ -33,7 +33,7 @@
   /* Jarak antar kolom utama (logo, nav, login) */
 
   /* Warna dan Bentuk */
-  background-color: var(--color-neutral-charcoal);
+  background-color: var(--color-primary-turquoise);
   /* Latar belakang gelap untuk kontras */
   color: var(--color-text-light);
   /* Warna teks putih untuk seluruh nav */
@@ -47,11 +47,13 @@
 }
 
 .nav-brand {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-md);
   /* Ukuran font untuk nama brand/logo */
-  font-weight: bold;
-  color: var(--color-primary-turquoise);
+  font-weight: light;
+  /* color: var(--color-secondary); */
   /* Warna brand agar menonjol */
+  cursor: pointer;
+  font-family: var(--font-secondary);
 }
 
 .navbar {
@@ -71,24 +73,25 @@
   /* Warna teks link putih */
   text-decoration: none;
   /* Hilangkan underline */
-  font-weight: 500;
+  font-weight: 400;
   /* Sedikit lebih tebal */
   padding: var(--spacing-sm) 0;
   /* Padding vertikal agar area klik lebih nyaman */
   transition: color 0.3s ease;
   /* Transisi halus saat hover */
+  font-size: var(--font-size-base);
 }
 
 .nav-link:hover {
-  color: var(--color-primary-turquoise);
+  color: var(--color-secondary);
   /* Ubah warna saat di-hover */
 }
 
 .login .btn-primary {
   /* Styling untuk tombol login */
-  background-color: var(--color-secondary-peach);
+  background-color: var(--color-thirty);
   /* Warna oranye peach */
-  color: var(--color-text-light);
+  color: black;
   /* Teks putih */
   padding: var(--spacing-sm) var(--spacing-md);
   border: none;
@@ -100,7 +103,7 @@
 }
 
 .login .btn-primary:hover {
-  background-color: var(--color-primary-turquoise);
+  background-color: var(--color-secondary);
   /* Hover ke warna tosca */
 }
 
@@ -112,10 +115,34 @@
   align-items: center;
 }
 
-.content-home h1,
-.content-home h2 {
+.content-home .hero-heading,
+.content-home .hero-content {
   color: var(--color-text-light);
   text-align: center;
+}
+
+/* Anda bisa tambahkan ini di App.css atau file styling hero section khusus jika ada */
+
+.hero-heading {
+  /* Menggunakan clamp untuk ukuran font dinamis */
+  /* Sintaks: clamp(nilai_minimum, nilai_preferensi, nilai_maksimum) */
+  /* nilai_preferensi (5vw) adalah nilai relatif yang akan diskalakan browser */
+  /* Jika 5vw terlalu kecil, akan pakai 1rem (nilai_minimum) */
+  /* Jika 5vw terlalu besar, akan pakai 2.8rem (nilai_maksimum) */
+  font-size: clamp(var(--font-size-lg), 5vw, var(--font-size-xl));
+  color: var(--color-neutral-charcoal); /* Contoh: warna abu-abu tua kebiruan */
+  font-weight: bold;
+  text-align: center; /* Sesuaikan jika perlu */
+  margin-bottom: var(--spacing-sm); /* Beri jarak ke konten di bawahnya */
+}
+
+.hero-content {
+  font-size: clamp(var(--font-size-base), 2.5vw, var(--font-size-md)); /* Menyesuaikan nilai untuk konten */
+  color: var(--color-neutral-charcoal); /* Contoh: warna abu-abu tua kebiruan */
+  margin-block: var(--spacing-sm); /* shorthand untuk margin-top dan margin-bottom */
+  text-align: center; /* Sesuaikan jika perlu */
+  max-width: 800px; /* Batasi lebar teks agar tidak terlalu panjang */
+  margin-inline: auto; /* Pusatkan teks */
 }
 
 .search-home .search-home-input {
@@ -126,6 +153,30 @@
   color: var(--color-secondary-peach);
   box-shadow: var(--shadow-medium);
   border-radius: var(--border-radius-md);
+}
+
+.search-home {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  background-color: var(--color-secondary);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: .28rem;
+  right: 16rem;
+}
+
+.icon-search{
+  width: 17px;
+  height: 17px;
 }
 
 /* Media Queries untuk Responsivitas (Opsional tapi direkomendasikan) */

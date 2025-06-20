@@ -8,7 +8,7 @@ export default function Navbar() {
         <nav className="container nav">
             <div className="nav-brand">Alahan Panjang</div>
             <div className="navbar">
-                <Link to={"/home"} className="nav-link">
+                <Link to={"/"} className="nav-link">
                     Home
                 </Link>
                 <Link to={"/servies"} className="nav-link"> 
