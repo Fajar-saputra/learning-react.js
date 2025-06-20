@@ -1,5 +1,88 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
+/* src/index.css */
+
+:root {
+  /* --- Warna --- */
+  --color-primary-turquoise: #4ECDC4; /* Hijau Tosca - Dominan, segar */
+  --color-secondary-peach: #FF6B6B;  /* Oranye Peach - Aksen ceria */
+  --color-neutral-charcoal: #2C3E50; /* Abu-abu Tua Kebiruan - Dasar, teks utama */
+  --color-text-light: #FFFFFF;      /* Putih - Untuk teks di latar belakang gelap */
+  --color-background-light: #F8F8F8; /* Contoh warna latar belakang sangat terang */
+
+  /* --- Ukuran Huruf (Font Sizes) --- */
+  --font-size-base: 16px;           /* Ukuran dasar untuk paragraf */
+  --font-size-sm: 14px;             /* Ukuran kecil (misal untuk caption) */
+  --font-size-md: 18px;             /* Ukuran sedang */
+  --font-size-lg: 24px;             /* Ukuran besar (misal untuk sub-judul) */
+  --font-size-xl: 36px;             /* Ukuran ekstra besar (misal untuk judul halaman) */
+
+  /* --- Shadow (Bayangan) --- */
+  --shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);    /* Bayangan ringan untuk kartu */
+  --shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.15);  /* Bayangan sedang untuk elevasi */
+  --shadow-strong: 0 8px 16px rgba(0, 0, 0, 0.2);  /* Bayangan kuat untuk pop-up */
+
+  /* --- Lain-lain --- */
+  --border-radius-sm: 4px;          /* Radius sudut kecil */
+  --border-radius-md: 8px;          /* Radius sudut sedang */
+  --spacing-sm: 8px;                /* Spasi kecil */
+  --spacing-md: 16px;               /* Spasi sedang */
+  --spacing-lg: 24px;               /* Spasi besar */
+}
+
+/* Contoh penggunaan variabel */
+body {
+  font-family: Arial, sans-serif; /* Atur font family dasar */
+  font-size: var(--font-size-base);
+  color: var(--color-neutral-charcoal);
+  background-color: var(--color-background-light);
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-neutral-charcoal);
+}
+
+h1 {
+  font-size: var(--font-size-xl);
+}
+
+h2 {
+  font-size: var(--font-size-lg);
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-primary-turquoise); /* Link default */
+}
+
+a:hover {
+  color: var(--color-secondary-peach); /* Efek hover untuk link */
+}
+
+.card {
+  box-shadow: var(--shadow-light);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
+  background-color: var(--color-text-light); /* Anggap putih bersih */
+}
+
+button {
+  background-color: var(--color-secondary-peach);
+  color: var(--color-text-light);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  box-shadow: var(--shadow-light);
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--color-primary-turquoise);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -8,9 +91,4 @@
 
 body {
   font-family: "Roboto", sans-serif;
-}
-
-a {
-  text-decoration: none;
-  color: white;
 }

@@ -1,21 +1,170 @@
-:root {
-  --primary-color: #FFFDD0;
-}
-
 .container {
-  max-width: 1100px;
+  max-width: 1000px;
   width: 90%;
   margin: 0 auto;
 }
 
+
 .nav {
-  padding: .4rem;
+  position: fixed;
+  /* Navbar tetap di posisi saat scroll */
+  top: -.5rem;
+  /* Pastikan menempel di paling atas */
+  left: 50%;
+  /* Posisikan di tengah horizontal */
+  transform: translateX(-50%);
+  /* Geser ke kiri 50% dari lebar sendiri untuk centering sempurna */
+  width: 90%;
+  /* Contoh: Lebar navbar 90% dari viewport */
+  max-width: 980px;
+  /* Batasi lebar maksimum agar tidak terlalu lebar di layar besar */
+  margin-top: var(--spacing-md);
+  /* Beri sedikit jarak dari atas */
+
+  /* Layout Flexbox */
   display: flex;
-  column-gap: .4rem;
+  justify-content: space-between;
+  /* Menjaga logo, link, dan tombol login terpisah */
+  align-items: center;
+  /* Pusat vertikal semua item */
+  padding: var(--spacing-sm) var(--spacing-md);
+  /* Padding atas/bawah dan kiri/kanan */
+  column-gap: var(--spacing-md);
+  /* Jarak antar kolom utama (logo, nav, login) */
+
+  /* Warna dan Bentuk */
+  background-color: var(--color-neutral-charcoal);
+  /* Latar belakang gelap untuk kontras */
+  color: var(--color-text-light);
+  /* Warna teks putih untuk seluruh nav */
+  box-shadow: var(--shadow-medium);
+  /* Beri bayangan agar terlihat 'mengambang' */
+  border-radius: var(--border-radius-md);
+  /* Sudut membulat */
+  z-index: 1000;
+  /* Pastikan navbar selalu di atas elemen lain */
+  /* border: 1px solid red;  <-- Ini bisa dihapus jika tidak lagi untuk debugging */
+}
+
+.nav-brand {
+  font-size: var(--font-size-lg);
+  /* Ukuran font untuk nama brand/logo */
+  font-weight: bold;
+  color: var(--color-primary-turquoise);
+  /* Warna brand agar menonjol */
+}
+
+.navbar {
+  /* Ini adalah div yang membungkus semua Link */
+  display: flex;
+  column-gap: var(--spacing-lg);
+  /* Jarak antar link di navigasi utama */
+  flex-grow: 1;
+  /* Biarkan navbar ini mengambil sisa ruang yang tersedia */
   justify-content: center;
-  background-color: var(--primary-color);
+  /* Pusatkan link-link di dalam navbar */
 }
 
 .nav-link {
-  color: black;
+  /* Styling dasar untuk Link */
+  color: var(--color-text-light);
+  /* Warna teks link putih */
+  text-decoration: none;
+  /* Hilangkan underline */
+  font-weight: 500;
+  /* Sedikit lebih tebal */
+  padding: var(--spacing-sm) 0;
+  /* Padding vertikal agar area klik lebih nyaman */
+  transition: color 0.3s ease;
+  /* Transisi halus saat hover */
+}
+
+.nav-link:hover {
+  color: var(--color-primary-turquoise);
+  /* Ubah warna saat di-hover */
+}
+
+.login .btn-primary {
+  /* Styling untuk tombol login */
+  background-color: var(--color-secondary-peach);
+  /* Warna oranye peach */
+  color: var(--color-text-light);
+  /* Teks putih */
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  box-shadow: var(--shadow-light);
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+}
+
+.login .btn-primary:hover {
+  background-color: var(--color-primary-turquoise);
+  /* Hover ke warna tosca */
+}
+
+
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-home h1,
+.content-home h2 {
+  color: var(--color-text-light);
+  text-align: center;
+}
+
+.search-home .search-home-input {
+  outline: none;
+  border: none;
+  width: 400px;
+  padding: .7rem 1rem;
+  color: var(--color-secondary-peach);
+  box-shadow: var(--shadow-medium);
+  border-radius: var(--border-radius-md);
+}
+
+/* Media Queries untuk Responsivitas (Opsional tapi direkomendasikan) */
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    /* Ubah arah flex menjadi kolom */
+    padding: var(--spacing-md);
+    width: 95%;
+    /* Lebih lebar di layar kecil */
+  }
+
+  .navbar {
+    flex-direction: column;
+    /* Link juga menjadi kolom */
+    text-align: center;
+    width: 100%;
+    margin-top: var(--spacing-sm);
+    column-gap: 0;
+    /* Hapus column-gap */
+    row-gap: var(--spacing-sm);
+    /* Tambahkan row-gap */
+  }
+
+  .nav-link {
+    width: 100%;
+    /* Link mengisi lebar penuh */
+    padding: var(--spacing-sm) 0;
+  }
+
+  .nav-brand,
+  .login {
+    margin-bottom: var(--spacing-sm);
+  }
+}
+
+.home {
+  height: 100vh;
+  background-image: url(assets/images/tour/rumah-gadang.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
