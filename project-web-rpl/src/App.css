@@ -1,164 +1,149 @@
+/* === Layout Container === */
 .container {
-  max-width: 1000px;
-  width: 90%;
-  margin: 0 auto;
+  max-width: 1100px;
+  width: 100%;
+  padding-inline: 1rem;
+  margin-inline: auto;
 }
 
-
+/* === Navbar Styling === */
 .nav {
   position: fixed;
-  /* Navbar tetap di posisi saat scroll */
-  top: -.5rem;
-  /* Pastikan menempel di paling atas */
-  left: 50%;
-  /* Posisikan di tengah horizontal */
-  transform: translateX(-50%);
-  /* Geser ke kiri 50% dari lebar sendiri untuk centering sempurna */
-  width: 87%;
-  /* Contoh: Lebar navbar 90% dari viewport */
-  max-width: 980px;
-  /* Batasi lebar maksimum agar tidak terlalu lebar di layar besar */
-  margin-top: var(--spacing-md);
-  /* Beri sedikit jarak dari atas */
-
-  /* Layout Flexbox */
+  top: 1rem;
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1000px;
+  /* padding: 1rem 2rem; */
+  padding-block: .5rem;
   display: flex;
   justify-content: space-between;
-  /* Menjaga logo, link, dan tombol login terpisah */
   align-items: center;
-  /* Pusat vertikal semua item */
-  padding: var(--spacing-sm) var(--spacing-md);
-  /* Padding atas/bawah dan kiri/kanan */
-  column-gap: var(--spacing-md);
-  /* Jarak antar kolom utama (logo, nav, login) */
-
-  /* Warna dan Bentuk */
   background-color: var(--color-primary-turquoise);
-  /* Latar belakang gelap untuk kontras */
   color: var(--color-text-light);
-  /* Warna teks putih untuk seluruh nav */
   box-shadow: var(--shadow-medium);
-  /* Beri bayangan agar terlihat 'mengambang' */
   border-radius: var(--border-radius-md);
-  /* Sudut membulat */
   z-index: 1000;
-  /* Pastikan navbar selalu di atas elemen lain */
-  /* border: 1px solid red;  <-- Ini bisa dihapus jika tidak lagi untuk debugging */
 }
 
 .nav-brand {
-  font-size: var(--font-size-md);
-  /* Ukuran font untuk nama brand/logo */
-  font-weight: light;
-  /* color: var(--color-secondary); */
-  /* Warna brand agar menonjol */
-  cursor: pointer;
+  font-size: 1.25rem;
+  font-weight: 600;
   font-family: var(--font-secondary);
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.nav-brand:hover {
+  transform: scale(1.05);
 }
 
 .navbar {
-  /* Ini adalah div yang membungkus semua Link */
   display: flex;
-  column-gap: var(--spacing-lg);
-  /* Jarak antar link di navigasi utama */
+  gap: var(--spacing-lg);
   flex-grow: 1;
-  /* Biarkan navbar ini mengambil sisa ruang yang tersedia */
   justify-content: center;
-  /* Pusatkan link-link di dalam navbar */
 }
 
 .nav-link {
-  /* Styling dasar untuk Link */
   color: var(--color-text-light);
-  /* Warna teks link putih */
   text-decoration: none;
-  /* Hilangkan underline */
   font-weight: 400;
-  /* Sedikit lebih tebal */
-  padding: var(--spacing-sm) 0;
-  /* Padding vertikal agar area klik lebih nyaman */
-  transition: color 0.3s ease;
-  /* Transisi halus saat hover */
   font-size: var(--font-size-base);
+  padding: var(--spacing-sm) 0;
+  transition: color 0.3s ease;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.nav-link:focus {
   color: var(--color-secondary);
-  /* Ubah warna saat di-hover */
+  outline: none;
 }
 
+/* === Login Button === */
 .login .btn-primary {
-  /* Styling untuk tombol login */
   background-color: var(--color-thirty);
-  /* Warna oranye peach */
   color: black;
-  /* Teks putih */
   padding: var(--spacing-sm) var(--spacing-md);
   border: none;
   border-radius: var(--border-radius-sm);
   cursor: pointer;
   box-shadow: var(--shadow-light);
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
   font-weight: bold;
 }
 
-.login .btn-primary:hover {
+.login .btn-primary:hover,
+.login .btn-primary:focus {
   background-color: var(--color-secondary);
-  /* Hover ke warna tosca */
+  transform: scale(1.05);
+  outline: none;
 }
 
-
+/* === Home Hero Section === */
 .home {
+  height: 100vh;
+  width: 100%;
+  background-image: linear-gradient(
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.1)
+  ), url(assets/images/tour/rumah-gadang.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.content-home .hero-heading,
-.content-home .hero-content {
-  color: var(--color-text-light);
+  padding: 0 1rem;
   text-align: center;
 }
 
-/* Anda bisa tambahkan ini di App.css atau file styling hero section khusus jika ada */
-
 .hero-heading {
-  /* Menggunakan clamp untuk ukuran font dinamis */
-  /* Sintaks: clamp(nilai_minimum, nilai_preferensi, nilai_maksimum) */
-  /* nilai_preferensi (5vw) adalah nilai relatif yang akan diskalakan browser */
-  /* Jika 5vw terlalu kecil, akan pakai 1rem (nilai_minimum) */
-  /* Jika 5vw terlalu besar, akan pakai 2.8rem (nilai_maksimum) */
-  font-size: clamp(var(--font-size-lg), 5vw, var(--font-size-xl));
-  color: var(--color-neutral-charcoal); /* Contoh: warna abu-abu tua kebiruan */
+  font-size: clamp(1.5rem, 5vw, 2.8rem);
+  color: var(--color-text-light);
   font-weight: bold;
-  text-align: center; /* Sesuaikan jika perlu */
-  margin-bottom: var(--spacing-sm); /* Beri jarak ke konten di bawahnya */
+  margin-bottom: var(--spacing-sm);
 }
 
 .hero-content {
-  font-size: clamp(var(--font-size-base), 2.5vw, var(--font-size-md)); /* Menyesuaikan nilai untuk konten */
-  color: var(--color-neutral-charcoal); /* Contoh: warna abu-abu tua kebiruan */
-  margin-block: var(--spacing-sm); /* shorthand untuk margin-top dan margin-bottom */
-  text-align: center; /* Sesuaikan jika perlu */
-  max-width: 800px; /* Batasi lebar teks agar tidak terlalu panjang */
-  margin-inline: auto; /* Pusatkan teks */
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: var(--color-text-light);
+  margin-block: var(--spacing-sm);
+  max-width: 800px;
+  margin-inline: auto;
 }
 
-.search-home .search-home-input {
-  outline: none;
-  border: none;
-  width: 400px;
-  padding: .7rem 1rem;
-  color: var(--color-secondary-peach);
-  box-shadow: var(--shadow-medium);
-  border-radius: var(--border-radius-md);
+
+.hero-heading,
+.hero-content,.search-home {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 0.3s;
 }
 
+/* === Search Input Area === */
 .search-home {
   display: flex;
   justify-content: center;
   position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin-top: var(--spacing-sm);
+  margin: 0 auto;
+}
+
+.search-home-input {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: none;
+  outline: none;
+  color: var(--color-secondary-peach);
+  box-shadow: var(--shadow-medium);
+  border-radius: var(--border-radius-md);
 }
 
 .icon {
@@ -170,52 +155,61 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: .28rem;
-  right: 16rem;
+  top: 0.35rem;
+  right: 1rem;
 }
 
-.icon-search{
+.icon-search {
   width: 17px;
   height: 17px;
 }
 
-/* Media Queries untuk Responsivitas (Opsional tapi direkomendasikan) */
+/* animation */
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Responsive Breakpoints === */
 @media (max-width: 768px) {
   .nav {
     flex-direction: column;
-    /* Ubah arah flex menjadi kolom */
+    gap: var(--spacing-sm);
     padding: var(--spacing-md);
     width: 95%;
-    /* Lebih lebar di layar kecil */
   }
 
   .navbar {
     flex-direction: column;
-    /* Link juga menjadi kolom */
-    text-align: center;
+    gap: var(--spacing-sm);
     width: 100%;
     margin-top: var(--spacing-sm);
-    column-gap: 0;
-    /* Hapus column-gap */
-    row-gap: var(--spacing-sm);
-    /* Tambahkan row-gap */
   }
 
   .nav-link {
     width: 100%;
-    /* Link mengisi lebar penuh */
-    padding: var(--spacing-sm) 0;
   }
 
   .nav-brand,
   .login {
     margin-bottom: var(--spacing-sm);
   }
+
+  .search-home {
+    max-width: 90%;
+  }
+
+
+    .hide-mobile {
+    display: none !important;
+  }
 }
 
-.home {
-  height: 100vh;
-  background-image: url(assets/images/tour/rumah-gadang.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
+@media (min-width: 769px) {
+  .show-mobile {
+    display: none !important;
+  }
 }
