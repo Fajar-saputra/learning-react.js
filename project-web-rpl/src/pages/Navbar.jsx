@@ -1,8 +1,7 @@
 // src/Navbar.js
-import React from 'react'; // Pastikan React di-import
-import { Link } from 'react-router-dom'; // <--- BARIS INI PENTING!
+import React from 'react'; 
+import { Link } from 'react-router-dom'; 
 
-// Hapus props yang tidak digunakan agar kode lebih bersih
 export default function Navbar() {
     return (
         <nav className="container nav">
@@ -11,7 +10,7 @@ export default function Navbar() {
                 <Link to={"/"} className="nav-link">
                     Home
                 </Link>
-                <Link to={"/servies"} className="nav-link"> 
+                <Link to={"/services"} className="nav-link"> 
                     Services
                 </Link>
                 <Link to={"/tour"} className="nav-link">

@@ -66,7 +66,7 @@
 .login .btn-primary {
   background-color: var(--color-thirty);
   color: black;
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-lg);
   border: none;
   border-radius: var(--border-radius-sm);
   cursor: pointer;
@@ -162,6 +162,44 @@
 .icon-search {
   width: 17px;
   height: 17px;
+}
+
+/* services page */
+.services {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--color-thirty);
+  padding-inline: 2rem;
+  padding-top: 3rem;
+}
+
+.services .section-title {
+  font-family: var(--font-secondary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.services .box-service{
+  display: grid;
+  grid-template-columns: 2fr 3fr 7fr;
+  border-top: 2px solid black;
+  padding-top: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+}
+
+.services .service-offer{
+  font-weight: 400;
+}
+
+.services .service-explace{
+  font-size: var(--font-size-sm);
+}
+
+.services .service-descripsi {
+  line-height: 1.9;
+  font-size: var(--font-size-sm);
 }
 
 /* animation */
