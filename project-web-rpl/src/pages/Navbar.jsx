@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export default function Navbar() {
     return (
         <nav className="container nav">
-            <div className="nav-brand">Alahan Panjang</div>
+            <div className="nav-brand"><Link to={"/"}>Alahan Panjang</Link></div>
             <div className="navbar">
                 <Link to={"/"} className="nav-link">
                     Home

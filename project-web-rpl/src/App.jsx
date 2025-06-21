@@ -1,6 +1,6 @@
 import "./App.css";
 import HomePage from "./pages/HomePage";
-import ToursPage from "./pages/ToursPage"
+import ToursPage from "./pages/ToursPage";
 import UmkmPage from "./pages/umkmPage";
 import KafePage from "./pages/KafePage";
 import Footer from "./pages/Footer";
@@ -18,7 +18,7 @@ function App() {
                     <Route path="/" element={<HomePage />} />
                     <Route path="/tour" element={<ToursPage />} />
                     <Route path="/umkm" element={<UmkmPage />} />
-                <Route path="/services" element={<ServicesPage />} />
+                    <Route path="/services" element={<ServicesPage />} />
                     <Route path="/kafe" element={<KafePage />} />
                     <Route path="/Footer" element={<Footer />} />
                 </Routes>
