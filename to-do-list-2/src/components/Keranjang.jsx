@@ -1,66 +1,53 @@
-import { useState } from "react";
+import { useReducer } from "react";
+
+
+const initialTodos = [
+  {
+    id: 1,
+    title: "Belajar React",
+    subtasks: [
+      { id: 101, text: "Mengenal JSX" },
+      { id: 102, text: "Memahami Props" }
+    ]
+  }
+];
+
 
 export default function Keranjang() {
-    const [list, setList] = useState([
-        { id: 123, title: "Jambu" },
-        { id: 124, title: "Rambutan" },
-        { id: 127, title: "Duku" },
-        { id: 128, title: "Bulu" },
-    ]);
 
-    const [input, setInput] = useState("");
 
-    const [editId, setEditId] = useState(null);
-    const [editText, setEditText] = useState("");
+    const [state, dispatch] = useReducer(reducerFunction, initialState);
 
-    const handleEditStart = (id, title) => {
-        setEditId(id);
-        setEditText(title);
-    };
+    function todoReducer(state, action) {
+  switch (action.type) {
+    case "TAMBAH_TODO":
+      return [...state, action.payload];
 
-    const handleEditSubmit = () => {
-        if (editText.trim().length < 4) {
-            alert("Minimal 4 huruf!");
-            return;
-        }
+    case "HAPUS_TODO":
+      return state.filter(todo => todo.id !== action.payload);
 
-        const updated = list.map((item) => (item.id === editId ? { ...item, title: editText.trim() } : item));
+    case "EDIT_TODO":
+      return state.map(todo =>
+        todo.id === action.payload.id
+          ? { ...todo, title: action.payload.title }
+          : todo
+      );
 
-        setList(updated);
-        setEditId(null);
-        setEditText("");
-    };
+    case "TAMBAH_SUBTASK":
+      return state.map(todo =>
+        todo.id === action.payload.todoId
+          ? {
+              ...todo,
+              subtasks: [...todo.subtasks, action.payload.subtask]
+            }
+          : todo
+      );
 
-    const handleHapus = (id) => {
-        setList(list.filter((item) => item.id !== id));
-    };
+    default:
+      return state;
+  }
+}
 
-    const handleAdd = (e) => {
-        e.preventDefault();
-
-        if (input.trim() === "") return;
-
-        if (input.length < 4) {
-            alert("nama harus lebih dari 4 karakter!!");
-            return;
-        }
-
-        const isDucplicate = list.some((item) => item.title.toLowerCase() === input.toLowerCase());
-
-        if (isDucplicate) {
-            alert("Sudah ada!!");
-            setInput("");
-            return;
-        }
-
-        const newItem = {
-            id: Date.now(),
-            title: input.trim(),
-        };
-
-        setList([...list, newItem]);
-        setInput("");
-    };
 
     return (
         <div>

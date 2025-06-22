@@ -1,10 +1,12 @@
+import React from "react";
 import "./App.css";
-// import AppKedua from "HariKedua/AppKedua";
+import Home from "./Home";
 
 function App() {
     return (
         <>
-            {/* <AppKedua /> */}
+        <h1>Testing dulu</h1>
+        
         </>
     );
 }
