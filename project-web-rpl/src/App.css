@@ -1,363 +1,42 @@
-/* === Layout Container === */
-.container {
-  max-width: 1100px;
-  width: 100%;
-  padding-inline: 1rem;
-  margin-inline: auto;
-}
-
-/* === Navbar Styling === */
-.nav {
-  position: fixed;
-  top: 1rem;
-  left: 0;
-  right: 0;
-  margin-inline: auto;
-  width: 100%;
-  max-width: 1000px;
-  /* padding: 1rem 2rem; */
-  padding-block: .5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var(--color-primary-turquoise);
-  color: var(--color-text-light);
-  box-shadow: var(--shadow-medium);
-  border-radius: var(--border-radius-md);
-  z-index: 1000;
-}
-
-.nav-brand  a{
-  font-size: 1.25rem;
-  font-weight: 600;
-  font-family: var(--font-secondary);
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-  color: #fff;
-}
-
-.nav-brand:hover {
-  transform: scale(1.05);
-}
-
-.navbar {
-  display: flex;
-  gap: var(--spacing-lg);
-  flex-grow: 1;
-  justify-content: center;
-}
-
-.nav-link {
-  color: var(--color-text-light);
-  text-decoration: none;
-  font-weight: 400;
-  font-size: var(--font-size-base);
-  padding: var(--spacing-sm) 0;
-  transition: color 0.3s ease;
-}
-
-.nav-link:hover,
-.nav-link:focus {
-  color: var(--color-secondary);
-  outline: none;
-}
-
-/* === Login Button === */
-.login .btn-primary {
-  background-color: var(--color-thirty);
-  color: black;
-  padding: var(--spacing-sm) var(--spacing-lg);
-  border: none;
-  border-radius: var(--border-radius-sm);
-  cursor: pointer;
-  box-shadow: var(--shadow-light);
-  transition: all 0.3s ease;
-  font-weight: bold;
-}
-
-.login .btn-primary:hover,
-.login .btn-primary:focus {
-  background-color: var(--color-secondary);
-  transform: scale(1.05);
-  outline: none;
-}
-
-/* === Home Hero Section === */
-.home {
-  height: 100vh;
-  width: 100%;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.1),
-      rgba(0, 0, 0, 0.1)), url(assets/images/tour/rumah-gadang.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0 1rem;
-  text-align: center;
-}
-
-.hero-heading {
-  font-size: clamp(1.5rem, 5vw, 2.8rem);
-  color: var(--color-text-light);
-  font-weight: bold;
-  margin-bottom: var(--spacing-sm);
-}
-
-.hero-content {
-  font-size: clamp(1rem, 2.5vw, 1.3rem);
-  color: var(--color-text-light);
-  margin-block: var(--spacing-sm);
-  max-width: 800px;
-  margin-inline: auto;
-}
-
-
-.hero-heading,
-.hero-content,
-.search-bar {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.8s ease forwards;
-  animation-delay: 0.3s;
-}
-
-/* === Search Input Area === */
-.search-bar {
-  display: flex;
-  justify-content: center;
-  position: relative;
-  width: 100%;
-  max-width: 500px;
-  margin-top: var(--spacing-sm);
+#root {
+  max-width: 1280px;
   margin: 0 auto;
-}
-
-.search-bar-input {
-  width: 100%;
-  padding: 0.7rem 1rem;
-  border: none;
-  outline: none;
-  color: var(--color-secondary-peach);
-  box-shadow: var(--shadow-medium);
-  border-radius: var(--border-radius-md);
-}
-
-.search-bar-icon {
-  width: 30px;
-  height: 30px;
-  background-color: var(--color-secondary);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 0.22rem;
-  right: .3rem;
-}
-
-.search-bar-icon-search {
-  width: 17px;
-  height: 17px;
-}
-
-/* services page */
-.services {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100vh;
-  background-color: var(--color-thirty);
-  padding-inline: 2rem;
-  padding-top: 3rem;
-}
-
-.services .section-title {
-  font-family: var(--font-secondary);
-  margin-bottom: var(--spacing-sm);
-}
-
-.services .box-service {
-  display: grid;
-  grid-template-columns: 2fr 3fr 7fr;
-  border-top: 2px solid black;
-  padding-top: var(--spacing-sm);
-  margin-bottom: var(--spacing-lg);
-}
-
-.services .service-offer {
-  font-weight: 400;
-}
-
-.services .service-explace {
-  font-size: var(--font-size-sm);
-}
-
-.services .service-descripsi {
-  line-height: 1.9;
-  font-size: var(--font-size-sm);
-}
-
-/* tours */
-
-.tours {
-  background-color: var(--color-accent);
-}
-
-.tours .section-heading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-  background-image: linear-gradient(rgba(0, 0, 0, 0.01),
-      rgba(0, 0, 0, 0.01)), url(assets/images/tour/gunung.jpg);
-  width: 100%;
-  height: 400px;
-
-  border-bottom-left-radius: 70% 70%;
-  border-bottom-right-radius: 70% 70%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  overflow: hidden;
-
-  margin-bottom: var(--spacing-md);
-}
-
-
-.tours .section-heading h2 {
-  font-size: var(--font-size-xl);
+  padding: 2rem;
   text-align: center;
-  /* text-shadow: var(--shadow-strong); */
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-  color: #fff;
-  max-width: 700px;
-  margin-bottom: var(--spacing-md);
 }
 
-.tour-filters {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 2rem;
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-.btn-filter {
-  padding: var(--spacing-sm) var(--spacing-lg);
-  background: white;
-  border-radius: var(--border-radius-lg);
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  color: #444;
-  box-shadow: var(--shadow-medium);
-}
-
-.btn-filter.active,
-.btn-filter:hover {
-  background: var(--color-secondary);
-  color: black;
-  transform: scale(1.05);
-}
-
-.tour-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
-}
-
-.tour-card {
-  background: white;
-  box-shadow: var(--shadow-light);
-  border-radius: var(--border-radius-md);
-  overflow: hidden;
-  transition: transform 0.3s ease;
-}
-
-.tour-card:hover {
-  transform: translateY(-4px);
-}
-
-.tour-img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-
-.tour-body {
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: .5rem;
-}
-
-.tour-title {
-  font-size: var(--font-size-md);
-  font-weight: 600;
-}
-
-.tour-price {
-  color: green;
-  font-weight: bold;
-}
-
-.tour-duration {
-  color: #444;
-}
-
-
-/* animation */
-
-@keyframes fadeInUp {
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
   to {
-    opacity: 1;
-    transform: translateY(0);
+    transform: rotate(360deg);
   }
 }
 
-/* === Responsive Breakpoints === */
-@media (max-width: 768px) {
-  .nav {
-    flex-direction: column;
-    gap: var(--spacing-sm);
-    padding: var(--spacing-md);
-    width: 95%;
-  }
-
-  .navbar {
-    flex-direction: column;
-    gap: var(--spacing-sm);
-    width: 100%;
-    margin-top: var(--spacing-sm);
-  }
-
-  .nav-link {
-    width: 100%;
-  }
-
-  .nav-brand,
-  .login {
-    margin-bottom: var(--spacing-sm);
-  }
-
-  .search-home {
-    max-width: 90%;
-  }
-
-
-  .hide-mobile {
-    display: none !important;
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
   }
 }
 
-@media (min-width: 769px) {
-  .show-mobile {
-    display: none !important;
-  }
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
 }
