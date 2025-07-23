@@ -1,0 +1,112 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #006b7e;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-links li a:hover {
+  text-decoration: underline;
+}
+
+.signin-btn {
+  background-color: #ffe680;
+  color: black;
+  padding: 7px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+  height: 100vh;
+  background-image: url('../assets/bg.jpg'); /* Ganti dengan gambar yang sesuai */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 60px; /* karena navbar fixed */
+  color: white;
+}
+
+.hero-content {
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 40px 20px;
+  border-radius: 10px;
+}
+
+.hero-content h1 {
+  font-size: 2.8rem;
+  font-weight: bold;
+}
+
+.hero-content p {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.search-box {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  border-radius: 30px;
+  overflow: hidden;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-box input {
+  padding: 10px 20px;
+  width: 80%;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+}
+
+.search-box button {
+  padding: 10px 20px;
+  background-color: #ffd700;
+  border: none;
+  cursor: pointer;
+}
