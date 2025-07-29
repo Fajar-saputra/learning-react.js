@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import TambahBuah from "./components/TambahBuah";
 import UserProfileFetcher from "./components/UserProfileFetcher";
+import ButtonCounter from "./components/ButtonCouter";
+
+import { PRODUCTS } from "./PRODUCTS";
 import "./App.css";
 
 // Komponen Halaman Home Sederhana
@@ -21,6 +24,10 @@ const AboutPage = () => (
         <p>Kita sudah membuat Counter, To-Do List, dan fetch data user!</p>
     </div>
 );
+
+const handlerCount = () => {
+    setCount(count + 1);
+};
 
 function App() {
     return (
