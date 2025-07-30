@@ -3,14 +3,8 @@ import Keranjang from "./components/Keranjang";
 import Todo from "./components/Todo";
 import UlangTodo from "./components/UlangTodo";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import HomePage from "./HomePage";
 
-// Komponen Halaman Home Sederhana
-const HomePage = () => (
-    <div style={{ textAlign: "center", padding: "50px" }}>
-        <h1>Selamat Datang di Aplikasi Multi-Halaman Kita!</h1>
-        <p>Ini adalah halaman utama. Coba navigasi ke halaman lain.</p>
-    </div>
-);
 
 // Komponen Halaman About Sederhana
 const AboutPage = () => (
