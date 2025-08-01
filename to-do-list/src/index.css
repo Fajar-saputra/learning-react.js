@@ -68,6 +68,25 @@ button:focus-visible {
 } */
 
 
-button{
+button {
   background-color: rgb(255, 193, 224);
+}
+
+.style-button, .style-input {
+  outline: none;
+  border: none;
+  border-radius: .3rem;
+  box-shadow: 0 0 1rem rgba(0,0,0,.2);
+  cursor: pointer;
+}
+
+.style-button {
+  background-color: yellow;
+  margin: 1rem;
+  padding: .7rem 2rem;
+}
+
+.style-input{
+  background-color: white;
+  padding: .7rem;
 }

@@ -1,7 +1,3 @@
-export default function And({text, isDeleted}) {
-    return (
-        <>
-                        {again && <p style={{color:"hotpink", fontWeight:"bold"}}>{text }</p> }
-        </>
-    )
+export default function And({ text, isDeleted }) {
+    return <>{isDeleted && <p style={{ color: "green", fontWeight: "bold" }}>{text}</p>}</>;
 }
