@@ -9,6 +9,7 @@ import AlertButton from "./components/AlertButton";
 import EventForm from "./components/EventForm";
 import Toolbar from "./components/Toolbar";
 import EventDefault from "./components/EventDefault";
+import Todo from "./components/Todo";
 
 function App() {
     const text = "hello world";
@@ -39,6 +40,8 @@ function App() {
                         alert("Searching start...");
                     }}
                 />
+
+                <Todo />
             </Container>
         </>
     );
