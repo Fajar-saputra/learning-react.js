@@ -10,6 +10,7 @@ import EventForm from "./components/EventForm";
 import Toolbar from "./components/Toolbar";
 import EventDefault from "./components/EventDefault";
 import Todo from "./components/Todo";
+import ContactForm from "./components/ContactForm";
 
 function App() {
     const text = "hello world";
@@ -42,6 +43,8 @@ function App() {
                 />
 
                 <Todo />
+
+                <ContactForm />
             </Container>
         </>
     );

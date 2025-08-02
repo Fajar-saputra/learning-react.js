@@ -7,15 +7,20 @@ export default function Todo() {
 
     const [input, setInput] = useState("")
 
-    function  handleAddTodo() {
+    function handleAddTodo(e) {
+        e.preventDefault();
+
+        setTodos(prevTodo => [...prevTodo, { id: Date.now(), text: input.trim(), isCompleted: false }])
         
+        setInput("")
     }
 
     return (
         <div>
+            <h2>INI TODO</h2>
             <form action="">
-                <input type="text" className="style-input" placeholder="Enter todo"/>
-                <button className="style-button">Add Todo</button>
+                <input type="text" className="style-input" placeholder="Enter todo" onChange={(e) => setInput(e.target.value)} value={input}/>
+                <button className="style-button" onClick={handleAddTodo}>Add Todo</button>
             </form>
 
             <h3>Ini penggunaan useState</h3>
