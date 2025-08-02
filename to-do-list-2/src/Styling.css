@@ -1,1 +1,41 @@
-/* x1 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box  ;
+}
+
+body {
+    padding: 2rem;
+}
+
+.container{
+    background-color: pink;
+    height: 100vh;
+    padding: 1rem;
+}
+
+h1, h2, h3{
+    text-align: center;
+}
+
+input, button {
+    outline: none;
+    border: none;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, .4);
+    border-radius: .3rem;
+}
+
+form {
+    margin-bottom: 2rem;
+}
+
+input {
+    padding: .5rem 1rem;
+    background-color: white;
+    margin-right: 1rem;
+}
+
+button {
+    background-color: yellow;
+    padding: .5rem 2rem ;
+}
