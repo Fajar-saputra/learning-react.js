@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export default function TodoList() {
     const [todos, setTodos] = useState([
@@ -9,6 +10,7 @@ export default function TodoList() {
     ]);
 
     const [inputTask, setInputTask] = useState("");
+    const [isEdit, setIsEdit] = useState(false);
 
     function handleAddTask(e) {
         e.preventDefault();
@@ -24,29 +26,48 @@ export default function TodoList() {
         } else if (duplicated) {
             return alert("Task sudah ada!");
         } else {
+            const id = uuidv4();
+
             const newTodo = {
-                id: Date.now(),
+                id: id,
                 task: trimmed,
                 isCompleted: false,
             };
 
-            // setTodos((prevTodo) => prevTodo.map((todo) => [...todo, newTodo]));
             setTodos((prevTodo) => [...prevTodo, newTodo]);
         }
 
         setInputTask("");
     }
 
+    function toggleComplete(id) {
+        setTodos((prev) => prev.map((todo) => (todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo)));
+    }
+
+    function handleEditTodo() {}
+
+    function handleDelete(id) {
+        setTodos((prev) => prev.filter((todo) => todo.id !== id));
+    }
+
     return (
         <>
             <h3>INI TODO</h3>
             <form onSubmit={handleAddTask}>
-                <input type="text" placeholder="Enter task..." value={inputTask} onChange={(e) => setInputTask(e.target.value)}/>
+                <input type="text" placeholder="Enter task..." value={inputTask} onChange={(e) => setInputTask(e.target.value)} />
                 <button>Add</button>
             </form>
             <ol>
                 {todos.map((todo) => (
-                    <li key={todo.id}>{ todo.id } {todo.task}</li>
+                    <li key={todo.id}>
+                        <span onClick={() => toggleComplete(todo.id)}>
+                            {todo.isCompleted ? "✅" : "⬜️"} {todo.task}{" "}
+                        </span>{" "}
+                        <span className="edit-btn" onClick={() => handleEditTodo(todo.id)}>⚙ </span>
+                        <span onClick={() => handleDelete(todo.id)} className="delete-btn">
+                            🗑
+                        </span>
+                    </li>
                 ))}
             </ol>
         </>

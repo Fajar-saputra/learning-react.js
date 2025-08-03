@@ -87,7 +87,7 @@ export default function TodoItem({
 
     return (
         <div style={{ border: "1px solid gray", margin: "10px", padding: "10px" }}>
-            {currentEditId === todo.id ? (
+            {currentEditId === todo.id ? (  
                 <div>
                     <input type="text" value={currentEditTodo} onChange={(e) => setEditTodo(e.target.value)} />
                     <button onClick={onSaveEdit}>Save</button>
