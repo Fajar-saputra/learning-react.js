@@ -23,7 +23,7 @@ export default function TodoItem({
     setEditingSubtaskText,
 }) {
     return (
-        <ul>
+        <ol>
             {/* Mapping untuk todo utama */}
             {todos.map((todo) => {
                 // Tentukan apakah todo ini sedang dalam mode edit  
@@ -44,15 +44,15 @@ export default function TodoItem({
                                     onChange={(e) => setEditingTodoText(e.target.value)}
                                     style={{ marginRight: ".4rem" }}
                                 />
-                                <button type="submit">Save</button>
-                                <button type="button" onClick={handleCancelEditTodo}>Cancel</button>
+                                <button type="submit">✔</button>
+                                <button type="button" onClick={handleCancelEditTodo}>✖</button>
                             </form>
                         ) : (
                             // Render teks todo biasa dan tombol jika tidak dalam mode edit
                             <>
                                 <span>{todo.title}</span>
-                                <button onClick={() => handleEditTodo(todo.id, todo.title)} style={{ marginLeft: ".4rem" }}>Edit</button>
-                                <button onClick={() => handleDeleteTodo(todo.id)} style={{ marginLeft: ".4rem" }}>Delete</button>
+                                <button onClick={() => handleEditTodo(todo.id, todo.title)} style={{ marginLeft: ".4rem" }}>⚙</button>
+                                <button onClick={() => handleDeleteTodo(todo.id)} style={{ marginLeft: ".4rem" }}>🗑</button>
                             </>
                         )}
 
@@ -98,8 +98,8 @@ export default function TodoItem({
                                             // Render teks subtask biasa dan tombol jika tidak dalam mode edit
                                             <>
                                                 <span>{subtask.text}</span>
-                                                <button onClick={() => handleEditSubtask(subtask.id, subtask.text)} style={{ marginLeft: ".4rem" }}>Edit</button>
-                                                <button onClick={() => handleDeleteSubtask(todo.id, subtask.id)} style={{ marginLeft: ".4rem" }}>Delete</button>
+                                                <button onClick={() => handleEditSubtask(subtask.id, subtask.text)} style={{ marginLeft: ".4rem" }}>⚙</button>
+                                                <button onClick={() => handleDeleteSubtask(todo.id, subtask.id)} style={{ marginLeft: ".4rem" }}>🗑</button>
                                             </>
                                         )}
                                     </li>
@@ -109,6 +109,6 @@ export default function TodoItem({
                     </li>
                 );
             })}
-        </ul>
+        </ol>
     );
 }
