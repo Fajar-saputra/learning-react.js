@@ -23,7 +23,7 @@ h1, h2, h3{
     text-align: center;
 }
 
-input, button {
+/* input, button {
     outline: none;
     border: none;
     box-shadow: 0 0 1rem rgba(0, 0, 0, .4);
@@ -35,14 +35,15 @@ form {
 }
 
 input {
-    padding: .5rem 1rem;
+    padding: .7rem 1rem;
     background-color: white;
     margin-right: 1rem;
+    width: 300px;
 }
 
 button {
     background-color: yellow;
-    padding: .5rem 2rem ;
+    padding: .5rem ;
 }
 
 li {
@@ -65,4 +66,20 @@ li {
 
 .edit-btn:hover{
     box-shadow: 0 0 1rem rgba(0, 0, 0, .4);
+} */
+
+
+/* styling untuk product tables */
+.search-bar {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.input-search {
+    padding: .7rem;
+    width: 300px;
+    outline:  none;
+    border: none;
 }
