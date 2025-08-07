@@ -1,7 +1,9 @@
 import Container from "./components/Container";
-import FilterableProductTable from "./components/FilterableProductTable";
 import "./Styling.css";
 import React from "react";
+import ProductTable  from "./components/productTable/FilterableProductTable";
+import Todo from "./components/todoApp/todo";
+
 
 function App() {
     const PRODUCTS = [
@@ -16,7 +18,8 @@ function App() {
     return (
         <>
             <Container>
-                <FilterableProductTable products={PRODUCTS} />
+            <ProductTable product={PRODUCTS}/>
+            <Todo />
             </Container>
         </>
     );
