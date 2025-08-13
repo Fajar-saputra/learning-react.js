@@ -1,14 +1,12 @@
-import './App.css'
-import Game from './components/TicTacToe'
+import "./App.css";
+import Board from "./components/TicTacToe";
 
 function App() {
-
-  return (
-    <>
-    <Game /> 
-    </>
-    
-  )
+    return (
+        <>
+            <Board />
+        </>
+    );
 }
 
-export default App
+export default App;

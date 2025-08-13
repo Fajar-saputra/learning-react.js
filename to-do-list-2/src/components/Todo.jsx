@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { v4 } from "uuid";
 
-export default function LogicTodo() {
+export default function Todo() {
     const [todos, setTodos] = useState([
         { id: 1, text: "Belajar React Dasar", done: false },
         { id: 2, text: "Belajar React Lanjutan", done: false },
@@ -51,10 +51,16 @@ export default function LogicTodo() {
         setEditText("");
     }
 
+        const styleInput = {
+        padding: ".7rem",
+        width: "200px",
+    };
+
     return (
         <div>
             <form onSubmit={handleAddTodo}>
                 <input
+                style={styleInput}
                     type="text"
                     placeholder="Enter Todo..."
                     value={inputTodo}
@@ -68,6 +74,7 @@ export default function LogicTodo() {
                         {editId === todo.id ? (
                             <form onSubmit={handleUpdateTodo} style={{ display: "inline" }}>
                                 <input
+                                style={styleInput}
                                     type="text"
                                     value={editText}
                                     onChange={(e) => setEditText(e.target.value)}
@@ -91,3 +98,7 @@ export default function LogicTodo() {
         </div>
     );
 }
+
+
+
+
