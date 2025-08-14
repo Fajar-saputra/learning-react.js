@@ -11,86 +11,74 @@ export default function Todo() {
     const [editId, setEditId] = useState(null);
     const [editText, setEditText] = useState("");
 
-    function handleAddTodo(e) {
-        e.preventDefault();
-        if (!inputTodo.trim()) return;
+    const styleInput = {
+        padding: ".7rem",
+        width: "200px",
+    };
 
-        setTodos((prevTodo) => [
-            ...prevTodo,
-            { id: v4(), text: inputTodo.trim(), done: false },
-        ]);
+    function handleSubmitTodo(e) {
+        e.preventDefault();
+
+        if (inputTodo.trim() === "") return;
+
+        setTodos((prev) => [...prev, { id: v4(), text: inputTodo.trim(), done: false }]);
         setInputTodo("");
     }
 
     function handleDeleteTodo(id) {
-        setTodos((prevTodo) => prevTodo.filter((todo) => todo.id !== id));
+        setTodos((prev) => prev.filter((todo) => todo.id !== id));
     }
 
-    function handleToggleDone(id) {
-        setTodos((prevTodo) =>
-            prevTodo.map((todo) =>
-                todo.id === id ? { ...todo, done: !todo.done } : todo
-            )
-        );
+    function handleIsDone(id) {
+        setTodos((prevTodo) => prevTodo.map((todo) => (todo.id === id ? { ...todo, done: !false } : todo)));
     }
 
     function handleEditTodo(id, text) {
         setEditId(id);
         setEditText(text);
     }
-
-    function handleUpdateTodo(e) {
-        e.preventDefault();
-        if (!editText.trim()) return;
-        setTodos((prevTodo) =>
-            prevTodo.map((todo) =>
-                todo.id === editId ? { ...todo, text: editText } : todo
-            )
-        );
-        setEditId(null);
-        setEditText("");
+    function handleCancelEdit() {
+        setEditId(null)
+        setEditText("")
     }
-
-        const styleInput = {
-        padding: ".7rem",
-        width: "200px",
-    };
+    
+    function handleUpdateEdit(e) {
+        e.preventDefault();
+        
+        setTodos(prevTodo => prevTodo.map(todo => todo.id === editId? {...todo, text: editText.trim()}: todo))
+        setEditId(null)
+        setEditText("")
+    }
 
     return (
         <div>
-            <form onSubmit={handleAddTodo}>
-                <input
-                style={styleInput}
-                    type="text"
-                    placeholder="Enter Todo..."
-                    value={inputTodo}
-                    onChange={(e) => setInputTodo(e.target.value)}
-                />
+            <h2>Testing Todo</h2>
+            <form action="" onSubmit={handleSubmitTodo}>
+                <input type="text" placeholder="Enter Todo..." value={inputTodo} style={styleInput} onChange={(e) => setInputTodo(e.target.value)} />
                 <button type="submit">➕</button>
             </form>
             <ol>
                 {todos.map((todo) => (
-                    <li key={todo.id} style={{ textDecoration: todo.done ? "line-through" : "none" }}>
-                        {editId === todo.id ? (
-                            <form onSubmit={handleUpdateTodo} style={{ display: "inline" }}>
-                                <input
-                                style={styleInput}
-                                    type="text"
-                                    value={editText}
-                                    onChange={(e) => setEditText(e.target.value)}
-                                    autoFocus
-                                />
-                                <button type="submit">💾</button>
-                                <button type="button" onClick={() => setEditId(null)}>❌</button>
+                    <li key={todo.id}>
+                        {todo.id === editId ? (
+                            <form action="">
+                                <input type="text" value={editText} onChange={(e) => setEditText(e.target.value)} autoFocus/>
+                                <button type="submit" onClick={handleUpdateEdit}>📑</button>
+                                <button type="submit" onClick={handleCancelEdit}>✖</button>
                             </form>
                         ) : (
-                            <>
-                                <span onClick={() => handleToggleDone(todo.id)} style={{ cursor: "pointer" }}>
-                                    {todo.text}
-                                </span>
-                                <button onClick={() => handleEditTodo(todo.id, todo.text)}>✏️</button>
-                                <button onClick={() => handleDeleteTodo(todo.id)}>🗑️</button>
-                            </>
+                            <div>
+                                {todo.done === true ? <span style={{ color: "Highlight", marginInline: "1rem" }}>{todo.text}</span> : <span style={{ marginInline: "1rem" }}>{todo.text}</span>}
+                                <button type="button" onClick={() => handleIsDone(todo.id)}>
+                                    ✔
+                                </button>
+                                <button type="button" onClick={() => handleEditTodo(todo.id, todo.text)}>
+                                    ⚙
+                                </button>
+                                <button type="button" onClick={() => handleDeleteTodo(todo.id)}>
+                                    🗑
+                                </button>
+                            </div>
                         )}
                     </li>
                 ))}
@@ -98,7 +86,3 @@ export default function Todo() {
         </div>
     );
 }
-
-
-
-

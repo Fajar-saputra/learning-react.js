@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-      <ProductTable />
+      {/* <ProductTable /> */}
       <Todo />
     </>
   )
