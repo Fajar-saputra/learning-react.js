@@ -9,24 +9,7 @@ export function UseLogic() {
                 { id: 101, text: "Pahami useState", done: false },
                 { id: 102, text: "Pahami props", done: false },
             ],
-        },
-        {
-            id: 2,
-            title: "Belajar JS",
-            subtasks: [
-                { id: 101, text: "Pahami variable", done: false },
-                { id: 102, text: "Pahami if, for, while", done: false },
-            ],
-        },
-        {
-            id: 3,
-            title: "Belajar JAVA",
-            subtasks: [
-                { id: 101, text: "Pahami variable", done: false },
-                { id: 102, text: "Pahami if, for, while", done: false },
-                { id: 103, text: "Pahami oop", done: false },
-            ],
-        },
+        }
     ]);
 
     const [inputTodo, setInputTodo] = useState("");

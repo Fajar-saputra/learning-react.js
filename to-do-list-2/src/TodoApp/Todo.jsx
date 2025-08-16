@@ -1,12 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { v4 } from "uuid";
 
 export default function Todo() {
-    const [todos, setTodos] = useState([
-        { id: 1, text: "Belajar React Dasar", done: false },
-        { id: 2, text: "Belajar React Lanjutan", done: false },
-        { id: 3, text: "Belajar State Management", done: false },
-    ]);
+    const [todos, setTodos] = useState(() => {
+        const stored = localStorage.getItem("todos");
+        return stored ? JSON.parse(stored) : [];
+    });
+
+
+    useEffect(() => {
+        localStorage.setItem("todos", JSON.stringify(todos))
+    }, [todos])
+
+
     const [inputTodo, setInputTodo] = useState("");
     const [editId, setEditId] = useState(null);
     const [editText, setEditText] = useState("");
@@ -19,7 +25,19 @@ export default function Todo() {
     function handleSubmitTodo(e) {
         e.preventDefault();
 
-        if (inputTodo.trim() === "") return;
+        const trimmed = inputTodo.trim();
+
+        if (trimmed === "") return;
+        if (trimmed.length < 5) {
+            alert("Karakter minimal 5 huruf")
+            return;
+        }
+        
+        const duplicated = todos.some(todo => todo.text === trimmed ? true : false)
+        if (duplicated) {
+            alert("Todo suddah ada!")
+            return;
+        }
 
         setTodos((prev) => [...prev, { id: v4(), text: inputTodo.trim(), done: false }]);
         setInputTodo("");

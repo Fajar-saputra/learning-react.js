@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import ProductTable from "./components/FilterableProductTable";
-import  Todo  from "./components/Todo";
+import  Todo  from "./TodoApp/Todo";
 
 function App() {
 

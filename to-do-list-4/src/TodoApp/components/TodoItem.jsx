@@ -1,4 +1,4 @@
-import React from 'react'; // Penting untuk <React.Fragment> jika kamu menggunakannya
+import React from 'react'; 
 
 export default function TodoItem({
     todos,
