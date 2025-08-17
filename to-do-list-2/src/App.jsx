@@ -1,14 +1,14 @@
-import { useState } from 'react'
 import './App.css'
 import ProductTable from "./components/FilterableProductTable";
-import  Todo  from "./TodoApp/Todo";
+import NoteApp from './notes/NoteApp';
+import NotesForm from './notes/NotesForm';
 
 function App() {
 
   return (
     <>
       {/* <ProductTable /> */}
-      <Todo />
+<NoteApp />
     </>
   )
 }

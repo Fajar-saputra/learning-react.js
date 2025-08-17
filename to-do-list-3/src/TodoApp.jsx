@@ -65,7 +65,7 @@ export default function TodoApp() {
     function handleDeleteTodo(todos) {
         dispatch({
             type: "DELETE_TODO",
-            text: todo.id
+            text: todos.id
         })
         
     }
@@ -102,7 +102,7 @@ export default function TodoApp() {
                                 </button>
                             </div>
                         )}
-                    </li>
+                    </li>   
                 ))}
             </ol>
         </div>
