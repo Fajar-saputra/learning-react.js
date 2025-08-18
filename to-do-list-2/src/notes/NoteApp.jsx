@@ -1,6 +1,7 @@
 import { useState } from "react";
 import NotesForm from "./NotesForm";
 import NoteList from "./NotesList";
+import Note from "./Note";
 
 let id = 0;
 const initialNotes = [
@@ -17,14 +18,16 @@ export default function NoteApp() {
     const [inputText, setInputText] = useState("");
 
     function handleAddNote() {
-        const newNote =  { id: id++, text: inputText, done: false }
-        setNotes([...notes, newNote]);
+        setNotes([...notes, { id: id++, text: inputText, done: false }]);
         setInputText("")
-        // console.log("berhasil ditambahkan "+ textInput);
     }
 
-    function handleChangeNote(noteArr) {
-        setNotes(prevNotes => prevNotes.map((note) => (note.id === noteArr.id ? { ...note, text: noteArr } : note)));
+    function handleChangeDone(notes) {
+        setNotes(prevNotes => prevNotes.map((item) => (item.id === notes.id ? { ...item, done: !done } : item)));
+    }
+
+    function handleChangeNote(notes) {
+        
     }
 
     function handleDeleteNote(noteArr) {
@@ -34,17 +37,8 @@ export default function NoteApp() {
     return (
         <>
             <h1>Note App</h1>
-            {/* <form action="" onSubmit={(e) => e.preventDefault()}>
-                <input type="text" placeholder="Enter note..." value={inputText} onChange={(e) => setInputText(e.target.value)} />
-                <button onClick={handleAddNote}>Add</button>
-            </form>
-            <ol>
-                {notes.map(note => (
-                    <li key={note.id}>{ note.text }</li>
-                ))}
-            </ol> */}
-
-            
+            <NotesForm handleAddNote={handleAddNote} inputText={inputText} setInputText={setInputText} />
+            <NoteList notes={notes} onChange={handleChangeNote} onDelete={handleDeleteNote} handleChangeDone={handleChangeDone}/>
         </>
     );
 }
