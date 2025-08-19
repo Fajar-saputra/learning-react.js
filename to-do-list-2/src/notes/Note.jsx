@@ -4,7 +4,7 @@ export default function Note({ note, onChange, onDelete }) {
     // const [isEditing, setIsEditing] = useState(false);
 
     function handleChangeText(e) {
-        const newNote =
+        // const newNote =
     }
 
     return (

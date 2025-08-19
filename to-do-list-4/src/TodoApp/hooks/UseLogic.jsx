@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { act, useReducer, useState } from "react";
 
-export function UseLogic() {
-    const [todos, setTodos] = useState([
+let id = 0;
+
+const InitialNotes = [
         {
             id: 1,
             title: "Belajar React",
@@ -10,7 +11,28 @@ export function UseLogic() {
                 { id: 102, text: "Pahami props", done: false },
             ],
         }
-    ]);
+    ]
+
+function todosReducer(todos, action) {
+    switch (action.type) {
+        case "ADD_TODO":
+            return [...todos, { id: id++, text: action.text, done: false }];
+        case "UPDATE_TODO":
+            return todos.map(todo => todo.id === action.id ? { ...todo, text: action.text } : todo);
+        case "DELETE_TODO":
+            return todos.filter(todo=> todo.id !== action.id)
+        case "DONE_TODO":
+            return todos.map(todo => todo.id === action.id ? { ...todo, done: !todo.done } : todo);
+        case "ADD_SUBTODO":
+            return todos.map(todo=> todo.id === action.id? )
+    
+        default:
+            return todos;
+    }
+}
+
+export function UseLogic() {
+    const [todos, setTodos] = useReducer(InitialNotes, todosReducer);
 
     const [inputTodo, setInputTodo] = useState("");
     // State untuk mode editing todo
@@ -27,28 +49,11 @@ export function UseLogic() {
     const handleAddTodo = (e) => {
         e.preventDefault();
 
-        if (inputTodo.trim() === "") return;
+        dispatch({
+            type: 'ADD_TODO',
+            text: inputTodo.trim()
+        })
 
-        if (inputTodo.trim().length < 4) {
-            alert("Minimal 4 karakter!");
-            return;
-        }
-
-        const duplicated = todos.some((todo) => todo.title.toLowerCase() === inputTodo.trim().toLowerCase());
-
-        if (duplicated) {
-            alert("Todo sudah ada!");
-            return;
-        }
-
-        const newTodo = {
-            id: Date.now(),
-            title: inputTodo.trim(),
-            subtasks: [],
-        };
-
-        setTodos([...todos, newTodo]);
-        setInputTodo("");
     };
 
     const handleAddSubtask = (todoId) => {
@@ -83,8 +88,10 @@ export function UseLogic() {
 
     // Fungsi untuk menghapus todo utama
     const handleDeleteTodo = (todoId) => {
-        const updatedTodos = todos.filter((todo) => todo.id !== todoId);
-        setTodos(updatedTodos);
+        dispatch({
+            type: "DELETE_TODO",
+            id: todoId
+        })
     };
 
     // Fungsi untuk menghapus subtask
