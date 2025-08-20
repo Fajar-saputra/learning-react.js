@@ -24,7 +24,7 @@ function todosReducer(todos, action) {
         case "DONE_TODO":
             return todos.map(todo => todo.id === action.id ? { ...todo, done: !todo.done } : todo);
         case "ADD_SUBTODO":
-            return todos.map(todo=> todo.id === action.id? )
+            // return todos.map(todo=> todo.id === action.id? )
     
         default:
             return todos;
