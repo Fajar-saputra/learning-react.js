@@ -3,29 +3,38 @@ import { act, useReducer, useState } from "react";
 let id = 0;
 
 const InitialNotes = [
-        {
-            id: 1,
-            title: "Belajar React",
-            subtasks: [
-                { id: 101, text: "Pahami useState", done: false },
-                { id: 102, text: "Pahami props", done: false },
-            ],
-        }
-    ]
+    {
+        id: 1,
+        title: "Belajar React",
+        subtasks: [
+            { id: 101, text: "Pahami useState", done: false },
+            { id: 102, text: "Pahami props", done: false },
+        ],
+    },
+];
 
 function todosReducer(todos, action) {
     switch (action.type) {
         case "ADD_TODO":
-            return [...todos, { id: id++, text: action.text, done: false }];
-        case "UPDATE_TODO":
-            return todos.map(todo => todo.id === action.id ? { ...todo, text: action.text } : todo);
-        case "DELETE_TODO":
-            return todos.filter(todo=> todo.id !== action.id)
-        case "DONE_TODO":
-            return todos.map(todo => todo.id === action.id ? { ...todo, done: !todo.done } : todo);
+            return [...todos, { id: id++, text: action.text, tasks: [] }];
         case "ADD_SUBTODO":
-            // return todos.map(todo=> todo.id === action.id? )
-    
+            return todos.map((todo) =>
+                todo.id === action.id
+                    ? {
+                          ...todo,
+                          tasks: [{ id: id++, taxt: action.text, done: false }],
+                      }
+                    : todo
+            );
+        case "UPDATE_TODO":
+            return todos.map((todo) => (todo.id === action.id ? { ...todo, text: action.text } : todo));
+        case "DELETE_TODO":
+            return todos.filter((todo) => todo.id !== action.id);
+        case "DONE_TODO":
+            return todos.map((todo) => (todo.id === action.id ? { ...todo, done: !todo.done } : todo));
+        case "ADD_SUBTODO":
+        // return todos.map(todo=> todo.id === action.id? )
+
         default:
             return todos;
     }
@@ -50,10 +59,9 @@ export function UseLogic() {
         e.preventDefault();
 
         dispatch({
-            type: 'ADD_TODO',
-            text: inputTodo.trim()
-        })
-
+            type: "ADD_TODO",
+            text: inputTodo.trim(),
+        });
     };
 
     const handleAddSubtask = (todoId) => {
@@ -90,8 +98,8 @@ export function UseLogic() {
     const handleDeleteTodo = (todoId) => {
         dispatch({
             type: "DELETE_TODO",
-            id: todoId
-        })
+            id: todoId,
+        });
     };
 
     // Fungsi untuk menghapus subtask
@@ -155,9 +163,7 @@ export function UseLogic() {
             if (todo.id === todoId) {
                 return {
                     ...todo,
-                    subtasks: todo.subtasks.map((subtask) =>
-                        subtask.id === subtaskId ? { ...subtask, text: editingSubtaskText.trim() } : subtask
-                    ),
+                    subtasks: todo.subtasks.map((subtask) => (subtask.id === subtaskId ? { ...subtask, text: editingSubtaskText.trim() } : subtask)),
                 };
             }
             return todo;

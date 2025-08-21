@@ -1,5 +1,6 @@
 import { useReducer, useState } from "react";
 import { v4 } from "uuid";
+import Form from "./Form";
 
 const initialTodos = [
     {
@@ -33,9 +34,9 @@ function todoReducer(todos, action) {
                 ...todos,
                 {
                     id: v4(),
-                    title: inputTodo,
+                    title: action.text,
                     tasks: [],
-                }
+                },
             ];
         case "ADD_SUBTODO":
             return todos.map((todo) =>
@@ -43,10 +44,10 @@ function todoReducer(todos, action) {
                     ? {
                           ...todo,
                           tasks: [
-                              ...todo.task,
+                              ...todo.tasks,
                               {
                                   id: v4(),
-                                  taks: inputSubtodo,
+                                  task: action.text,
                                   done: false,
                               },
                           ],
@@ -54,6 +55,8 @@ function todoReducer(todos, action) {
                     : todo
             );
         case "UPDATE_TODO":
+            return todos.map((todo) => (todo.id === action.id ? { ...todo, text: action.text } : todo));
+        case "UPDATE_SUBTODO":
             return todos.map((todo) => (todo.id === action.id ? { ...todo, text: action.text } : todo));
         case "DELETE_TODO":
             return todos.filter((todo) => todo.id !== action.id);
@@ -113,24 +116,25 @@ export default function TodoApp() {
     }
 
     // handle subtodo
-    function handleAddSubtodo(e) {
-        e.preventDefault();
+
+    const handleAddSubTodo = (todoId) => {
+        if (!inputSubtodo[todoId]?.trim()) return;
         dispatch({
             type: "ADD_SUBTODO",
-            text: inputSubtodo,
+            id: todoId,
+            text: inputSubtodo[todoId],
         });
-    }
+        setInputSubtodo({ ...inputSubtodo, [todoId]: "" });
+    };
 
     return (
         <div>
             <h2>Testing Todo</h2>
-            <form>
+            <form onSubmit={handleAddTodo}>
                 <input type="text" placeholder="Enter Todo..." value={inputTodo} onChange={(e) => setInputTodo(e.target.value)} />
-                <button type="submit" onClick={handleAddTodo}>
-                    ➕
-                </button>
+                <button type="submit">➕</button>
             </form>
-            <div >
+            <div>
                 <ol className="container-todo">
                     {todos.map((todo) => (
                         <li key={todo.id}>
@@ -149,6 +153,15 @@ export default function TodoApp() {
                                 </div>
 
                                 <div className="todo-body">
+                                    <form onSubmit={(e) => e.target.value}>
+                                        <input
+                                            type="text"
+                                            placeholder="Enter Subtodo..."
+                                            value={inputSubtodo[todo.id] || ""}
+                                            onChange={(e) => setInputSubtodo({ ...inputSubtodo, [todo.id]: e.target.value })}
+                                        />
+                                        <button type="button" onClick={() => handleAddSubTodo(todo.id)}>➕</button>
+                                    </form>
                                     <ul>
                                         {todo.tasks.map((task) => (
                                             <li key={task.id}>{task.task}</li>
