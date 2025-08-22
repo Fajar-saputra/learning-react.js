@@ -139,7 +139,7 @@ export default function TodoApp() {
                     {todos.map((todo) => (
                         <li key={todo.id}>
                             <div className="todo-wrap">
-                                <div className="todo-head">
+                                {/* <div className="todo-head">
                                     <h3>{todo.title}</h3>
 
                                     <div className="button-head">
@@ -150,7 +150,7 @@ export default function TodoApp() {
                                             🗑
                                         </button>
                                     </div>
-                                </div>
+                                </div> */}
 
                                 <div className="todo-body">
                                     <form onSubmit={(e) => e.target.value}>

@@ -1,5 +1,6 @@
 import { useReducer, useState } from "react";
 import { v4 } from "uuid";
+import NoteForm from "./NoteForm";
 
 function noteReducer(notes, action) {
     switch (action.type) {
@@ -23,44 +24,17 @@ function noteReducer(notes, action) {
 const initialNotes = [
     {
         id: v4(),
-        title: "Testing dulu",
+        title: "Note 1",
+        done: false,
         tasks: [
             {
                 id: v4(),
-                text: "Testing sub notes",
+                title: "subnote 2",
                 done: false,
             },
-        ],
-    },
-    {
-        id: v4(),
-        title: "Testing dulu",
-        tasks: [
             {
                 id: v4(),
-                text: "Testing sub notes",
-                done: false,
-            },
-        ],
-    },
-    {
-        id: v4(),
-        title: "Testing dulu",
-        tasks: [
-            {
-                id: v4(),
-                text: "Testing sub notes",
-                done: false,
-            },
-        ],
-    },
-    {
-        id: v4(),
-        title: "Testing dulu",
-        tasks: [
-            {
-                id: v4(),
-                text: "Testing sub notes",
+                title: "subnote 2",
                 done: false,
             },
         ],
@@ -85,9 +59,15 @@ export default function Notes() {
         e.preventDefault();
         dispatch({
             type: "ADD_SUBNOTES",
-            text: inputSubnote,
+            text: inputSubnote[noteID],
             id: noteID,
         });
+
+        setInputSubnote({ ...inputSubnote, [noteID]: "" });
+    }
+
+    function handleOnChangeSubnote(e, noteID) {
+        setInputSubnote({...inputSubnote, [noteID] : e.target.value})
     }
 
     return (
@@ -101,16 +81,15 @@ export default function Notes() {
                 {notes.map((note) => (
                     <li key={note.id}>
                         <span>{note.title}</span>
-                        <form onSubmit={(e) => handleAddSubnotes(e, note.id)}>
-                            <input type="text" placeholder="Enter subnote" value={inputSubnote[note.id] || ""} onChange={(e) => setInputSubnote({...inputSubnote, [note.id]: e.target.value})} />
-                            <button type="submit">➕</button>
-                        </form>
+                        <NoteForm onSubmit={(e) => handleAddSubnotes(e, note.id)} input={inputSubnote[note.id] || ""} onChange={(e) => handleOnChangeSubnote(e, note.id)}/>
                         <ul>
                             {note.tasks.map((task) => (
-                                <li key={task.id}>{task.text}</li>
+                                <li key={task.id}>
+                                    <span>{task.title}</span>
+                                </li>
                             ))}
                         </ul>
-                    </li> 
+                    </li>
                 ))}
             </ol>
         </div>
