@@ -1,97 +1,61 @@
 import { useReducer, useState } from "react";
 import { v4 } from "uuid";
-import NoteForm from "./NoteForm";
-
-function noteReducer(notes, action) {
-    switch (action.type) {
-        case "ADD_NOTES":
-            return [...notes, { id: v4(), title: action.text, tasks: [] }];
-        case "ADD_SUBNOTES":
-            return notes.map((note) =>
-                note.id === action.id
-                    ? {
-                          ...note,
-                          tasks: [...note.tasks, { id: v4(), text: action.text, done: false }],
-                      }
-                    : note
-            );
-
-        default:
-            return notes;
-    }
-}
-
-const initialNotes = [
-    {
-        id: v4(),
-        title: "Note 1",
-        done: false,
-        tasks: [
-            {
-                id: v4(),
-                title: "subnote 2",
-                done: false,
-            },
-            {
-                id: v4(),
-                title: "subnote 2",
-                done: false,
-            },
-        ],
-    },
-];
 
 export default function Notes() {
-    const [notes, dispatch] = useReducer(noteReducer, initialNotes);
+    const [notes, setNotes] = useState([
+        {
+            id: v4(),
+            title: "Rabu",
+            tasks: [
+                { id: v4(), task: "Belajar React Dasar", done: false },
+                { id: v4(), task: "Belajar React Dasar", done: false },
+                { id: v4(), task: "Belajar React Dasar", done: false },
+                { id: v4(), task: "Belajar React Dasar", done: false },
+            ]
+        },
+    ]);
 
     const [inputNote, setInputNote] = useState("");
-    const [inputSubnote, setInputSubnote] = useState("");
+    const [subNote, setSubNote] = useState("");
 
-    function handleAddNotes(e) {
-        e.preventDefault();
-        dispatch({
-            type: "ADD_NOTES",
-            text: inputNote,
-        });
+    function handleAddNote() {
+        if (!inputNote.trim()) return;
+        setNotes((prev) => [...prev, { id: v4(), title: inputNote, tasks: [] }]);
+        setInputNote("");
     }
-
-    function handleAddSubnotes(e, noteID) {
-        e.preventDefault();
-        dispatch({
-            type: "ADD_SUBNOTES",
-            text: inputSubnote[noteID],
-            id: noteID,
-        });
-
-        setInputSubnote({ ...inputSubnote, [noteID]: "" });
+    
+    function handleDeleteNote(noteID) {
+        setNotes(notes => notes.filter(note => note.id !== noteID))
     }
-
-    function handleOnChangeSubnote(e, noteID) {
-        setInputSubnote({...inputSubnote, [noteID] : e.target.value})
+    
+    function  handleAddSubnote(noteID) {
+        if (!subNote.trim()) return;
+        setNotes(notes => notes.map(note => note.id === noteID ? 
+            {...note, }
+        ))
     }
 
     return (
         <div>
-            <form action="" onSubmit={handleAddNotes}>
-                <input type="text" placeholder="Enter Note..." value={inputNote} onChange={(e) => setInputNote(e.target.value)} autoFocus />
-                <button type="submit">➕</button>
+            <h2>DAFTAR NOTES</h2>
+            <form onSubmit={(e) => e.preventDefault()}>
+                <input type="text" placeholder="Enter note..." value={inputNote} onChange={(e) => setInputNote(e.target.value)} />
+                <button onClick={handleAddNote}>➕</button>
             </form>
-
-            <ol>
+            <ul>
                 {notes.map((note) => (
                     <li key={note.id}>
-                        <span>{note.title}</span>
-                        <NoteForm onSubmit={(e) => handleAddSubnotes(e, note.id)} input={inputSubnote[note.id] || ""} onChange={(e) => handleOnChangeSubnote(e, note.id)}/>
-                        <ul>
-                            {note.tasks.map((task) => (
-                                <li key={task.id}>
-                                    <span>{task.title}</span>
-                                </li>
-                            ))}
-                        </ul>
+                        <div>{note.title} <span><button type="button" onClick={() => handleDeleteNote(note.id)}>🗑</button></span></div>
+                        <div>
+                            <ul>
+                                {note.tasks.map(item => (
+                                    <li key={item.id}>{ item.task }</li>
+                                ))}
+                            </ul>
+                        </div>
                     </li>
                 ))}
-            </ol>
+            </ul>
         </div>
     );
 }
