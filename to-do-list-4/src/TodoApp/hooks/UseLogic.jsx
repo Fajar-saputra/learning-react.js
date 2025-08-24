@@ -13,30 +13,29 @@ const InitialNotes = [
     },
 ];
 
-function todosReducer(todos, action) {
+function todosReducer(notes, action) {
     switch (action.type) {
-        case "ADD_TODO":
-            return [...todos, { id: id++, text: action.text, tasks: [] }];
+        case "ADD_NOTES":
+            return [...notes, { id: id++, text: action.text, tasks: [] }];
+        case "DELETE_NOTES":
+            return notes.filter((note) => note.id !== action.id);
+        case "UPDATE_NOTES":
+            return notes.map((note) => (note.id === action.id ? { ...note, text: action.text } : note));
         case "ADD_SUBTODO":
-            return todos.map((todo) =>
-                todo.id === action.id
+            return notes.map((note) =>
+                note.id === action.id
                     ? {
-                          ...todo,
+                          ...note,
                           tasks: [{ id: id++, taxt: action.text, done: false }],
                       }
-                    : todo
+                    : note
             );
-        case "UPDATE_TODO":
-            return todos.map((todo) => (todo.id === action.id ? { ...todo, text: action.text } : todo));
-        case "DELETE_TODO":
-            return todos.filter((todo) => todo.id !== action.id);
-        case "DONE_TODO":
-            return todos.map((todo) => (todo.id === action.id ? { ...todo, done: !todo.done } : todo));
-        case "ADD_SUBTODO":
-        // return todos.map(todo=> todo.id === action.id? )
-
+        case "DELETE_SUBNOTES":
+            return notes.map((note) => (note.id === action.noteId ? { ...note, subtasks: [...note.subtasks.filter((sub) => sub.id !== action.subId)] } : note));
+        case "DONE_SUBNOTES":
+            return notes.map((note) => (note.id === action.id ? { ...note, done: !note.done } : note));
         default:
-            return todos;
+            return notes;
     }
 }
 
