@@ -31,12 +31,21 @@ const initialTodos = [
 
 const todoReducer = (todos, action) => {
     switch (action.type) {
-        case "ADD":
+        case "ADD_TODO":
             return [...todos, { id: v4(), done: false, title: action.text, tasks: [] }];
-        case "DELETE":
+        case "DELETE_TODO":
             return todos.filter((todo) => todo.id !== action.id);
-        case "DONE":
+        case "DONE_TODO":
             return todos.map((todo) => (todo.id === action.id ? { ...todo, done: !todo.done } : todo));
+        case "ADD_SUB":
+            return todos.map((todo) =>
+                todo.id === action.todoId
+                    ? {
+                          ...todo,
+                          tasks: [...todo.tasks, { id: v4(), task: action.subText, done: false }],
+                      }
+                    : todo
+            );
         case "SUB_DELETE":
             return todos.map((todo) =>
                 todo.id === action.todoId
@@ -55,35 +64,49 @@ const todoReducer = (todos, action) => {
                       }
                     : todo
             );
+        case "UPDATE_TODO":
+            return todos.map((todo) =>
+                todo.id === action.todoId
+                    ? {
+                          ...todo,
+                          title: action.updateTodo,
+                      }
+                    : todo
+            );
         default:
             return todos;
     }
 };
 
 export default function TodoApp() {
+    // todo
     const [todos, dispatch] = useReducer(todoReducer, initialTodos);
-    const [todoText, setTodoText] = useState("");
+    const [todoText, setTodo] = useState("");
+    const [isEditTodo, setIsEditTodo] = useState(false)
+    const [updateTodo, setUpdateTodo] = useState("")
+    // subtodo
+    const [subText, setSubtodo] = useState("");
 
     function handleAddTodo(e) {
         e.preventDefault();
         dispatch({
-            type: "ADD",
+            type: "ADD_TODO",
             text: todoText,
         });
 
-        setTodoText("");
+        setTodo("");
     }
 
     function handleDeleteTodo(id) {
         dispatch({
-            type: "DELETE",
+            type: "DELETE_TODO",
             id,
         });
     }
 
     function handleDoneTodo(id) {
         dispatch({
-            type: "DONE",
+            type: "DONE_TODO",
             id,
         });
     }
@@ -103,10 +126,21 @@ export default function TodoApp() {
             taskId,
         });
     }
+
+    function handleAddSubtodo(e, todoId) {
+        e.preventDefault();
+        dispatch({
+            type: "ADD_SUB",
+            subText: subText[todoId],
+            todoId,
+        });
+
+        setSubtodo({ ...subText, [todoId]: "" });
+    }
     return (
         <div>
             <form action="" onSubmit={handleAddTodo}>
-                <input type="text" placeholder="new todo..." value={todoText} onChange={(e) => setTodoText(e.target.value)} />
+                <input type="text" placeholder="new todo..." value={todoText} onChange={(e) => setTodo(e.target.value)} />
                 <button type="submit">Add</button>
             </form>
             <ul>
@@ -114,6 +148,7 @@ export default function TodoApp() {
                     <li key={todo.id}>
                         <div>
                             <span>{todo.done === true ? <span style={{ color: "green", fontWeight: "bold" }}>{todo.title}</span> : <span> {todo.title}</span>}</span>
+
                             <span>
                                 <button type="button" onClick={() => handleDeleteTodo(todo.id)}>
                                     🗑
@@ -124,6 +159,12 @@ export default function TodoApp() {
                                     ✔
                                 </button>
                             </span>
+                            <form action="">
+                                <input type="text" placeholder="New subtodo..." value={subText[todo.id] || ""} onChange={(e) => setSubtodo({ ...subText, [todo.id]: e.target.value })} />
+                                <button type="submit" onClick={(e) => handleAddSubtodo(e, todo.id)}>
+                                    ✔
+                                </button>
+                            </form>
                         </div>
                         <div>
                             <ol style={{ marginLeft: "2rem" }}>
