@@ -1,40 +1,37 @@
 import { createContext, useContext, useState } from "react";
 
 // create context
-const ProfileContext = createContext("")
+const ProfileContext = createContext();
 
-function Address() {
-    const address = useContext(ProfileContext)
-    return (
-        <p>Address: { address}</p>
-    )
-}
-
+// komponen untuk menampilkan nama
 function Name() {
-    const name = useContext(ProfileContext)
-    return (
-        <p>Name   : { name}</p>
-    )
+  const { name } = useContext(ProfileContext);
+  return <p>Name : {name}</p>;
 }
 
-function FormProfile({name, setName}) {
-    return (
-        <>
-        <input type="text" placeholder="Name..." value={name} onChange={(e) => setName(e.target.value)}/>
-        </>
-    )
+// komponen form, ngambil langsung dari context
+function FormProfile() {
+  const { name, setName } = useContext(ProfileContext);
+  return (
+    <input
+      type="text"
+      placeholder="Name..."
+      value={name}
+      onChange={(e) => setName(e.target.value)}
+    />
+  );
 }
 
 export default function ContextMedium1() {
-    const [name, setName] = useState("")
-    return (
-        <div>
-            <ProfileContext.Provider value={name}>
-                <h2>Contoh Context Medium 1</h2>
-                <FormProfile name={name}  setName={setName }/>
-                <Name />
-                <Address />
-            </ProfileContext.Provider>
-        </div>
-    )
+  const [name, setName] = useState("");
+
+  return (
+    <div>
+      <ProfileContext.Provider value={{ name, setName }}>
+        <h2>Contoh Context Medium 1</h2>
+        <FormProfile />
+        <Name />
+      </ProfileContext.Provider>
+    </div>
+  );
 }

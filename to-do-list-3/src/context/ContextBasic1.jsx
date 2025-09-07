@@ -3,13 +3,7 @@ import { createContext, useContext } from "react";
 // create context
 const ProfileContext = createContext("")
 
-function Address() {
-    const address = useContext(ProfileContext)
-    return (
-        <p>Address: { address}</p>
-    )
-}
-
+// komponen
 function Name() {
     const name = useContext(ProfileContext)
     return (
@@ -23,7 +17,6 @@ export default function ContextBasic1() {
             <ProfileContext.Provider value="Elvira">
             <h2>Contoh Context Dasar 1</h2>
                 <Name />
-                <Address />
             </ProfileContext.Provider>
         </div>
     )

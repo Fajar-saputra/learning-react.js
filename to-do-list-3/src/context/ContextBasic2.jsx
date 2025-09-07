@@ -5,7 +5,7 @@ const ProfileContext = createContext("");
 
 // provider
 function ProfileProvider({ children }) {
-    return <ProfileContext.Provider>{children}</ProfileContext.Provider>;
+    return <ProfileContext.Provider value="Martabak">{children}</ProfileContext.Provider>;
 }
 
 // component anak
@@ -26,10 +26,9 @@ function Name() {
 export default function ContextBasic2() {
     return (
         <div>
-            <ProfileProvider value={"Elvita"}>
+            <ProfileProvider>
                 <h2>Contoh Context Dasar 2</h2>
                 <Name />
-                <Address />
             </ProfileProvider>
         </div>
     );

@@ -12,7 +12,7 @@ function App() {
             <ContextBasic1 />
             <ContextBasic2 />
             <ContextMedium1 />
-            <ContextMedium2 />
+            {/* <ContextMedium2 /> */}
         </>
     );
 }
