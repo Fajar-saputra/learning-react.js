@@ -5,6 +5,12 @@
   text-align: left;
 }
 
+input {
+  margin: .3rem;
+  padding: .3rem;
+  width: 100%;
+}
+
 /* .logo {
   height: 6em;
   padding: 1.5em;

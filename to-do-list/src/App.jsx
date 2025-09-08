@@ -11,6 +11,10 @@ import Toolbar from "./components/Toolbar";
 import EventDefault from "./components/EventDefault";
 import Todo from "./components/Todo";
 import ContactForm from "./components/ContactForm";
+import ContextBasic1 from "./context/ContextBasic1";
+import ContextBasic2 from "./context/ContextBasic2";
+import ContextMedium1 from "./context/ContextMedium1";
+import ContextMedium2 from "./context/ContextMedium2";
 
 function App() {
     const text = "hello world";
@@ -18,7 +22,7 @@ function App() {
     return (
         <>
             <Container>
-                <h1>Ini testing ulang</h1>
+                {/* <h1>Ini testing ulang</h1>
                 <Counter props={text} />
                 <Counter props={"testing counter"} />
                 <Ternary text={"testing conditional"} isConditional={true} />
@@ -44,7 +48,11 @@ function App() {
 
                 <Todo />
 
-                <ContactForm />
+                <ContactForm /> */}
+                <ContextBasic1 />
+                <ContextBasic2 />
+                <ContextMedium1 />
+                <ContextMedium2 />
             </Container>
         </>
     );

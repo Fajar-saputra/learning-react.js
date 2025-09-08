@@ -1,14 +1,18 @@
 import { createContext, useContext, useState } from "react";
 
 // create context
-const ProfileContext = createContext(null);
+const ProfileContext = createContext({
+    name: " ",
+    address: " "
+});
 
 // provider
 const ProfileProvier = ({children}) => {
     const [name, setName] = useState("");
+    const [address, setAddress] = useState("")
 
     return (
-        <ProfileContext.Provider value={{ name, setName }}>
+        <ProfileContext.Provider value={{ name, setName, address, setAddress }}>
             {children}
         </ProfileContext.Provider>
     )
@@ -20,6 +24,14 @@ const ProfileName = () => {
 
     return ( 
         <p>Name : { name }</p>
+    )
+}
+
+const ProfileAddress = () => {
+    const { address } = useContext(ProfileContext);
+
+    return ( 
+        <p>Address : { address }</p>
     )
 }
 
@@ -36,8 +48,21 @@ const FormName = () => {
         />
     )
 }
+// form adddress
+const FormAddress = () => {
+    const {address, setAddress} = useContext(ProfileContext)
 
-export default function ProfileMedium() {
+    return (
+        <input
+            type="text"
+            value={address}
+            placeholder="Name..."
+            onChange={(e) => setAddress(e.target.value)}
+        />
+    )
+}
+
+export default function ProfileSiswaSMA() {
     return (
         <div>
             <h2>Testing dulu gak sih</h2>
@@ -45,7 +70,9 @@ export default function ProfileMedium() {
             <ProfileProvier>
 
                 <FormName />
-                <ProfileName/>
+                <FormAddress />
+                <ProfileName />
+                <ProfileAddress />
             </ProfileProvier>
         </div>
     )

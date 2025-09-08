@@ -1,28 +1,32 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 
 // create context
-const DataUser = createContext();
-
+const BarangContext = createContext(null);
 // provider
-function DataUserProvider({ children }) {
-    return <DataUser.Provider value="Elvira">{children}</DataUser.Provider>;
+function BarangProvider({ children }) {
+    const [nama, setNama] = useState("");
+    return <BarangContext.Provider value={{ nama, setNama }}>{children}</BarangContext.Provider>;
+}
+// children
+function NamaBarang() {
+    const { nama } = useContext(BarangContext);
+    return <p>Nama Barang : {nama}</p>;
 }
 
-// children
-function Nama() {
-    const name = useContext(DataUser)
-    return (
-        < p > Name : { name} </p>
-    )
+function FormNamaBarang() {
+    const { nama, setNama } = useContext(BarangContext);
+
+    return <input type="text" value={nama} placeholder="Nama..." onChange={(e) => setNama(e.target.value)} />;
 }
 
 export default function ContextBasic() {
     return (
         <div>
             <h2>Testing dulu gak sih</h2>
-            <DataUserProvider>
-                <Nama/>
-            </DataUserProvider>
+            <BarangProvider>
+                <FormNamaBarang />
+                <NamaBarang />
+            </BarangProvider>
         </div>
-    )
+    );
 }
