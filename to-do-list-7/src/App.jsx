@@ -1,8 +1,9 @@
 import React from 'react'
 import './App.css'
 import TodoApp from './TodoApp/TodoApp'
-import ContextBasic1 from './context/ContextBasic/ContextBasic1'
-import ContextBasic2 from './context/ContextBasic/ContextBasic2'
+import ContextBasic1 from './context/ContextBasic1'
+import ContextBasic2 from './context/ContextBasic2'
+import ContextMedium from './context/ContextMedium'
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
       {/* <TodoApp /> */}
       <ContextBasic1 />
       <ContextBasic2 />
+      <ContextMedium/>
     </>
   )
 }

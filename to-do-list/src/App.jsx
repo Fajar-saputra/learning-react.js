@@ -15,6 +15,7 @@ import ContextBasic1 from "./context/ContextBasic1";
 import ContextBasic2 from "./context/ContextBasic2";
 import ContextMedium1 from "./context/ContextMedium1";
 import ContextMedium2 from "./context/ContextMedium2";
+import ContextMedium3 from "./context/ContextMedium3";
 
 function App() {
     const text = "hello world";
@@ -22,37 +23,38 @@ function App() {
     return (
         <>
             <Container>
-                {/* <h1>Ini testing ulang</h1>
-                <Counter props={text} />
-                <Counter props={"testing counter"} />
-                <Ternary text={"testing conditional"} isConditional={true} />
-                <Ternary text={text} isConditional={false} />
-                <Ternary text={"belajar dengan sungguh sungguh"} isConditional={false} />
-                <And text={"Ini contoh penggunaan and jika true"} isDeleted={true} />
-                <And text={"Ini contoh penggunaan and jika false"} isDeleted={false} />
-                <Collection />
-                <AlertButton text={"testing button"} message={"i'm fine"} />
-                <EventForm />
-                <Toolbar
+                {/* <h1>Ini testing ulang</h1> */}
+                {/* <Counter props={text} /> */}
+                {/* <Counter props={"testing counter"} /> */}
+                {/* <Ternary text={"testing conditional"} isConditional={true} /> */}
+                {/* <Ternary text={text} isConditional={false} /> */}
+                {/* <Ternary text={"belajar dengan sungguh sungguh"} isConditional={false} /> */}
+                {/* <And text={"Ini contoh penggunaan and jika true"} isDeleted={true} /> */}
+                {/* <And text={"Ini contoh penggunaan and jika false"} isDeleted={false} /> */}
+                {/* <Collection /> */}
+                {/* <AlertButton text={"testing button"} message={"i'm fine"} /> */}
+                {/* <EventForm /> */}
+                {/* <Toolbar
                     onClick={(e) => {
                         e.stopPropagation();
                         alert("testing propagation");
                     }}
-                />
-                <EventDefault
+                /> */}
+                {/* <EventDefault
                     onClick={(e) => {
                         e.preventDefault();
                         alert("Searching start...");
                     }}
-                />
+                /> */}
 
-                <Todo />
+                {/* <Todo /> */}
 
-                <ContactForm /> */}
-                <ContextBasic1 />
-                <ContextBasic2 />
-                <ContextMedium1 />
-                <ContextMedium2 />
+                {/* <ContactForm /> */}
+                {/* <ContextBasic1 /> */}
+                {/* <ContextBasic2 /> */}
+                {/* <ContextMedium1 /> */}
+                {/* <ContextMedium2 /> */}
+                <ContextMedium3 />
             </Container>
         </>
     );

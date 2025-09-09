@@ -1,79 +1,46 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState } from "react"
 
-// create context
-const ProfileContext = createContext({
-    name: " ",
-    address: " "
-});
+const ProfileContext = createContext(null);
 
-// provider
-const ProfileProvier = ({children}) => {
-    const [name, setName] = useState("");
-    const [address, setAddress] = useState("")
-
-    return (
-        <ProfileContext.Provider value={{ name, setName, address, setAddress }}>
-            {children}
-        </ProfileContext.Provider>
-    )
+function NamaSiswa() {
+    const { nama } = useContext(ProfileContext);
+    return <p>Nama : { nama }</p>
 }
-
-// children
-const ProfileName = () => {
-    const { name } = useContext(ProfileContext);
-
-    return ( 
-        <p>Name : { name }</p>
-    )
+function KelasSiswa() {
+    const { kelas } = useContext(ProfileContext);
+    return <p>Kelas : { kelas }</p>
 }
-
-const ProfileAddress = () => {
-    const { address } = useContext(ProfileContext);
-
-    return ( 
-        <p>Address : { address }</p>
-    )
+function NilaiSiswa() {
+    const { nilai } = useContext(ProfileContext);
+    return <p>Nilai : { nilai }</p>
 }
-
-// form name
-const FormName = () => {
-    const {name, setName} = useContext(ProfileContext)
-
-    return (
-        <input
-            type="text"
-            value={name}
-            placeholder="Name..."
-            onChange={(e) => setName(e.target.value)}
-        />
-    )
-}
-// form adddress
-const FormAddress = () => {
-    const {address, setAddress} = useContext(ProfileContext)
-
-    return (
-        <input
-            type="text"
-            value={address}
-            placeholder="Name..."
-            onChange={(e) => setAddress(e.target.value)}
-        />
-    )
+function NimSiswa() {
+    const { nim } = useContext(ProfileContext);
+    return <p>NIM : { nim }</p>
 }
 
 export default function ProfileSiswaSMA() {
+    const [data, setData] = useState({ nama: "", kelas: "", nilai: "", nim: "" })
+
+    function handleChange(e) {
+        const { name, value } = e.target;
+        setData(data => ({...data, [name] : value}))
+    }
+ 
     return (
         <div>
-            <h2>Testing dulu gak sih</h2>
-
-            <ProfileProvier>
-
-                <FormName />
-                <FormAddress />
-                <ProfileName />
-                <ProfileAddress />
-            </ProfileProvier>
+            <ProfileContext.Provider value={data} >
+                <form >
+                    <input type="text" value={data.nama} placeholder="nama..." name="nama" onChange={handleChange}/>
+                    <input type="text" value={data.kelas} placeholder="kelas..." name="kelas" onChange={handleChange}/>
+                    <input type="text" value={data.nilai} placeholder="nilai..." name="nilai" onChange={handleChange}/>
+                    <input type="text" value={data.nim} placeholder="nim..." name="nim" onChange={handleChange}/>
+                </form>
+                <NamaSiswa />
+                <KelasSiswa />
+                <NilaiSiswa />
+                <NimSiswa/>
+            </ProfileContext.Provider>
         </div>
     )
 }
