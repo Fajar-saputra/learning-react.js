@@ -16,6 +16,7 @@ import ContextBasic2 from "./context/ContextBasic2";
 import ContextMedium1 from "./context/ContextMedium1";
 import ContextMedium2 from "./context/ContextMedium2";
 import ContextMedium3 from "./context/ContextMedium3";
+import ContextReducerNotes from "./ContextReducer/ContextReducerNotes";
 
 function App() {
     const text = "hello world";
@@ -54,7 +55,8 @@ function App() {
                 {/* <ContextBasic2 /> */}
                 {/* <ContextMedium1 /> */}
                 {/* <ContextMedium2 /> */}
-                <ContextMedium3 />
+                {/* <ContextMedium3 /> */}
+                <ContextReducerNotes />
             </Container>
         </>
     );
