@@ -6,7 +6,8 @@ import TodoReducer from "./TodoReducer";
 function App() {
     return (
         <div>
-            <ContextBasic />
+            {/* <ContextBasic /> */}
+            <Todo /> 
         </div>
     );
 }

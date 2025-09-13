@@ -40,6 +40,7 @@ const todoReducer = (todos, action) => {
         case "ADD_SUB":
             return todos.map((todo) =>
                 todo.id === action.todoId
+
                     ? {
                           ...todo,
                           tasks: [...todo.tasks, { id: v4(), task: action.subText, done: false }],
