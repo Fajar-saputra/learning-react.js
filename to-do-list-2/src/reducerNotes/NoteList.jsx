@@ -7,64 +7,33 @@ export default function NoteList() {
     // edit note
     const [isEditingNote, setIsEditingNote] = useState(false);
     const [editNoteId, setEditNoteId] = useState(null);
-    const [editNoteText, setEditNoteText] = useState("")
+    const [editNoteText, setEditNoteText] = useState("");
     // subnote
     const [inputSubnote, setInputSubnote] = useState("");
     const [isEditingSubnote, setIsEditingSubnote] = useState(false);
 
-    function handleAddSubnote(noteId) {
+    function handleAddSubnote(e, noteId) {
+        e.preventDefault();
         dispatch({
             type: "ADD_SUBNOTE",
-            noteId : noteId,
-            text: inputSubnote[noteId]
-        })
-
-        setInputSubnote({...inputSubnote, [noteId] : ""})
-        console.log("berhasil ditambahkan : ", inputSubnote);
-        
-    }
-    
-    function handleDeleteNote(noteId) {
-        dispatch({
-            type: "DELETE_NOTE",
-            noteId
-        });
-
-        console.log("berhasil dihapus id: ", noteId);
-        
-    }
-
-    function handleDoneSubnote(noteId) {
-        dispatch({
-            type: "DONE_SUBNOTE",
-            noteId
-        })
-    }
-
-    function handleUpdateNote(noteId) {
-        dispatch({
-            type: "ADD_SUBTODO",
             noteId: noteId,
             text: inputSubnote
         });
-    }
+        // dispatch({
+        //     type: "ADD_SUBNOTE",
+        //     noteId: noteId,
+        //     text: inputSubnote[noteId],
+        // });
 
-    function handleEditStart(note) {
-        setEditNoteId(note.id)
-        setEditNoteText(note.title)
+        setInputSubnote("");
+        // setInputSubnote({ ...inputSubnote, [noteId]: "" });
+        console.log("berhasil ditambahkan : ", inputSubnote);
     }
-    
-    function handleCancelEditNote() {
-        setEditNoteId(null);
-        setEditNoteText("");
-    }
-
-    
 
     return (
         <div>
             <ul>
-             {notes.map((note) => (
+                {notes.map((note) => (
                     <li key={note.id}>
                         <div>
                             {note.title}
@@ -88,23 +57,29 @@ export default function NoteList() {
                                 )}
                             </span>
                             <span>
-                             <input
-                                 type="text"
-                                 placeholder="Enter task.."
-                                 value={inputSubnote[note.id] || ""}
-                                //  value={inputSubnote}
-                                 onChange={(e) => setInputSubnote({...inputSubnote, [note.id]:  e.target.value})}
-                                //  onChange={(e) => setInputSubnote(e.target.value)}
-                             />
-                                <button onClick={() => handleAddSubnote(note.id)}>➕</button>
+                                <form onSubmit={(e) => handleAddSubnote(e, note.id)}>
+                                    <input
+                                        type="text"
+                                        placeholder="Enter task.."
+                                        value={inputSubnote}
+                                        onChange={(e) => setInputSubnote( e.target.value)}
+                                        // value={inputSubnote[note.id] || ""}
+                                        // onChange={(e) => setInputSubnote({ ...inputSubnote, [note.id]: e.target.value })}
+                                    />
+                                    <button type="submit">➕</button>
+                                </form>
                             </span>
                         </div>
                         <div>
                             <ul>
+                                {note.tasks.length > 0 ? <p>benar</p> : <p>salah</p>}
                                 {note.tasks.map((sub) => (
+                                    <li key={sub.id}>{sub.text}</li>
+                                ))}
+                                {/* {note.tasks.map((sub) => (
                                     <li key={sub.id}>
                                         {sub.text}{" "}
-                                        {/* <span>
+                                        <span>
                                             <button type="button" onClick={() => handleDeleteSubnote(note.id, sub.id)}>
                                                 🗑
                                             </button>
@@ -122,9 +97,9 @@ export default function NoteList() {
                                                     </button>
                                                 </form>
                                             )}
-                                        </span> */}
+                                        </span>
                                     </li>
-                                ))}
+                                ))} */}
                             </ul>
                         </div>
                     </li>

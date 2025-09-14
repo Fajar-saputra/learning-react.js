@@ -57,6 +57,7 @@ function App() {
                 {/* <ContextMedium2 /> */}
                 {/* <ContextMedium3 /> */}
                 <ContextReducerNotes />
+
             </Container>
         </>
     );

@@ -2,9 +2,11 @@ import { useReducer } from "react";
 import { NotesContext, NotesDispatchContext } from "./NotesContext";
 import NotesForm from "./NotesForm";
 import NotesList from "./NotesList";
+import NotesReducer from "./NotesReducer";
+
 
 export default function ContextReducerNotes() {
-    const [notes, dispatch] = useReducer(notesReducer, intialNotes);
+    const [notes, dispatch] = useReducer(NotesReducer, []);
 
     return (
         <div>
