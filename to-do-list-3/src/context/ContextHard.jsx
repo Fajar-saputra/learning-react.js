@@ -2,7 +2,6 @@ import { useReducer } from "react";
 import { createContext, useContext, useState } from "react";
 import { v4 } from "uuid";
 
-
 // reducer
 function NotesReducer(notes, action) {
     switch (action.type) {
@@ -21,23 +20,46 @@ function NotesReducer(notes, action) {
 // create context
 const NotesContext = createContext(null);
 
+const initialNotes = [
+    { id: v4(), title: "Belajar react basic", done: false },
+    { id: v4(), title: "Belajar python basic", done: false },
+    { id: v4(), title: "Belajar html basic", done: false },
+];
 
 // provider
 function NotesProvider({ children }) {
-    const [notes, dispatch] = useReducer(NotesReducer, []);
+    const [notes, dispatch] = useReducer(NotesReducer, initialNotes);
     return <NotesContext.Provider value={{ notes, dispatch }}>{children}</NotesContext.Provider>;
 }
 
 // komponen anak
 function NotesList() {
-    const { notes, dispatch } = useContext(NotesContext);
+    const { notes } = useContext(NotesContext);
 
     return (
         <ul>
             {notes.map((note) => (
-                <li key={note.id}>{note.title}</li>
+                <Note note={note} />
             ))}
         </ul>
+    );
+}
+
+function Note({ note }) {
+    const { dispatch } = useContext(NotesContext);
+
+    return (
+        <li key={note.id}>
+            {note.done === true ? <span style={{ color: "red" }}>{note.title}</span> : <span>{note.title}</span>}
+            <span>
+                <button type="button" onClick={() => dispatch({ type: "DELETE_NOTE", noteId: note.id })}>
+                    🗑
+                </button>
+                <button type="button" onClick={() => dispatch({ type: "DONE_NOTE", noteId: note.id })}>
+                    ✔
+                </button>
+            </span>
+        </li>
     );
 }
 
@@ -49,18 +71,18 @@ function NoteForm() {
         e.preventDefault();
         dispatch({
             type: "ADD_NOTE",
-            text: input
-        })
+            text: input,
+        });
 
-        setInput(" ");  
+        setInput(" ");
     }
 
     return (
         <form onSubmit={handleSubmit}>
-            <input type="text" value={input} placeholder="Note..." onChange={(e) => setInput(e.target.value)}/>
+            <input type="text" value={input} placeholder="Note..." onChange={(e) => setInput(e.target.value)} />
             <button type="submit">+</button>
         </form>
-    )
+    );
 }
 
 export default function ContextHard() {
@@ -72,4 +94,3 @@ export default function ContextHard() {
         </NotesProvider>
     );
 }
- 

@@ -6,9 +6,12 @@
 }
 
 input {
-  margin: .3rem;
   padding: .6rem;
   width: 250px;
+}
+
+button {
+  margin: .3rem;
 }
 
 /* .logo {

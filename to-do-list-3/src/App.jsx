@@ -5,6 +5,7 @@ import ContextBasic1 from "./context/ContextBasic1";
 import ContextBasic2 from "./context/ContextBasic2";
 import TodoApp from "./Todos/TodoApp";
 import ContextHard from "./context/ContextHard";
+import TodosApp from "./TodosContext/TodosApp";
 
 function App() {
     return (
@@ -14,7 +15,8 @@ function App() {
             {/* <ContextBasic2 /> */}
             {/* <ContextMedium1 /> */}
             {/* <ContextMedium2 /> */}
-            <ContextHard />
+            {/* <ContextHard /> */}
+            <TodosApp />
         </>
     );
 }

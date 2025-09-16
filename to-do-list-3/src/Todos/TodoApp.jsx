@@ -32,48 +32,54 @@ const initialTodos = [
 const todoReducer = (todos, action) => {
     switch (action.type) {
         case "ADD_TODO":
-            return [...todos, { id: v4(), done: false, title: action.text, tasks: [] }];
+            return [...todos, { id: v4(), done: false, title: action.payload.text, tasks: [] }];
+
         case "DELETE_TODO":
-            return todos.filter((todo) => todo.id !== action.id);
+            return todos.filter((todo) => todo.id !== action.payload.id);
+
         case "DONE_TODO":
-            return todos.map((todo) => (todo.id === action.id ? { ...todo, done: !todo.done } : todo));
+            return todos.map((todo) => (todo.id === action.payload.id ? { ...todo, done: !todo.done } : todo));
+
         case "ADD_SUB":
             return todos.map((todo) =>
-                todo.id === action.todoId
-
+                todo.id === action.payload.todoId
                     ? {
                           ...todo,
-                          tasks: [...todo.tasks, { id: v4(), task: action.subText, done: false }],
+                          tasks: [...todo.tasks, { id: v4(), task: action.payload.subText, done: false }],
                       }
                     : todo
             );
+
         case "SUB_DELETE":
             return todos.map((todo) =>
-                todo.id === action.todoId
+                todo.id === action.payload.todoId
                     ? {
                           ...todo,
-                          tasks: todo.tasks.filter((task) => task.id !== action.taskId),
+                          tasks: todo.tasks.filter((task) => task.id !== action.payload.taskId),
                       }
                     : todo
             );
+
         case "SUB_DONE":
             return todos.map((todo) =>
-                todo.id === action.todoId
+                todo.id === action.payload.todoId
                     ? {
                           ...todo,
-                          tasks: todo.tasks.map((task) => (task.id === action.taskId ? { ...task, done: !task.done } : task)),
+                          tasks: todo.tasks.map((task) => (task.id === action.payload.taskId ? { ...task, done: !task.done } : task)),
                       }
                     : todo
             );
+
         case "UPDATE_TODO":
             return todos.map((todo) =>
-                todo.id === action.todoId
+                todo.id === action.payload.todoId
                     ? {
                           ...todo,
-                          title: action.updateTodo,
+                          title: action.payload.updateTodo,
                       }
                     : todo
             );
+
         default:
             return todos;
     }
@@ -83,8 +89,8 @@ export default function TodoApp() {
     // todo
     const [todos, dispatch] = useReducer(todoReducer, initialTodos);
     const [todoText, setTodo] = useState("");
-    const [isEditTodo, setIsEditTodo] = useState(false)
-    const [updateTodo, setUpdateTodo] = useState("")
+    const [isEditTodo, setIsEditTodo] = useState(false);
+    const [updateTodo, setUpdateTodo] = useState("");
     // subtodo
     const [subText, setSubtodo] = useState("");
 

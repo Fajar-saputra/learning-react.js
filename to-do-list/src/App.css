@@ -4,3 +4,24 @@
   padding: 2rem;
   text-align: left;
 }
+
+
+input,
+button {
+  padding: .5rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, .4);
+  border: none;
+  outline: none;
+  background-color: white;
+  border-radius: .3rem;
+}
+
+input {
+  padding: .6rem;
+  width: 250px;
+}
+
+button {
+  margin: .2rem;
+cursor: pointer;
+}
