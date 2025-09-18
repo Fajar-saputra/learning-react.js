@@ -1,14 +1,17 @@
 // import "./App.css";
 import ContextBasic from "./context/ContextBasic";
 import ContextMedium from "./context/ContextMedium";
-import TodoList from "./Todo";
+import { useState } from "react";
 
 function App() {
+
+    const [name, setValue] = useState({ nama: "asep", umur: 20 })
+
     return (
         <>
             {/* <TodoList /> */}
-            <ContextBasic />
-        <ContextMedium />    
+            {/* <ContextBasic /> */}
+            <ContextMedium />
         </>
     );
 }

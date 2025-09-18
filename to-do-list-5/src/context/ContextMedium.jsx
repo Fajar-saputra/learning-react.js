@@ -1,38 +1,53 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 // create
-const ProfileName = createContext("");
-const ProfileAddress = createContext("");
+const ProfileContext = createContext(null);
+
+// const initialData = {
+//     nama: "",
+//     umur: ""
+// }
 
 // komponen
 function ProfileName() {
-    return <p>Nama : {ProfileName}</p>;
+    const { nama } = useContext(ProfileContext);
+    return <p>Nama : {nama}</p>;
 }
 
 function ProfileUmur() {
-    return <p>Umur : {ProfileAddress}</p>;
+    const { umur } = useContext(ProfileContext);
+    return <p>Umur : {umur}</p>;
 }
 
-function ProfileForm({ value, setValue }) {
+function ProfileForm() {
+    const { nama, setValue } = useContext(ProfileContext);
+
     return (
         <>
-            <input type="text" placeholder="Name..." value={value} onChange={(e) => setValue(e.target.value)} />
+            <input type="text" placeholder="Name..." value={nama} onChange={(e) => setValue({ ...nama, nama: e.target.value })} />
+            <input type="text" placeholder="Umur..." value={umur} onChange={(e) => setValue({...umur, umur: e.target.value})} />
         </>
     );
 }
 
+const ProfileProvider = ({ children }) => {
+    const [value, setValue] = useState({
+        nama: "",
+        umur: "",
+    });
+
+    return <ProfileContext.Provider value={{ value, setValue }}>{children}</ProfileContext.Provider>;
+};
+
 export default function ContextMedium() {
-    const [name, setName] = useState("");
-    const [address, setAddress] = useState("");
     return (
         <>
-            <ProfileContext.Provider value={name}>
-                <h2>Medium</h2>
-                <ProfileForm value={name} setValue={setName}/>
-                <ProfileForm value={address} setValue={setAddress}/>
+            <ProfileProvider>
+                <h2>Belajar Context Medium</h2>
+                <ProfileForm />
                 <ProfileName />
                 <ProfileUmur />
-            </ProfileContext.Provider>
+            </ProfileProvider>
         </>
     );
 }

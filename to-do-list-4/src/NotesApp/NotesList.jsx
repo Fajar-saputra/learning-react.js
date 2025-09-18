@@ -4,15 +4,6 @@ import { NotesContext } from "./NotesContext";
 export default function NotesList() {
     const { notes, dispatch } = useContext(NotesContext);
 
-    // function handleDoneSub1(noteId, taskId) {
-
-    //     console.log("diklik");
-    // }
-
-    // function handleAddTask(noteId) {
-    //     d
-    // }
-
     return (
         <div className="container_notes">
             {/* note */}
@@ -33,7 +24,7 @@ export default function NotesList() {
                     <ul>
                         {/* tasks */}
                         {note.tasks.map((task) => (
-                            <>
+                            <div>
                                 <li key={task.id}>
                                     <div>
                                         {task.done === true ? <span style={{ color: "red" }}>{task.title}</span> : <span>{task.title}</span>}
@@ -45,10 +36,23 @@ export default function NotesList() {
                                         </button>
                                     </div>
                                     {/* sub */}
-                                    {/* render sub */}
-                                    <ul>{task.sub && task.sub.map((subItem) => <li key={subItem.id}>{subItem.title}</li>)}</ul> 
+                                    <ul>
+                                        {task.sub.map((subItem) => (
+                                            <li key={subItem.id}>
+                                                <div>
+                                                    {subItem.done === true ? <span style={{ color: "red" }}>{subItem.title}</span> : <span>{subItem.title}</span>}
+                                                    <button type="button" onClick={() => dispatch({ type: "DELETE_SUB2", payload: { noteId: note.id, taskId: task.id, subId: subItem.id } })}>
+                                                        🗑
+                                                    </button>
+                                                    <button type="button" onClick={() => dispatch({ type: "DONE_SUB2", payload: { noteId: note.id, taskId: task.id, subId: subItem.id } })}>
+                                                        ✔
+                                                    </button>
+                                                </div>
+                                            </li>
+                                        ))}
+                                    </ul>
                                 </li>
-                            </>
+                            </div>
                         ))}
                     </ul>
                 </div>

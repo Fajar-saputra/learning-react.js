@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { act, createContext, useReducer } from "react";
 import { v4 } from "uuid";
 import { InitialNotes } from "./InitialNotes";
 
@@ -43,6 +43,33 @@ export const NotesReducer = (notes, action) => {
                       }
                     : note
             );
+
+        // sub (level 3)
+        case "DELETE_SUB2":
+            return notes.map((note) =>
+                note.id === action.payload.noteId
+                    ? {
+                          ...note,
+                          tasks: note.tasks.map((task) =>
+                              task.id === action.payload.taskId
+                                  ? {
+                                        ...task,
+                                        sub: task.sub.filter((sub) => sub.id !== action.payload.subId),
+                                    }
+                                  : task
+                          ),
+                      }
+                    : note
+            );
+        
+        case "DONE_SUB2":
+            return notes.map(note => note.id === action.payload.noteId ? {
+                ...note, tasks: note.tasks.map(task => task.id === action.payload.taskId ? {
+                    ...task, sub: task.sub.map(subItem => subItem.id === action.payload.subId ? {
+                        ...subItem, done: !subItem.done
+                    } :subItem)
+                } : task)
+            } : note)
 
         default:
             return notes;
