@@ -18,6 +18,7 @@ import ContextMedium2 from "./context/ContextMedium2";
 import ContextMedium3 from "./context/ContextMedium3";
 import ContextReducerNotes from "./ContextReducer/ContextReducerNotes";
 import NotesApp from "./notesApp/NotesApp";
+import ProductList from "./Products/ProductList";
 
 function App() {
     const text = "hello world";
@@ -58,7 +59,8 @@ function App() {
                 {/* <ContextMedium2 /> */}
                 {/* <ContextMedium3 /> */}
                 {/* <ContextReducerNotes /> */}
-                <NotesApp />
+                {/* <NotesApp /> */}
+                <ProductList />
             </Container>
         </>
     );

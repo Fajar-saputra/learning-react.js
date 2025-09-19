@@ -23,7 +23,7 @@ export default function LogicTodo() {
     const [inputTodo, setInputTodo] = useState("");
     const [editId, setEditId] = useState(null);
     const [editTodo, setEditTodo] = useState("");
-    const [todoErr, setTodoErr] = useState("");
+    const [todoErr, setTodoErr] = useState(""); 
 
     // useEffect(() => {
     //     const stored = localStorage.getItem("todos");
