@@ -6,6 +6,7 @@ import ProfileMedium from "./contextMedium/ProfileMedium";
 import ProfileSiswaSMA from "./contextMedium/ProfileSiswaSMA";
 
 import Notes from "./notes/Notes";
+import ListPahlawan from "./pahlawanNasional/ListPahlawan";
 import NoteAppReducer from "./reducerNotes/NoteAppReducer";
 import NoteForm from "./reducerNotes/NoteForm";
 import TodoApp from "./TodoApp";
@@ -22,7 +23,8 @@ function App() {
             {/* <ProfileSiswaSMA /> */}
             {/* <NoteAppReducer /> */}
             {/* <TodoApp/> */}
-            <NoteAppReducer />
+            {/* <NoteAppReducer /> */}
+            <ListPahlawan />
         </>
     );
 }

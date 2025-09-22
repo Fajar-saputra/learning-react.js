@@ -8,9 +8,9 @@ function App() {
   return (
     <>
       {/* <h1>Implementasi useState Todo</h1> */}
-      {/* <Todo /> */}
-      <ContextBasic />
-      <ContextMedium />
+      <Todo />
+      {/* <ContextBasic /> */}
+      {/* <ContextMedium /> */}
     </>
   )
 }

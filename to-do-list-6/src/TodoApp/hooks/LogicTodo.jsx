@@ -33,6 +33,8 @@ export default function LogicTodo() {
     // }, []);
 
     useEffect(() => {
+        console.log("berhasil diambil");
+        
         localStorage.setItem("todos", JSON.stringify(todos));
     }, [todos]);
 

@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useState } from "react";
 // import {v4} from 'uuid'
 
 let id = 0;
@@ -32,20 +32,15 @@ export function NotesReducer(state, action) {
     }
 }
 
-
 export const NotesContext = createContext(null);
 
 const initialNotes = [
-    {id: id++, title: "Testing dulu gak sih", tasks: []},
-    {id: id++, title: "Testing dulu gak sih", tasks: []},
-]
+    { id: id++, title: "Testing dulu gak sih", tasks: [] },
+    { id: id++, title: "Testing dulu gak sih", tasks: [] },
+];
 
 export const NotesProvider = ({ children }) => {
     const [notes, dispatch] = useReducer(NotesReducer, initialNotes);
 
-    return (
-        <NotesContext.Provider value={ {notes, dispatch}} >
-            { children }
-        </NotesContext.Provider>
-    )
-}
+    return <NotesContext.Provider value={{ notes, dispatch }}>{children}</NotesContext.Provider>;
+};

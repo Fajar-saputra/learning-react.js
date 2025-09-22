@@ -6,6 +6,7 @@ import ContextBasic2 from "./context/ContextBasic2";
 import TodoApp from "./Todos/TodoApp";
 import ContextHard from "./context/ContextHard";
 import TodosApp from "./TodosContext/TodosApp";
+import ProductsList from "./products/ProductsList";
 
 function App() {
     return (
@@ -16,7 +17,8 @@ function App() {
             {/* <ContextMedium1 /> */}
             {/* <ContextMedium2 /> */}
             {/* <ContextHard /> */}
-            <TodosApp />
+            {/* <TodosApp /> */}
+            <ProductsList />
         </>
     );
 }

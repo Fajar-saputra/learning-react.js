@@ -19,6 +19,7 @@ import ContextMedium3 from "./context/ContextMedium3";
 import ContextReducerNotes from "./ContextReducer/ContextReducerNotes";
 import NotesApp from "./notesApp/NotesApp";
 import ProductList from "./Products/ProductList";
+import ListPahlawan from "./pahlawanNasional/ListPahlawan";
 
 function App() {
     const text = "hello world";
@@ -60,7 +61,8 @@ function App() {
                 {/* <ContextMedium3 /> */}
                 {/* <ContextReducerNotes /> */}
                 {/* <NotesApp /> */}
-                <ProductList />
+                {/* <ProductList /> */}
+                <ListPahlawan />
             </Container>
         </>
     );
