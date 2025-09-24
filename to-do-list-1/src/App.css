@@ -25,3 +25,8 @@ button {
   margin: .2rem;
 cursor: pointer;
 }
+
+table, tr, td, tbody, thead {
+  border: 2rem;
+  border-color: black;
+}
