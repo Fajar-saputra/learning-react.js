@@ -80,7 +80,7 @@ const TodoReducer = (todos, action) => {
                     : todo
             );
 
-        case "UPDATE_TODO":
+        case "UPDATE_TASK":
             return todos.map((todo) =>
                 todo.id === action.payload.todoId
                     ? {
