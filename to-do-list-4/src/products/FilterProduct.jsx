@@ -27,18 +27,22 @@ function ProductTable({ products, filterText, inStockOnly }) {
         if (product.name.toLowerCase().indexOf(filterText.toLowerCase()) === -1) {
             return;
         }
+
         if (inStockOnly && !product.stocked) {
             return;
         }
+
         if (product.category !== lastCategory) {
             rows.push(<ProductCategoryRow category={product.category} key={product.category} />);
         }
+
         rows.push(<ProductRow product={product} key={product.name} />);
+
         lastCategory = product.category;
     });
 
     return (
-        <table border={"1"} cellPadding={"10"}>
+        <table border={"1"} cellPadding={"5"}>
             <thead>
                 <tr>
                     <th>Name</th>
@@ -60,17 +64,6 @@ function SearchBar({ filterText, inStockOnly, onFilterTextChange, onInStockOnlyC
         </form>
     );
 }
-
-const PRODUCTS = [
-    { category: "Fruits", price: "$1", stocked: true, name: "Apple" },
-    { category: "Fruits", price: "$1", stocked: true, name: "Dragonfruit" },
-    {
-        category: "Fruits", price: "$2", stocked: false, name: "Passionfruit"
-    },
-    { category: "Vegetables", price: "$2", stocked: true, name: "Spinach" },
-    { category: "Vegetables", price: "$4", stocked: false, name: "Pumpkin" },
-    { category: "Vegetables", price: "$1", stocked: true, name: "Peas" },
-];
 
 export default function FilterableProductTable({ products }) {
     const [filterText, setFilterText] = useState("");
