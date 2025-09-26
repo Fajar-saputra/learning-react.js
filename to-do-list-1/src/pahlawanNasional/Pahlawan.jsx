@@ -1,7 +1,9 @@
-export default function Pahlawan({pahlawan}) {
+export default function Pahlawan({ pahlawan, id }) {
     return (
         <div>
-            <p>No. {pahlawan.id} - { pahlawan.name }</p>
+            <p>
+                No. {id + 1} - {pahlawan.name}
+            </p>
         </div>
-    )
+    );
 }

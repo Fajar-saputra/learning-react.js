@@ -14,8 +14,8 @@ export default function ListPahlawan() {
     return (
         <div>
             <ul>
-                {pahlawans.map((pahlawan) => (
-                    <Pahlawan pahlawan={pahlawan} />
+                {pahlawans.map((pahlawan, index) => (
+                    <Pahlawan pahlawan={pahlawan} id={index} key={index} />
                 ))}
             </ul>
         </div>

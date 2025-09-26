@@ -72,8 +72,8 @@ function App() {
                 {/* <ContextReducerNotes /> */}
                 {/* <NotesApp /> */}
                 {/* <ProductList /> */}
-                {/* <ListPahlawan /> */}
-                <FilterableProductTable products={PRODUCTS} />
+                <ListPahlawan />
+                {/* <FilterableProductTable products={PRODUCTS} /> */}
             </Container>
         </>
     );
