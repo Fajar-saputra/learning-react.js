@@ -21,6 +21,9 @@ import NotesApp from "./notesApp/NotesApp";
 import ProductList from "./Products/ProductList";
 import ListPahlawan from "./pahlawanNasional/ListPahlawan";
 import FilterableProductTable from "./Products/FilterableProductTable";
+import ControlledComponent from "./formHandling/ControlledComponent";
+import UncontrolledComponent from "./formHandling/UncontrolledComponent";
+import LoginForm from "./components/LoginForm";
 
 function App() {
     const text = "hello world";
@@ -72,8 +75,11 @@ function App() {
                 {/* <ContextReducerNotes /> */}
                 {/* <NotesApp /> */}
                 {/* <ProductList /> */}
-                <ListPahlawan />
+                {/* <ListPahlawan /> */}
                 {/* <FilterableProductTable products={PRODUCTS} /> */}
+                {/* <ControlledComponent /> */}
+                {/* <UncontrolledComponent /> */}
+                <LoginForm />
             </Container>
         </>
     );

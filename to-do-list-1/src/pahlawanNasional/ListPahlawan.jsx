@@ -8,7 +8,7 @@ export default function ListPahlawan() {
         fetch("/pahlawan.json")
             .then((res) => res.json())
             .then((res) => setPahlawan(res))
-            .catch((err) => console.log(err));
+            .catch(() => console.log("gagal fetch"));
     }, []);
 
     return (

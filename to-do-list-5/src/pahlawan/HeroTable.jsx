@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function FilterHero({ heroText, setHeroText }) {
     return (
-        <form action="" style={{padding: '.6rem'}}>
-            <input type="text" placeholder="Search..." value={heroText} onChange={setHeroText} />
+        <form action="" style={{ padding: ".6rem" }}>
+            <input type="text" placeholder="birdh year..." value={heroText} onChange={(e) => setHeroText(e.target.value)} />
         </form>
     );
 }
@@ -26,7 +26,7 @@ function HeroTable({ heros, filterText }) {
         if (hero.name.toLowerCase().indexOf(filterText.toLowerCase()) === -1) {
             return;
         }
-        rows.push(<HeroRow hero={hero} />);
+        rows.push(<HeroRow hero={hero} key={hero.name} />);
     });
 
     return (
@@ -44,8 +44,17 @@ function HeroTable({ heros, filterText }) {
     );
 }
 
-export default function HeroList({ heros }) {
+export default function HeroList() {
     const [heroText, setHeroText] = useState("");
+    const [heros, setHeros] = useState([]);
+
+    useEffect(() => {
+        fetch("../../public/Heros.json")
+            .then((res) => res.json())
+            .then((data) => setHeros(data))
+            .catch(() => console.log("Gagal fetch"));
+    }, []);
+
     return (
         <div>
             <h2>ini table pahlawan</h2>
