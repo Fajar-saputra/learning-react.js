@@ -1,4 +1,4 @@
-import { use, useState } from "react";
+import {  useState } from "react";
 
 export default function LoginForm() {
     const [username, setUsername] = useState("");
@@ -6,11 +6,23 @@ export default function LoginForm() {
     const [errors, setErrors] = useState({});
 
     const validate = () => {
-        let newErros = [];
+        let newErrors = {};
 
-        if (username.trim()==="") {
-            newErros.use
+        if (username.trim() !== "") {
+            newErrors.username = "Tidak boleh kosong!";
         }
+        if (username.trim().length < 5) {
+            newErrors.username = "Minimal 5 karakter!";
+        }
+        if (password.trim() !== "") {
+            newErrors.password = "Tidak boleh kosong!";
+        }
+        if (password.trim().length < 5) {
+            newErrors.password = "Minimal 5 karakter!";
+        }
+
+
+        return newErrors;
     }
 
     return (
@@ -18,8 +30,8 @@ export default function LoginForm() {
             <h2>Login</h2>
             <div>
                 <label htmlFor="">Username</label>
-                <input type="text" placeholder="Username..." value={username} onChange={(e = setUsername(e.target.value))} />
-                {errors.username}
+                <input type="text" placeholder="Username..." value={username} onChange={(e) => setUsername(e.target.value)} />
+                {errors.username && <p style={{color: "red"}}></p>}
             </div>
         </form>
     );

@@ -39,7 +39,7 @@ function App() {
 
     return (
         <>
-            <Container>
+            {/* <Container> */}
                 {/* <h1>Ini testing ulang</h1> */}
                 {/* <Counter props={text} /> */}
                 {/* <Counter props={"testing counter"} /> */}
@@ -79,8 +79,10 @@ function App() {
                 {/* <FilterableProductTable products={PRODUCTS} /> */}
                 {/* <ControlledComponent /> */}
                 {/* <UncontrolledComponent /> */}
-                <LoginForm />
-            </Container>
+                {/* <LoginForm /> */}
+            {/* </Container> */}
+
+            
         </>
     );
 }
