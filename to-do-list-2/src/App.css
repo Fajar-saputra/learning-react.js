@@ -1,8 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: left;
+}
+
+input, button {
+  background-color: white;
 }
 
 input {
@@ -12,6 +21,7 @@ input {
 
 button {
   margin: .3rem;
+  padding: .6rem 1rem;
 }
 
 /* .logo {

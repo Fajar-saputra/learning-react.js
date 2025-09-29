@@ -11,6 +11,9 @@ import NoteAppReducer from "./reducerNotes/NoteAppReducer";
 import NoteForm from "./reducerNotes/NoteForm";
 import TodoApp from "./TodoApp";
 import FilterableProductTable from "./products/FilterableProductTable";
+import ControlledComponent from "./formhandling/ControlledComponent";
+import ControlledUncomponent from "./formhandling/ControlledUncomponent";
+import FormComponent from "./formhandling/FormComponent";
 
 function App() {
 
@@ -36,7 +39,10 @@ function App() {
             {/* <TodoApp/> */}
             {/* <NoteAppReducer /> */}
             {/* <ListPahlawan /> */}
-            <FilterableProductTable products={PRODUCTS} />
+            {/* <FilterableProductTable products={PRODUCTS} /> */}
+            {/* <ControlledComponent /> */}
+            {/* <ControlledUncomponent /> */}
+            <FormComponent />
         </>
     );
 }
