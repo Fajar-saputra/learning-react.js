@@ -1,6 +1,7 @@
 import './App.css'
 import ContextBasic from './context.jsx/ContexBasic'
 import ContextMedium from './context.jsx/ContexMedium'
+import LoginForm from './formHandling/LoginForm'
 import ProductTable from './products/ProductTable'
 import Todo from './TodoApp/TodoApp'
 
@@ -12,7 +13,8 @@ function App() {
       {/* <Todo /> */}
       {/* <ContextBasic /> */}
       {/* <ContextMedium /> */}
-      <ProductTable />
+      {/* <ProductTable /> */}
+      <LoginForm />
     </>
   )
 }

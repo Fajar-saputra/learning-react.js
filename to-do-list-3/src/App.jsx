@@ -8,6 +8,7 @@ import ContextHard from "./context/ContextHard";
 import TodosApp from "./TodosContext/TodosApp";
 import ProductsList from "./products/ProductsList";
 import FilterableProducts from "./products/FilterableProducts";
+import RegisterForm from "./formHandling/RegisterForm";
 
 function App() {
     const PRODUCTS = [
@@ -29,7 +30,8 @@ function App() {
             {/* <ContextHard /> */}
             {/* <TodosApp /> */}
             {/* <ProductsList /> */}
-            <FilterableProducts products={PRODUCTS} />
+            {/* <FilterableProducts products={PRODUCTS} /> */}
+            <RegisterForm />
         </>
     );
 }

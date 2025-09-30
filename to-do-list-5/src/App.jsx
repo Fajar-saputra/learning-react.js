@@ -4,6 +4,7 @@ import ContextMedium from "./context/ContextMedium";
 import { useState } from "react";
 import FilterProduct from "./product/FilterProduct";
 import HeroList from "./pahlawan/HeroTable";
+import FormRegister from "./formhandling/FormRegister";
 
 function App() {
     const PRODUCTS = [
@@ -21,8 +22,9 @@ function App() {
             {/* <ContextBasic /> */}
             {/* <ContextMedium /> */}
             {/* <FilterProduct products={PRODUCTS}/> */}
-            <HeroList/>
+            {/* <HeroList/> */}
             {/* <HeroList heros={Heros} /> */}
+            <FormRegister />
         </>
     );
 }
