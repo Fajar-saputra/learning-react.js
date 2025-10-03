@@ -1,7 +1,7 @@
-export default function FormNote({note, setNote, handleAddNote}) {
+export default function FormNote({text, setText, handleAddNote}) {
     return (
         <form onSubmit={handleAddNote}>
-            <input type="text" value={note} onChange={(e) => setNote(e.target.value)} placeholder="New note..." />
+            <input type="text" value={text} onChange={(e) => setText(e.target.value)} placeholder="New note..." />
             <button type="submit">✔</button>
         </form>
     )
