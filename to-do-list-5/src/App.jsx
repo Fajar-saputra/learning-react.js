@@ -5,6 +5,7 @@ import { useState } from "react";
 import FilterProduct from "./product/FilterProduct";
 import HeroList from "./pahlawan/HeroTable";
 import FormRegister from "./formhandling/FormRegister";
+import NotesApp from "./notes/NotesApp";
 
 function App() {
     const PRODUCTS = [
@@ -24,7 +25,8 @@ function App() {
             {/* <FilterProduct products={PRODUCTS}/> */}
             {/* <HeroList/> */}
             {/* <HeroList heros={Heros} /> */}
-            <FormRegister />
+            {/* <FormRegister /> */}
+            <NotesApp />
         </>
     );
 }

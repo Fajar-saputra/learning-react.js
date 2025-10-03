@@ -15,12 +15,39 @@ export function TodosReducer(todos, action) {
 
         case "UPDATE_TODO":
             return todos.map((todo) => (todo.id === action.payload.todoId ? { ...todo, title: action.payload.text } : todo));
-        
-        case "ADD_TASK":
-            return todos.map(todo => todo.id === action.payload.todoId ? {
-                ...todo, tasks: [...todo.tasks, {id: v4(), title: action.payload.title, done: false}]
-            }: todo)
 
+        case "ADD_TASK":
+            return todos.map((todo) =>
+                todo.id === action.payload.todoId
+                    ? {
+                          ...todo,
+                          tasks: [...todo.tasks, { id: v4(), title: action.payload.title, done: false }],
+                      }
+                    : todo
+            );
+
+        case "DONE_TASK":
+            return todos.map((todo) =>
+                todo.id === action.payload.todoId
+                    ? {
+                          ...todo,
+                          tasks: todo.tasks.map((task) =>
+                              task.id === action.payload.taskId
+                                  ? {
+                                        ...task,
+                                        done: !task.done,
+                                    }
+                                  : task
+                          ),
+                      }
+                    : todo
+            );
+
+        case "DELETE_TASK":
+            return todos.map((todo) => todo.id === action.payload.todoId ? {
+                ...todo, tasks: todo.tasks.filter((task) => task.id !== action.payload.taskId)
+            } : todo)
+        
         default:
             todos;
     }

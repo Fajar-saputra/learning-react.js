@@ -37,6 +37,14 @@ export default function TodoItem() {
         setEditTodoId(null);
     };
 
+    const handleDoneTodo = (todoId) => {
+        dispatch({ type: "DONE_TODO", payload: { todoId } });
+    };
+
+    const handleDeleteTodo = (todoId) => {
+        dispatch({ type: "DELETE_TODO", payload: { todoId } });
+    };
+
     // func task
     const handleAddTask = (e, todoId) => {
         e.preventDefault();
@@ -48,13 +56,25 @@ export default function TodoItem() {
         setTask((prev) => ({ ...prev, [todoId]: "" }));
     };
 
+    const handleDoneTask = (todoId, taskId) => {
+        dispatch({
+            type: "DONE_TASK",
+            payload: { todoId, taskId },
+        });
+    };
+
+    const handleDeleteTask = (todoId, taskId) => {
+        dispatch({ type: "DELETE_TASK", payload: { todoId, taskId } });
+    };
+
     return (
         <div>
             {todos.map((todo) => (
                 <div key={todo.id}>
                     {todo.id === editTodoId ? (
                         <div>
-                            <form action="" onSubmit={handleSaveEditTodo}>
+                            <strong>Sedang di edit!!</strong>
+                            <form onSubmit={handleSaveEditTodo}>
                                 <input type="text" value={editTodo} onChange={(e) => setEditTodo(e.target.value)} />
                                 <button type="submit">✔</button>
                                 <button type="button" onClick={handleCancelEditTodo}>
@@ -67,13 +87,13 @@ export default function TodoItem() {
                             {todo.done ? <span style={{ color: "red" }}>{todo.title}</span> : <span>{todo.title}</span>}
 
                             <span>
-                                <button type="button" onClick={() => dispatch({ type: "DONE_TODO", payload: { todoId: todo.id } })}>
+                                <button type="button" onClick={() => handleDoneTodo(todo.id)}>
                                     ✔
                                 </button>
                                 <button type="button" onClick={() => handleClickEditTodo(todo.id, todo.title)}>
                                     ⚙
                                 </button>
-                                <button type="button" onClick={() => dispatch({ type: "DELETE_TODO", payload: { todoId: todo.id } })}>
+                                <button type="button" onClick={() => handleDeleteTodo(todo.id)}>
                                     🗑
                                 </button>
                             </span>
@@ -90,13 +110,10 @@ export default function TodoItem() {
                                             <div>
                                                 {task.done ? <span style={{ color: "green" }}>{task.title}</span> : <span>{task.title}</span>}
                                                 <span>
-                                                    <button type="button" onClick={() => dispatch({ type: "DONE_TODO", payload: { todoId: todo.id } })}>
+                                                    <button type="button" onClick={() => handleDoneTask(todo.id, task.id)}>
                                                         ✔
                                                     </button>
-                                                    <button type="button" onClick={() => handleClickEditTodo(todo.id, todo.title)}>
-                                                        ⚙
-                                                    </button>
-                                                    <button type="button" onClick={() => dispatch({ type: "DELETE_TODO", payload: { todoId: todo.id } })}>
+                                                    <button type="button" onClick={() => handleDeleteTask(todo.id, task.id)}>
                                                         🗑
                                                     </button>
                                                 </span>
