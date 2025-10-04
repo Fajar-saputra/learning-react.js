@@ -51,6 +51,23 @@ export default function NotesApp() {
         setNote((notes) => notes.filter((note) => note.id !== noteId));
     };
 
+    const handleEditdNote = (noteId, editNote) => {
+        setEditNote(editNote);
+        setEditNoteId(noteId);
+    };
+
+    const handleCancelEditNote = () => {
+        setEditNote("");
+        setEditNoteId("");
+    };
+
+    const handleUpdateNote = (e) => {
+        e.preventDefault()
+        setNote((notes) => notes.map((note) => (note.id === editNoteId ? { ...note, title: editNote } : note)));
+        console.log("diklik klik klik");
+        handleCancelEditNote()
+    };
+
     return (
         <div>
             <h2>Notes App</h2>
@@ -62,15 +79,33 @@ export default function NotesApp() {
             <div>
                 {notes.map((note) => (
                     <div key={note.id}>
-                        <span>{note.isComplete ? <span style={{ color: "red" }}>{note.title}</span> : <span>{note.title}</span>}</span>
-                        <span>
-                            <button type="button" onClick={() => handleIsCompletedNote(note.id)}>
-                                ✔
-                            </button>
-                            <button type="button" onClick={() => handleDeleteNote(note.id)}>
-                                🗑
-                            </button>
-                        </span>
+                        {note.id === editNoteId ? (
+                            <div>
+                                <strong> sedang di edit!!</strong>
+                                <form onSubmit={handleUpdateNote}>
+                                    <input type="text" value={editNote} onChange={(e) => setEditNote(e.target.value)}/>
+                                    <button type="submit">✔</button>
+                                    <button type="button" onClick={handleCancelEditNote}>
+                                        ✖
+                                    </button>
+                                </form>
+                            </div>
+                        ) : (
+                            <div>
+                                <span>{note.isComplete ? <span style={{ color: "red" }}>{note.title}</span> : <span>{note.title}</span>}</span>
+                                <span>
+                                    <button type="button" onClick={() => handleIsCompletedNote(note.id)}>
+                                        ✔
+                                    </button>
+                                    <button type="button" onClick={() => handleEditdNote(note.id, note.title)}>
+                                        ⚙
+                                    </button>
+                                    <button type="button" onClick={() => handleDeleteNote(note.id)}>
+                                        🗑
+                                    </button>
+                                </span>
+                            </div>
+                        )}
                     </div>
                 ))}
             </div>
