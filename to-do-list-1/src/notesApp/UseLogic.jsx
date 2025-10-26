@@ -52,7 +52,7 @@ const initialNotes = [
     },
 ];
 
-export default function UseLogic() {
+export default function useLogic() {
     // notes
     const [notes, setNotes] = useState(initialNotes);
     const [note, setNote] = useState("");
@@ -69,7 +69,7 @@ export default function UseLogic() {
             return alert("Tidak boleh kosong✖");
         }
 
-        const newNote = { id: v4(), title: note.trim(), isDone: false };
+        const newNote = { id: v4(), title: note.trim(), isDone: false, subnote: [] };
 
         setNotes((prev) => [...prev, newNote]);
         setNote("");
@@ -138,6 +138,7 @@ export default function UseLogic() {
         // notes
         notes,
         setNotes,
+        setNote,
         note,
         setNote,
         noteId,
@@ -159,5 +160,6 @@ export default function UseLogic() {
         handleDoneSubnote,
         handleDeleteSubnote,
         handleEditSubnote,
+        handleUpdatedSubnote
     };
 }

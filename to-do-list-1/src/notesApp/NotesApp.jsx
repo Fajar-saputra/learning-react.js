@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { v4 } from "uuid";
 import FormNote from "./FormNote";
 import NoteItem from "./NoteItem";
-import UseLogic from "./useLogic";
+import useLogic from "./useLogic";
 
 function NotesApp() {
     const {
@@ -30,20 +30,19 @@ function NotesApp() {
         handleDoneSubnote,
         handleDeleteSubnote,
         handleEditSubnote,
-    } = UseLogic();
+        handleUpdatedSubnote
+    } = useLogic();
+    
 
     return (
         <div>
             <h2> Testing dulu gak ish</h2>
-            <form onSubmit={(e) => handleAddNote(e)}>
-                <input type="text" placeholder="New note..." value={note} onChange={(e) => setNote(e.target.value)} />
-                <button type="submit">➕</button>
-            </form>
 
-            {/* <FormNote handleAddNote={handleAddNote} note={note} setNote={setNote}/> */}
+            <FormNote handleAddNote={handleAddNote}  note={note} setNote={setNote}/>
 
             <NoteItem
                 notes={notes}
+                setNote={setNote}
                 noteId={noteId}
                 noteTitle={noteTitle}
                 setNoteTitle={setNoteTitle}
@@ -59,6 +58,7 @@ function NotesApp() {
                 handleDoneSubnote={handleDoneSubnote}
                 handleDeleteSubnote={handleDeleteSubnote}
                 handleEditSubnote={handleEditSubnote}
+                handleUpdatedSubnote={handleUpdatedSubnote}
             />
         </div>
     );
