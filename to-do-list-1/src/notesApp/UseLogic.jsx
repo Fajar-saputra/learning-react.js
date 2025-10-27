@@ -138,7 +138,6 @@ export default function useLogic() {
         // notes
         notes,
         setNotes,
-        setNote,
         note,
         setNote,
         noteId,
