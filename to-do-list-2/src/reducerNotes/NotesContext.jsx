@@ -9,32 +9,20 @@ export function NotesReducer(notes, action) {
         case "DELETE_NOTE":
             return notes.filter((note) => note.id !== action.noteId);
         case "UPDATE_NOTE":
-            return notes.map((note) =>
-                note.id === action.noteId ? { ...note, title: action.text } : note
-            );
+            return notes.map((note) => (note.id === action.noteId ? { ...note, title: action.text } : note));
 
         case "ADD_TASK":
-            return notes.map((note) =>
-                note.id === action.noteId
-                    ? { ...note, tasks: [...note.tasks, { id: v4(), task: action.text, done: false }] }
-                    : note
-            );
+            return notes.map((note) => (note.id === action.noteId ? { ...note, tasks: [...note.tasks, { id: v4(), task: action.text, done: false }] } : note));
 
         case "DELETE_TASK":
-            return notes.map((note) =>
-                note.id === action.noteId
-                    ? { ...note, tasks: note.tasks.filter((task) => task.id !== action.taskId) }
-                    : note
-            );
+            return notes.map((note) => (note.id === action.noteId ? { ...note, tasks: note.tasks.filter((task) => task.id !== action.taskId) } : note));
 
         case "UPDATE_TASK":
             return notes.map((note) =>
                 note.id === action.noteId
                     ? {
                           ...note,
-                          tasks: note.tasks.map((task) =>
-                              task.id === action.taskId ? { ...task, task: action.text } : task
-                          ),
+                          tasks: note.tasks.map((task) => (task.id === action.taskId ? { ...task, task: action.text } : task)),
                       }
                     : note
             );
@@ -44,9 +32,7 @@ export function NotesReducer(notes, action) {
                 note.id === action.noteId
                     ? {
                           ...note,
-                          tasks: note.tasks.map((task) =>
-                              task.id === action.taskId ? { ...task, done: !task.done } : task
-                          ),
+                          tasks: note.tasks.map((task) => (task.id === action.taskId ? { ...task, done: !task.done } : task)),
                       }
                     : note
             );
@@ -62,8 +48,5 @@ export const NotesContext = createContext(null);
 // provider
 export function NotesProvider({ children }) {
     const [notes, dispatch] = useReducer(NotesReducer, []);
-    return(
-        <NotesContext.Provider value={{ notes, dispatch }}>
-            {children}
-        </NotesContext.Provider>
-)}
+    return <NotesContext.Provider value={{ notes, dispatch }}>{children}</NotesContext.Provider>;
+}
