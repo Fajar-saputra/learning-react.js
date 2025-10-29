@@ -58,7 +58,7 @@ export default function TodoApp() {
         },
     ];
 
-    const [todos, dispatch] = useReducer(todoReducer, initialState);
+    const [todos, dispatch] = useReducer(todoReducer, []);
     const [inpTodo, setInpTodo] = useState("");
     const [editId, setEditId] = useState(null);
     const [editTitle, setEditTitle] = useState("");
